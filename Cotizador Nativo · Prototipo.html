@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador · Espacio Nativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#5a6b4a;
+    --sage-dark:#1f3324;
+    --sage-light:#8a9a78;
+    --cream:#f5f1e8;
+    --cream-dark:#ebe4d4;
+    --beige:#e8dec4;
+    --paper:#fbf8f1;
+    --ink:#2a2a28;
+    --ink-soft:#5c5c56;
+    --terra:#b57b5a;
+    --line:#d6cfbd;
+    --error:#c44d3d;
+    --success:#3f8055;
+    --white:#ffffff;
+    --shadow:0 2px 20px rgba(31,51,36,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--sage-dark);letter-spacing:.01em}
+  h1{font-size:2.8rem;line-height:1.1;font-weight:500}
+  h2{font-size:2rem;line-height:1.2;font-weight:500}
+  h3{font-size:1.4rem;font-weight:500}
+  a{color:var(--sage);text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+
+  /* ——— Top nav ——— */
+  .topbar{background:var(--sage-dark);color:#f5efe2;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.15em}
+  .topbar .brand{display:flex;align-items:center;gap:0}
+  .topbar .logo{display:block}
+  .topbar .lang{display:flex;gap:4px}
+  .topbar .lang button{color:#f5efe2;opacity:.55;padding:4px 8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+  .topbar .lang button.active{opacity:1;border-bottom:1px solid #f5efe2}
+  .conn-status{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#f5efe2;opacity:.7;display:flex;align-items:center;gap:6px}
+  .dot-on{display:inline-block;width:6px;height:6px;border-radius:50%;background:#7dd17a;box-shadow:0 0 6px #7dd17a;margin-right:2px}
+
+  /* ——— Hero header ——— */
+  .hero{background:var(--cream);padding:60px 32px 40px;text-align:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .hero::before,.hero::after{content:"";position:absolute;top:50%;width:100px;height:1px;background:var(--sage);opacity:.3}
+  .hero::before{left:32px}
+  .hero::after{right:32px}
+  .hero .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+  .hero h1{color:var(--sage-dark)}
+  .hero .ornament{font-family:'Cormorant Garamond',serif;color:var(--sage);font-size:22px;margin:18px 0 10px;letter-spacing:.3em}
+  .hero p{max-width:560px;margin:8px auto 0;color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic}
+
+  /* ——— Progress ——— */
+  .progress{max-width:920px;margin:40px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .progress .step{text-align:center;position:relative}
+  .progress .dot{width:28px;height:28px;border-radius:50%;background:var(--cream);border:1px solid var(--line);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--ink-soft);transition:.2s}
+  .progress .step.done .dot{background:var(--sage);border-color:var(--sage);color:#fff}
+  .progress .step.active .dot{background:var(--sage-dark);border-color:var(--sage-dark);color:#fff;transform:scale(1.15)}
+  .progress .label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft)}
+  .progress .step.active .label{color:var(--sage-dark);font-weight:600}
+  .progress .bar{position:absolute;top:13px;left:50%;width:100%;height:1px;background:var(--line);z-index:-1}
+  .progress .step.done .bar{background:var(--sage)}
+  .progress .step:last-child .bar{display:none}
+
+  /* ——— Main layout ——— */
+  main{max-width:1040px;margin:0 auto;padding:40px 32px 80px;position:relative}
+  .grid{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+  /* ——— Step cards ——— */
+  .step-card{background:var(--white);border:1px solid var(--line);padding:50px 52px;box-shadow:var(--shadow);display:none}
+  .step-card.active{display:block;animation:fadein .4s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .step-card .step-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+  .step-card h2{margin-bottom:6px}
+  .step-card .step-sub{color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;margin-bottom:36px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+
+  /* ——— Forms ——— */
+  .field{margin-bottom:24px;position:relative}
+  label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--sage-dark);margin-bottom:8px;font-weight:500}
+  .req{color:var(--terra)}
+  input[type=text],input[type=email],input[type=tel],input[type=number],input[type=date],select,textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--line);background:var(--paper);
+    border-radius:0;transition:.2s;font-size:14px;color:var(--ink)
+  }
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--sage);background:#fff}
+  input.invalid,textarea.invalid{border-color:var(--error);background:#fdf3f1}
+  input.valid{border-color:var(--success)}
+  textarea{min-height:90px;resize:vertical;font-family:inherit}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+  @media(max-width:700px){.row,.row-3{grid-template-columns:1fr}}
+  .err-msg{font-size:11px;color:var(--error);margin-top:4px;display:none}
+  .field.err .err-msg{display:block}
+  .ok-msg{font-size:11px;color:var(--success);margin-top:4px;display:none}
+  .field.ok .ok-msg{display:block}
+
+  /* ——— Event type pills ——— */
+  .pill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:700px){.pill-grid{grid-template-columns:repeat(2,1fr)}}
+  .pill{padding:18px 12px;border:1px solid var(--line);background:var(--paper);text-align:center;cursor:pointer;transition:.2s;font-size:13px;color:var(--ink-soft)}
+  .pill:hover{border-color:var(--sage-light);background:var(--cream)}
+  .pill.selected{border-color:var(--sage);background:var(--sage);color:#fff}
+  .pill .ico{font-size:22px;display:block;margin-bottom:6px;font-family:'Cormorant Garamond',serif}
+
+  /* ——— Space comparator ——— */
+  .spaces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+  @media(max-width:800px){.spaces{grid-template-columns:1fr}}
+  .space-card{border:1px solid var(--line);background:var(--paper);overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
+  .space-card:hover{border-color:var(--sage)}
+  .space-card.selected{border:2px solid var(--sage);box-shadow:var(--shadow)}
+  .space-card.disabled{opacity:.45;cursor:not-allowed}
+  .space-card .img{height:160px;background-size:cover;background-position:center;position:relative}
+  .space-card .img .badge{position:absolute;top:10px;left:10px;background:var(--sage-dark);color:#fff;font-size:10px;padding:4px 10px;text-transform:uppercase;letter-spacing:.15em}
+  .space-card .body{padding:18px;flex:1;display:flex;flex-direction:column;gap:6px}
+  .space-card .body h3{margin-bottom:2px}
+  .space-card .cap{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.1em}
+  .space-card .price{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.5rem;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+  .space-card .price small{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.14em;display:block}
+
+  /* ——— Suggester ——— */
+  .suggester-trigger{margin-top:26px;text-align:center}
+  .suggester-trigger button{color:var(--sage-dark);font-size:13px;border-bottom:1px solid var(--sage);padding-bottom:2px;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1rem}
+  .suggester-modal{display:none;position:fixed;inset:0;background:rgba(31,51,36,.85);z-index:100;align-items:center;justify-content:center;padding:20px}
+  .suggester-modal.open{display:flex}
+  .suggester-box{background:var(--white);max-width:560px;width:100%;padding:44px 48px;position:relative;max-height:90vh;overflow-y:auto}
+  .suggester-box .close{position:absolute;top:16px;right:18px;font-size:22px;color:var(--ink-soft);cursor:pointer;background:none;border:none}
+  .suggester-q{margin-top:24px}
+  .suggester-q label{font-size:14px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink);margin-bottom:10px;font-family:'Cormorant Garamond',serif;font-size:1.2rem}
+  .suggester-q .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .suggester-q .opt{padding:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;text-align:center;font-size:13px;transition:.15s}
+  .suggester-q .opt:hover{border-color:var(--sage-light)}
+  .suggester-q .opt.sel{border-color:var(--sage);background:var(--sage);color:#fff}
+  .suggester-result{background:var(--cream);border-left:3px solid var(--sage);padding:20px 24px;margin-top:22px;display:none}
+  .suggester-result.show{display:block}
+  .suggester-result .rec{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--sage-dark);margin-bottom:6px}
+  .suggester-result p{font-size:14px;color:var(--ink-soft)}
+  .suggester-actions{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ——— Date/time ——— */
+  .calendar-box{padding:28px;background:var(--cream);border:1px solid var(--line)}
+  .calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .calendar-head h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--sage-dark)}
+  .calendar-head button{color:var(--sage);font-size:18px;padding:4px 10px}
+  .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .calendar-grid .dow{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);padding:8px 0;text-align:center}
+  .calendar-grid .day{padding:10px 0;background:#fff;cursor:pointer;font-size:13px;border:1px solid transparent;transition:.15s;text-align:center;position:relative}
+  .calendar-grid .day:hover{border-color:var(--sage-light)}
+  .calendar-grid .day.selected{background:var(--sage);color:#fff}
+  .calendar-grid .day.blocked{background:#f0ebd9;color:#b5a98a;cursor:not-allowed;text-decoration:line-through}
+  .calendar-grid .day.partial{background:#fdf3e1;color:#a98955}
+  .calendar-grid .day.partial::after{content:"◐";position:absolute;top:1px;right:3px;font-size:9px;color:#c4923c}
+  .calendar-grid .day.empty{background:transparent;cursor:default}
+  .calendar-grid .day.today{font-weight:700;color:var(--sage)}
+  .cal-legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px;font-size:11px;color:var(--ink-soft)}
+  .cal-legend span{display:flex;align-items:center;gap:6px}
+  .cal-legend i{width:14px;height:14px;display:inline-block;border:1px solid var(--line)}
+  .blocked-note{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:12px;text-align:center}
+
+  /* Time slot panel */
+  .time-slots{margin-top:18px;background:#fff;border:1px solid var(--line);padding:18px}
+  .time-slots .h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;font-family:'Inter',sans-serif;font-weight:500}
+  .slot-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  @media(max-width:700px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
+  .slot{padding:10px 4px;border:1px solid var(--line);background:var(--paper);font-size:12px;text-align:center;cursor:pointer;transition:.15s;font-variant-numeric:tabular-nums}
+  .slot:hover:not(.disabled){border-color:var(--sage-light)}
+  .slot.selected{background:var(--sage);color:#fff;border-color:var(--sage)}
+  .slot.disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through;background:#f0ebd9}
+
+  /* ——— Catering ——— */
+  .catering-choice{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+  @media(max-width:700px){.catering-choice{grid-template-columns:1fr}}
+  .menu-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+  @media(max-width:700px){.menu-list{grid-template-columns:1fr}}
+  .menu-item{border:1px solid var(--line);padding:18px 20px;background:var(--paper);cursor:pointer;transition:.15s}
+  .menu-item:hover{border-color:var(--sage-light)}
+  .menu-item.selected{border-color:var(--sage);background:#fff;box-shadow:var(--shadow)}
+  .menu-item .menu-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .menu-item h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--sage-dark)}
+  .menu-item .pp{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--sage)}
+  .menu-item .pp small{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);display:block;text-align:right}
+  .menu-item p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+  /* Catering banner */
+  .cat-banner{background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;padding:18px 22px;margin:0 0 24px;display:flex;align-items:center;gap:14px}
+  .cat-banner .ico{font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1}
+  .cat-banner .txt{flex:1;font-size:13px;line-height:1.5}
+  .cat-banner .txt strong{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;display:block;margin-bottom:2px}
+
+  /* ——— Extras ——— */
+  .extra-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid var(--line);background:var(--paper);margin-bottom:10px}
+  .extra-row label{text-transform:none;letter-spacing:0;margin:0;font-weight:400;color:var(--ink);flex:1}
+  .extra-row label .ex-desc{display:block;font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .extra-row .ex-price{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.1rem;margin:0 14px}
+  .extra-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--sage)}
+
+  /* ——— Captcha ——— */
+  .captcha{margin:20px 0;padding:14px 16px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;gap:14px;max-width:340px}
+  .captcha-check{width:24px;height:24px;border:2px solid #c0c0c0;background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+  .captcha-check.checked{border-color:var(--success);background:var(--success);color:#fff;font-size:14px}
+  .captcha-check.loading{border-color:#fbbf24;border-top-color:transparent;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .captcha-label{font-size:13px;flex:1}
+  .captcha-cf{display:flex;flex-direction:column;align-items:flex-end;font-size:9px;color:var(--ink-soft);line-height:1.2;flex-shrink:0}
+  .captcha-cf strong{color:var(--terra);font-size:11px}
+
+  /* ——— Summary sidebar ——— */
+  aside.summary{background:var(--cream);border:1px solid var(--line);padding:32px 28px;position:sticky;top:20px}
+  aside.summary .eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
+  aside.summary h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--sage-dark);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  aside.summary .line{display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px;color:var(--ink-soft);gap:10px}
+  aside.summary .line .k{text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+  aside.summary .line .v{color:var(--ink);text-align:right}
+  aside.summary .totals{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  aside.summary .totals .line{font-size:13px}
+  aside.summary .total-big{margin-top:14px;padding:16px;background:var(--sage);color:#fff;display:flex;justify-content:space-between;align-items:baseline}
+  aside.summary .total-big .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.2em}
+  aside.summary .total-big .amt{font-family:'Cormorant Garamond',serif;font-size:1.8rem}
+  aside.summary .empty{text-align:center;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1rem;padding:30px 0}
+  aside.summary .discount{background:#fff8e8;border:1px dashed var(--terra);padding:10px;font-size:12px;color:var(--terra);margin-top:10px;text-align:center;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1rem}
+
+  /* ——— Nav buttons ——— */
+  .nav-btns{display:flex;justify-content:space-between;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+  .btn{padding:14px 28px;font-size:12px;text-transform:uppercase;letter-spacing:.2em;transition:.2s;border:1px solid var(--sage);background:transparent;color:var(--sage-dark);display:inline-flex;align-items:center;justify-content:center;gap:6px}
+  .btn:hover{background:var(--sage);color:#fff}
+  .btn.primary{background:var(--sage);color:#fff}
+  .btn.primary:hover{background:var(--sage-dark);border-color:var(--sage-dark)}
+  .btn.ghost{border-color:var(--line);color:var(--ink-soft)}
+  .btn.wa{background:#25D366;color:#fff;border-color:#25D366}
+  .btn.wa:hover{background:#128C7E;border-color:#128C7E}
+  .btn.wa::before{content:"✆ "}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* ——— Recap (step 7) ——— */
+  .recap{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  @media(max-width:700px){.recap{grid-template-columns:1fr}}
+  .recap .block{border-left:2px solid var(--sage);padding:4px 0 4px 18px;margin-bottom:18px}
+  .recap .block h4{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.2rem;margin-bottom:4px}
+  .recap .block p{font-size:14px;color:var(--ink-soft)}
+  .final-price{background:var(--sage-dark);color:#fff;padding:40px;margin:30px 0;text-align:center}
+  .final-price .label{font-size:11px;text-transform:uppercase;letter-spacing:.3em;opacity:.7;margin-bottom:6px}
+  .final-price .amount{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:500;line-height:1}
+  .final-price .sub{font-size:12px;margin-top:10px;opacity:.8}
+  .disclaimer{background:var(--cream);padding:18px 22px;border-left:3px solid var(--terra);font-size:13px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+
+  /* ——— Success screen ——— */
+  .success{text-align:center;padding:60px 40px}
+  .success .mark{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--sage);line-height:1;margin-bottom:10px}
+  .success h2{font-size:2.4rem;margin-bottom:10px}
+  .success p.lead{color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;max-width:520px;margin:0 auto 30px}
+  .success .next-steps{text-align:left;max-width:560px;margin:0 auto;background:var(--cream);padding:28px 32px;border:1px solid var(--line)}
+  .success .next-steps h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--sage-dark);margin-bottom:14px}
+  .success .next-steps ol{padding-left:20px;font-size:14px;color:var(--ink-soft)}
+  .success .next-steps li{margin-bottom:8px}
+  .success .cta-row{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .integrations-fired{max-width:560px;margin:30px auto 0;text-align:left;background:#fff;border:1px solid var(--line);padding:20px}
+  .integrations-fired h4{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.2rem;margin-bottom:10px;text-align:center}
+  .integ-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;border-bottom:1px dotted var(--line)}
+  .integ-item:last-child{border-bottom:none}
+  .integ-item .check{color:var(--success);font-weight:600;font-size:16px;width:20px}
+  .integ-item .what{flex:1;color:var(--ink-soft)}
+  .integ-item .what strong{color:var(--ink)}
+
+  /* ——— Admin preview ——— */
+  .admin-preview{margin-top:60px;padding:32px;background:var(--cream-dark);border:2px dashed var(--sage-light)}
+  .admin-preview .tag{display:inline-block;background:var(--terra);color:#fff;font-size:10px;padding:4px 10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+  .admin-preview h3{font-family:'Cormorant Garamond',serif;margin-bottom:4px}
+  .admin-preview .admin-email{background:#fff;padding:28px;margin-top:18px;border:1px solid var(--line);font-size:14px;text-align:left}
+  .admin-preview .admin-email .from{font-size:12px;color:var(--ink-soft);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .admin-preview .admin-email h4{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);margin-bottom:14px}
+  .admin-preview .admin-email ul{list-style:none;padding:0;margin:14px 0}
+  .admin-preview .admin-email li{padding:6px 0;font-size:13px;color:var(--ink-soft);border-bottom:1px dotted var(--line)}
+  .admin-preview .admin-email li strong{color:var(--ink);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+  .admin-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+  .admin-actions .btn{font-size:11px;padding:12px 14px}
+
+  /* ——— PDF preview mockup ——— */
+  .pdf-preview{max-width:420px;margin:20px auto 0;background:#fff;border:1px solid var(--line);padding:36px 30px;box-shadow:var(--shadow);font-size:12px;line-height:1.4;position:relative;text-align:left}
+  .pdf-preview::before{content:"PDF PRELIMINAR";position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:.2em;color:var(--terra);font-weight:600}
+  .pdf-preview .pdf-head{text-align:center;padding-bottom:16px;border-bottom:1px solid var(--sage);margin-bottom:16px}
+  .pdf-preview .pdf-head svg{margin:0 auto;display:block}
+  .pdf-preview .pdf-head .tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+  .pdf-preview h5{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--sage-dark);margin-bottom:6px}
+  .pdf-preview .pdf-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #e0d9c4}
+  .pdf-preview .pdf-total{background:var(--sage);color:#fff;padding:12px 14px;margin-top:10px;display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:1.2rem}
+
+  /* ——— Floating WhatsApp ——— */
+  .fab-wa{position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.35);z-index:50;cursor:pointer;font-size:26px;transition:.2s;border:none}
+  .fab-wa:hover{background:#128C7E;transform:scale(1.06)}
+  .fab-wa .tip{position:absolute;right:72px;background:var(--ink);color:#fff;padding:8px 14px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;font-family:'Inter',sans-serif}
+  .fab-wa:hover .tip{opacity:1}
+
+  /* ——— Toasts ——— */
+  .toast-wrap{position:fixed;top:80px;right:20px;z-index:200;display:flex;flex-direction:column;gap:10px;max-width:360px}
+  .toast{background:#fff;border-left:4px solid var(--sage);padding:14px 18px;box-shadow:0 4px 20px rgba(31,51,36,.15);font-size:13px;animation:slideIn .3s ease}
+  .toast.error{border-left-color:var(--error)}
+  .toast.success{border-left-color:var(--success)}
+  .toast strong{display:block;color:var(--sage-dark);font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:2px}
+  .toast .small{font-size:11px;color:var(--ink-soft);margin-top:4px}
+  @keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
+
+  /* ——— Footer ——— */
+  footer{text-align:center;padding:40px 20px;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--line);background:var(--cream)}
+  footer .orn{color:var(--sage);font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:10px;letter-spacing:.4em}
+
+  /* ——— Tags ——— */
+  .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:4px 8px;background:var(--cream);color:var(--sage-dark);border:1px solid var(--sage-light)}
+
+  /* Radio choice for catering */
+  .cat-opt{border:1px solid var(--line);padding:18px;background:var(--paper);cursor:pointer;text-align:center;transition:.2s}
+  .cat-opt:hover{border-color:var(--sage-light)}
+  .cat-opt.selected{border-color:var(--sage);background:#fff}
+  .cat-opt .icon{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--sage);display:block;margin-bottom:6px}
+  .cat-opt h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--sage-dark);margin-bottom:4px}
+  .cat-opt p{font-size:12px;color:var(--ink-soft)}
+  .cat-opt .save-tag{display:inline-block;background:var(--terra);color:#fff;font-size:9px;padding:2px 8px;letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
+
+  /* Privacy */
+  .privacy{display:flex;gap:10px;align-items:flex-start;padding:14px 18px;background:var(--cream);border:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+  .privacy input{margin-top:4px;accent-color:var(--sage)}
+
+  @media(max-width:700px){
+    .topbar{padding:10px 16px;flex-wrap:wrap;gap:10px}
+    .conn-status{display:none}
+    .hero{padding:40px 20px 30px}
+    h1{font-size:2rem}
+    main{padding:24px 16px 60px}
+    .step-card{padding:30px 24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 240 60" width="135" height="34" fill="none" stroke="#f5efe2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Nativo">
+      <circle cx="30" cy="30" r="22"/>
+      <line x1="30" y1="9" x2="30" y2="51"/>
+      <circle cx="30" cy="20" r="2.8" fill="#f5efe2" stroke="none"/>
+      <path d="M 18 40 L 25 30 L 30 35 L 35 30 L 42 40"/>
+      <text x="65" y="40" font-family="Cormorant Garamond, serif" font-size="24" letter-spacing="6" fill="#f5efe2" stroke="none" font-weight="500">NATIVO</text>
+    </svg>
+    <span style="opacity:.55;font-size:10px;letter-spacing:.25em;margin-left:14px;border-left:1px solid rgba(245,239,226,.3);padding-left:14px;text-transform:uppercase">cotizador</span>
+  </div>
+  <div style="display:flex;gap:18px;align-items:center">
+    <span class="conn-status" title="Estado de integraciones (simulado en este prototipo)">
+      <span class="dot-on"></span> HubSpot
+      <span style="margin:0 4px;opacity:.4">·</span>
+      <span class="dot-on"></span> Drive
+      <span style="margin:0 4px;opacity:.4">·</span>
+      <span class="dot-on"></span> Calendar
+    </span>
+    <div class="lang">
+      <button class="active">ES</button>
+      <button>EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="eyebrow">espacio nativo · san miguel chapultepec</div>
+  <h1>Diseña tu evento</h1>
+  <div class="ornament">· · ✦ · ·</div>
+  <p>Configura tu evento en pocos pasos y recibe una cotización preliminar al instante. Un miembro de nuestro equipo confirmará contigo en menos de 4 horas.</p>
+</section>
+
+<!-- Progress -->
+<div class="progress" id="progress">
+  <div class="step active" data-step="1"><div class="dot">1</div><div class="label">Evento</div><div class="bar"></div></div>
+  <div class="step" data-step="2"><div class="dot">2</div><div class="label">Espacio</div><div class="bar"></div></div>
+  <div class="step" data-step="3"><div class="dot">3</div><div class="label">Fecha</div><div class="bar"></div></div>
+  <div class="step" data-step="4"><div class="dot">4</div><div class="label">Catering</div><div class="bar"></div></div>
+  <div class="step" data-step="5"><div class="dot">5</div><div class="label">Extras</div><div class="bar"></div></div>
+  <div class="step" data-step="6"><div class="dot">6</div><div class="label">Contacto</div><div class="bar"></div></div>
+  <div class="step" data-step="7"><div class="dot">7</div><div class="label">Resumen</div></div>
+</div>
+
+<main>
+<div class="grid">
+<div>
+
+<!-- STEP 1: event type -->
+<section class="step-card active" id="step-1">
+  <div class="step-eyebrow">paso 01 / 07</div>
+  <h2>¿Qué tipo de evento celebramos?</h2>
+  <p class="step-sub">Selecciona el tipo que mejor describa tu celebración.</p>
+
+  <div class="pill-grid">
+    <div class="pill" data-event="boda"><span class="ico">❦</span>Boda</div>
+    <div class="pill" data-event="cumpleanos"><span class="ico">✦</span>Cumpleaños</div>
+    <div class="pill" data-event="corporativo"><span class="ico">◆</span>Corporativo</div>
+    <div class="pill" data-event="conferencia"><span class="ico">◇</span>Conferencia</div>
+    <div class="pill" data-event="lanzamiento"><span class="ico">✧</span>Lanzamiento</div>
+    <div class="pill" data-event="aniversario"><span class="ico">✿</span>Aniversario</div>
+    <div class="pill" data-event="babyshower"><span class="ico">❀</span>Baby Shower</div>
+    <div class="pill" data-event="otro"><span class="ico">⁜</span>Otro</div>
+  </div>
+
+  <div class="field" style="margin-top:26px;display:none" id="otro-field">
+    <label>Cuéntanos un poco más</label>
+    <input type="text" id="event-otro" placeholder="Ej. Reunión familiar, despedida de soltera…">
+  </div>
+
+  <div class="nav-btns">
+    <span></span>
+    <button class="btn primary" onclick="next()" id="next-1" disabled>Continuar →</button>
+  </div>
+</section>
+
+<!-- STEP 2: space + people (FORMAT REMOVED) -->
+<section class="step-card" id="step-2">
+  <div class="step-eyebrow">paso 02 / 07</div>
+  <h2>Personas & Espacio</h2>
+  <p class="step-sub">Te mostramos las configuraciones ideales para tu grupo.</p>
+
+  <div class="row">
+    <div class="field">
+      <label>Número de personas <span class="req">*</span></label>
+      <input type="number" id="people" min="1" max="200" placeholder="Ej. 45" oninput="updateSpaces()">
+      <div class="err-msg">Ingresa un número entre 1 y 200.</div>
+    </div>
+    <div class="field" style="display:flex;align-items:flex-end">
+      <div style="font-size:12px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.4;padding-bottom:14px">
+        Las capacidades mostradas son para formato cóctel/de pie. Para evento sentado el equipo confirma capacidad final.
+      </div>
+    </div>
+  </div>
+
+  <label style="margin-bottom:16px">Configuraciones recomendadas</label>
+  <div class="spaces" id="spaces-grid">
+    <!-- injected by JS -->
+  </div>
+
+  <div class="suggester-trigger">
+    <button onclick="openSuggester()">No estoy segur@ — ayúdame a decidir ✦</button>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-2" disabled>Continuar →</button>
+  </div>
+</section>
+
+<!-- STEP 3: date + hours (REAL CALENDAR + 1AM CAP) -->
+<section class="step-card" id="step-3">
+  <div class="step-eyebrow">paso 03 / 07</div>
+  <h2>Fecha y duración</h2>
+  <p class="step-sub">Renta mínima 5 horas. Todos los eventos terminan máximo a la 1:00 AM.</p>
+
+  <div class="calendar-box">
+    <div class="calendar-head">
+      <button onclick="changeMonth(-1)" aria-label="Mes anterior">←</button>
+      <h4 id="cal-title">Mayo 2026</h4>
+      <button onclick="changeMonth(1)" aria-label="Mes siguiente">→</button>
+    </div>
+    <div class="calendar-grid" id="calendar">
+      <!-- injected -->
+    </div>
+    <div class="cal-legend">
+      <span><i style="background:#fff"></i> Disponible</span>
+      <span><i style="background:#fdf3e1"></i> Parcial (algún horario)</span>
+      <span><i style="background:#f0ebd9"></i> No disponible</span>
+      <span><i style="background:var(--sage)"></i> Seleccionada</span>
+    </div>
+    <div class="blocked-note">Sincronizado con Google Calendar de Nativo. Un agente confirmará la fecha al final.</div>
+  </div>
+
+  <div id="time-panel" class="time-slots" style="display:none">
+    <div class="h4">Hora de inicio · <span id="picked-date-lbl">—</span></div>
+    <div class="slot-grid" id="time-grid">
+      <!-- injected when date picked -->
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:24px">
+    <div class="field">
+      <label>Duración del evento <span class="req">*</span></label>
+      <select id="hours" onchange="onHoursChange()" disabled>
+        <option value="5">5 horas</option>
+      </select>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;font-style:italic" id="hours-hint">Selecciona primero hora de inicio.</div>
+    </div>
+    <div class="field" style="display:flex;align-items:flex-end">
+      <div id="end-time-display" style="background:var(--cream);padding:12px 16px;border-left:3px solid var(--sage);width:100%;font-size:13px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.05rem">Selecciona fecha y horario para ver hora de término.</div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-3" disabled>Continuar →</button>
+  </div>
+</section>
+
+<!-- STEP 4: catering (NEW PRICING: 50% RENT DISCOUNT, NO INFANTIL) -->
+<section class="step-card" id="step-4">
+  <div class="step-eyebrow">paso 04 / 07</div>
+  <h2>Catering</h2>
+  <p class="step-sub">Elige cómo quieres alimentar a tus invitados.</p>
+
+  <div class="cat-banner">
+    <div class="ico">✦</div>
+    <div class="txt">
+      <strong>50% de descuento en la renta</strong>
+      Si contratas cualquiera de nuestros caterings partner, te aplicamos automáticamente 50% de descuento sobre el costo de renta del espacio.
+    </div>
+  </div>
+
+  <div class="catering-choice">
+    <div class="cat-opt" data-cat="sin" onclick="selectCat('sin')">
+      <span class="icon">◯</span>
+      <h4>Sin catering</h4>
+      <p>Solo renta del espacio</p>
+    </div>
+    <div class="cat-opt" data-cat="nativo" onclick="selectCat('nativo')">
+      <span class="icon">✦</span>
+      <h4>Catering Nativo</h4>
+      <p>Paquete por persona</p>
+      <span class="save-tag">−50% renta</span>
+    </div>
+    <div class="cat-opt" data-cat="externo" onclick="selectCat('externo')">
+      <span class="icon">◇</span>
+      <h4>Catering externo</h4>
+      <p>Renta completa + tu proveedor</p>
+    </div>
+  </div>
+
+  <div id="menu-picker" style="display:none">
+    <label>Elige tu menú <span style="text-transform:none;color:var(--ink-soft);letter-spacing:0;font-weight:400;font-size:12px">(mínimo 20 personas)</span></label>
+    <div class="menu-list" id="menu-list">
+      <!-- injected -->
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-4" disabled>Continuar →</button>
+  </div>
+</section>
+
+<!-- STEP 5: extras -->
+<section class="step-card" id="step-5">
+  <div class="step-eyebrow">paso 05 / 07</div>
+  <h2>Extras</h2>
+  <p class="step-sub">Añade los detalles que harán tu evento inolvidable.</p>
+
+  <div class="extra-row">
+    <label>
+      <strong>Coffee Break Básico</strong>
+      <span class="ex-desc">Café, té, agua, fruta, frutos secos, panadería y galletas · por persona</span>
+    </label>
+    <span class="ex-price">$200 p/p</span>
+    <input type="checkbox" id="ex-coffee" onchange="calcPrice();renderSummary()">
+  </div>
+
+  <div class="extra-row" style="opacity:.55">
+    <label>
+      <strong>Hora extra · DJ · Mobiliario especial</strong>
+      <span class="ex-desc">Catálogo en construcción — solicítalo por WhatsApp o en comentarios</span>
+    </label>
+    <span class="ex-price">próximamente</span>
+    <input type="checkbox" disabled>
+  </div>
+
+  <div class="field" style="margin-top:28px">
+    <label>Comentarios especiales</label>
+    <textarea id="comments" placeholder="Mascotas, alergias, montaje especial, decoración, etc." oninput="S.comments=this.value"></textarea>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="next()">Continuar →</button>
+  </div>
+</section>
+
+<!-- STEP 6: contact (VALIDATION + CAPTCHA) -->
+<section class="step-card" id="step-6">
+  <div class="step-eyebrow">paso 06 / 07</div>
+  <h2>Datos de contacto</h2>
+  <p class="step-sub">Para enviarte la cotización formal y agendar la llamada de confirmación.</p>
+
+  <div class="row">
+    <div class="field" id="f-name">
+      <label>Nombre completo <span class="req">*</span></label>
+      <input type="text" id="c-name" oninput="validateField('name')" autocomplete="name">
+      <div class="err-msg">Ingresa nombre y apellido (solo letras).</div>
+      <div class="ok-msg">✓ Nombre válido</div>
+    </div>
+    <div class="field" id="f-phone">
+      <label>Teléfono / WhatsApp <span class="req">*</span></label>
+      <input type="tel" id="c-phone" placeholder="+52 55 0000 0000" oninput="validateField('phone')" autocomplete="tel">
+      <div class="err-msg">Ingresa un teléfono válido (10 dígitos).</div>
+      <div class="ok-msg">✓ Teléfono válido</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field" id="f-email">
+      <label>Correo electrónico <span class="req">*</span></label>
+      <input type="email" id="c-email" oninput="validateField('email')" autocomplete="email">
+      <div class="err-msg">Ingresa un correo electrónico válido.</div>
+      <div class="ok-msg">✓ Correo válido</div>
+    </div>
+    <div class="field">
+      <label>Empresa (opcional)</label>
+      <input type="text" id="c-company">
+    </div>
+  </div>
+  <div class="field">
+    <label>¿Cómo nos conociste? (opcional)</label>
+    <select id="c-source">
+      <option value="">—</option>
+      <option>Instagram</option>
+      <option>Google</option>
+      <option>Recomendación</option>
+      <option>Boda/evento previo</option>
+      <option>Otro</option>
+    </select>
+  </div>
+
+  <!-- Captcha (Cloudflare Turnstile-style) -->
+  <div class="captcha" id="captcha" onclick="solveCaptcha()">
+    <div class="captcha-check" id="cap-box"></div>
+    <div class="captcha-label" id="cap-label">Verifica que no eres un robot</div>
+    <div class="captcha-cf">
+      <strong>CLOUDFLARE</strong>
+      <span>Turnstile · Privacidad</span>
+    </div>
+  </div>
+
+  <div class="privacy">
+    <input type="checkbox" id="c-privacy" onchange="checkContact()">
+    <label for="c-privacy" style="flex:1;margin:0;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-soft)">
+      Acepto el <a href="#" style="text-decoration:underline">aviso de privacidad</a> y el tratamiento de mis datos conforme a la LFPDPPP. Entiendo que un miembro del equipo Nativo me contactará para confirmar la cotización.
+    </label>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-6" disabled>Ver resumen →</button>
+  </div>
+</section>
+
+<!-- STEP 7: recap -->
+<section class="step-card" id="step-7">
+  <div class="step-eyebrow">paso 07 / 07</div>
+  <h2>Tu cotización preliminar</h2>
+  <p class="step-sub">Revisa los detalles antes de enviar. Un miembro de Nativo confirmará la disponibilidad y te enviará la cotización formal.</p>
+
+  <div class="recap" id="recap-blocks">
+    <!-- injected -->
+  </div>
+
+  <div class="final-price">
+    <div class="label">Total estimado con IVA</div>
+    <div class="amount" id="final-total">$0</div>
+    <div class="sub" id="final-breakdown">subtotal + 16% IVA</div>
+  </div>
+
+  <div class="disclaimer">
+    Esta es una estimación preliminar. <strong>Un agente de Nativo confirmará la disponibilidad de la fecha y horario seleccionados</strong> antes de enviar la cotización formal. El precio final puede ajustarse según detalles logísticos. La reserva se aparta con 50% de anticipo.
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn ghost" onclick="prev()">← Atrás</button>
+    <button class="btn primary" onclick="submitQuote()" id="submit-btn">Enviar solicitud ✦</button>
+  </div>
+</section>
+
+<!-- STEP 8: success -->
+<section class="step-card" id="step-8">
+  <div class="success">
+    <div class="mark">✦</div>
+    <h2>¡Gracias, <span id="s-name">nombre</span>!</h2>
+    <p class="lead">Recibimos tu solicitud. Te enviamos una copia a <strong id="s-email">tu correo</strong> y nuestro equipo te contactará en menos de 4 horas para confirmar la fecha y enviarte la cotización formal.</p>
+
+    <div class="integrations-fired">
+      <h4>Esto pasó cuando enviaste tu solicitud</h4>
+      <div class="integ-item">
+        <span class="check">✓</span>
+        <div class="what"><strong>HubSpot</strong> · Contact + Deal creados en pipeline "Cotización Enviada"</div>
+      </div>
+      <div class="integ-item">
+        <span class="check">✓</span>
+        <div class="what"><strong>Google Drive</strong> · PDF preliminar guardado en /Cotizaciones Nativo/2026/</div>
+      </div>
+      <div class="integ-item">
+        <span class="check">✓</span>
+        <div class="what"><strong>Correo cliente</strong> · Resumen + estimación enviados</div>
+      </div>
+      <div class="integ-item">
+        <span class="check">✓</span>
+        <div class="what"><strong>Correo interno</strong> · Notificación al equipo Nativo con botones de acción</div>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <h4>Qué sigue</h4>
+      <ol>
+        <li>Revisa tu correo: encontrarás el resumen y la estimación preliminar.</li>
+        <li>En las próximas horas recibirás un WhatsApp de nuestro equipo confirmando la fecha.</li>
+        <li>Una vez validados los detalles, te enviaremos la cotización formal en PDF.</li>
+        <li>Para reservar, solicitamos el 50% de anticipo. La fecha se aparta al recibir el pago.</li>
+      </ol>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn wa" href="#" onclick="openWA();return false">Escribir por WhatsApp</a>
+      <button class="btn" onclick="resetAll()">Nueva cotización</button>
+    </div>
+
+    <!-- Preliminary PDF preview -->
+    <h3 style="margin-top:60px;font-size:1.4rem">Tu PDF preliminar</h3>
+    <p style="color:var(--ink-soft);font-size:13px;margin-bottom:10px">Vista previa del documento que recibirás por correo</p>
+    <div class="pdf-preview" id="pdf-preview">
+      <!-- injected -->
+    </div>
+
+    <!-- Admin email mockup -->
+    <div class="admin-preview">
+      <span class="tag">vista interna · equipo nativo</span>
+      <h3>Correo que recibe el equipo</h3>
+      <p style="font-size:13px;color:var(--ink-soft)">Así le llega la notificación a quien revisa cotizaciones — los botones disparan acciones reales</p>
+      <div class="admin-email" id="admin-email">
+        <!-- injected -->
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /left column -->
+
+<!-- ——— Summary sidebar ——— -->
+<aside class="summary" id="sidebar">
+  <div class="eyebrow">resumen en vivo</div>
+  <h3>Tu evento</h3>
+
+  <div id="summary-body">
+    <div class="empty">Empieza a configurar tu evento…</div>
+  </div>
+</aside>
+
+</div><!-- /grid -->
+</main>
+
+<!-- ——— Floating WhatsApp ——— -->
+<button class="fab-wa" onclick="openWA()">
+  <span class="tip">¿Tienes dudas? Escríbenos</span>
+  ✆
+</button>
+
+<!-- ——— Suggester modal ——— -->
+<div class="suggester-modal" id="suggester">
+  <div class="suggester-box">
+    <button class="close" onclick="closeSuggester()">×</button>
+    <div style="text-align:center">
+      <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:8px">ayuda personalizada</div>
+      <h3 style="font-size:1.8rem">Hagamos match con tu espacio ideal</h3>
+      <p style="color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-style:italic;margin-top:6px">Tres preguntas rápidas.</p>
+    </div>
+
+    <div class="suggester-q">
+      <label>1 · ¿Cómo imaginas el ambiente?</label>
+      <div class="opts" data-q="amb">
+        <div class="opt" data-v="intimo">Íntimo y acogedor</div>
+        <div class="opt" data-v="amplio">Amplio y con movimiento</div>
+      </div>
+    </div>
+    <div class="suggester-q">
+      <label>2 · ¿Día o noche?</label>
+      <div class="opts" data-q="tiempo">
+        <div class="opt" data-v="dia">De día (brunch, tarde)</div>
+        <div class="opt" data-v="noche">De noche</div>
+      </div>
+    </div>
+    <div class="suggester-q">
+      <label>3 · ¿Formal o casual?</label>
+      <div class="opts" data-q="tono">
+        <div class="opt" data-v="formal">Formal / ceremonial</div>
+        <div class="opt" data-v="casual">Casual / relajado</div>
+      </div>
+    </div>
+
+    <div class="suggester-result" id="sugg-result">
+      <div class="rec" id="sugg-rec">—</div>
+      <p id="sugg-why">—</p>
+      <div class="suggester-actions">
+        <button class="btn primary" onclick="acceptSuggestion()">Elegir este espacio</button>
+        <a class="btn wa" href="#" onclick="openWA();return false">Prefiero un asesor</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-wrap" id="toasts"></div>
+
+<footer>
+  <div class="orn">· · ✦ · ·</div>
+  espacio nativo · cotiza.espacionativo.com · hecho con cuidado
+</footer>
+
+<script>
+// ========= CONSTANTS =========
+const WA_NUMBER = '5215561541310'; // +52 1 55 6154 1310
+const WA_DISPLAY = '+52 1 55 6154 1310';
+
+// ========= DATA =========
+const PRICES = {
+  patio: {
+    cap: 120, // coctel
+    days: {0:[22500,4500],1:[9000,1800],2:[11500,2300],3:[14000,2800],4:[19000,3800],5:[23000,4600],6:[25000,5000]}
+  },
+  terraza: {
+    cap: 50,
+    days: {0:[11500,2300],1:[14500,2900],2:[14500,2900],3:[14500,2900],4:[14500,2900],5:[17500,3500],6:[19500,3900]}
+  },
+  hacienda: {
+    cap: 180,
+    days: {0:[42500,8500],1:[14500,2900],2:[18500,3700],3:[22500,4500],4:[29500,5900],5:[38500,7700],6:[40000,8000]}
+  }
+};
+
+// MENÚ INFANTIL ELIMINADO
+const MENUS = [
+  {id:'3tiempos', name:'Menú de 3 Tiempos', pp:1250, desc:'Crema + pasta/ensalada + plato fuerte + postre. Losa, menaje, salsas y pan.'},
+  {id:'abed', name:'Menú Abed (palestino)', pp:700, desc:'4 entradas + 2 platos fuertes. Cocinado por familia refugiada. Pan palestino, agua de sabor.'},
+  {id:'pizza', name:'Pizza y Lasaña', pp:500, desc:'7 pizzas + 4 lasañas. Agua de sabor + pan artesanal.'},
+  {id:'vinos', name:'Vinos y Canapés', pp:499, desc:'Vino tinto y blanco, canapés, tabla de quesos, frutos secos. Ideal cóctel.'},
+  {id:'taquiza', name:'Taquiza', pp:450, desc:'5 guisados (3 cárnicos + 2 sin carne), tortillas, salsas, desechables, buffet.'},
+  {id:'cazuelas', name:'Cazuelas', pp:450, desc:'5 guisados (2 Grupo 1 + 3 Grupo 2), agua de sabor.'},
+  {id:'box', name:'Box Lunch', pp:400, desc:'Jugo/café/té, fruta, sándwich chapata/croissant/baguette.'}
+];
+
+const SPACE_IMGS = {
+  patio:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&auto=format&fit=crop',
+  terraza:'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600&auto=format&fit=crop',
+  hacienda:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&auto=format&fit=crop'
+};
+
+const DAYS_ES = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+// ========= REAL CALENDAR DATA (simulated Google Calendar response) =========
+// In production this comes from Google Calendar API.
+// 'full' = day fully blocked. 'partial' = some hours busy. 'busy' lists exact conflict windows.
+const CALENDAR = {
+  '2026-05-09': {status:'full',  busy:['10:00-23:00'], reason:'Boda · Luna y Pablo'},
+  '2026-05-10': {status:'partial',busy:['18:00-23:00'], reason:'Cena privada'},
+  '2026-05-15': {status:'partial',busy:['10:00-15:00'], reason:'Brunch corporativo'},
+  '2026-05-16': {status:'full',  busy:['12:00-23:30'], reason:'Aniversario · Familia García'},
+  '2026-05-22': {status:'partial',busy:['20:00-25:00'], reason:'Lanzamiento producto'},
+  '2026-05-23': {status:'full',  busy:['10:00-25:00'], reason:'Boda · Sofía y Mateo'},
+  '2026-05-30': {status:'partial',busy:['16:00-22:00'], reason:'Cumpleaños 50'},
+  '2026-06-06': {status:'full',  busy:['11:00-25:00'], reason:'Boda'},
+  '2026-06-12': {status:'partial',busy:['10:00-14:00'], reason:'Conferencia'},
+  '2026-06-13': {status:'full',  busy:['12:00-25:00'], reason:'Boda · Andrea y Luis'},
+  '2026-06-19': {status:'partial',busy:['18:00-23:00'], reason:'Evento corporativo'},
+  '2026-06-20': {status:'full',  busy:['10:00-25:00'], reason:'Boda'},
+  '2026-06-27': {status:'partial',busy:['10:00-15:00'], reason:'Baby shower'},
+  '2026-07-04': {status:'partial',busy:['19:00-25:00'], reason:'Cena de gala'},
+  '2026-07-11': {status:'full',  busy:['10:00-25:00'], reason:'Boda'},
+  '2026-07-18': {status:'partial',busy:['12:00-17:00'], reason:'Cumpleaños'},
+  '2026-07-25': {status:'full',  busy:['10:00-25:00'], reason:'Aniversario'}
+};
+
+// All 24 hour slots between 10am and 8pm as start options
+const TIME_SLOTS = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
+const END_LIMIT_24H = 25; // 1AM next day = 25:00
+
+// ========= STATE =========
+let S = {
+  step:1, event:null, eventOther:'',
+  people:null,
+  space:null,
+  date:null, startHour:null, hours:5,
+  cateringType:null, menu:null,
+  extras:{coffee:false}, comments:'',
+  contact:{name:'',email:'',phone:'',company:'',source:'',privacy:false,captcha:false},
+  validation:{name:false,email:false,phone:false},
+  calMonth:new Date(2026,4,1)
+};
+
+// ========= TOAST =========
+function toast(title, body, type='info'){
+  const w = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = 'toast '+type;
+  t.innerHTML = `<strong>${title}</strong>${body?'<div class="small">'+body+'</div>':''}`;
+  w.appendChild(t);
+  setTimeout(()=>{t.style.transition='.4s';t.style.opacity='0';t.style.transform='translateX(20px)';setTimeout(()=>t.remove(),400)},4500);
+}
+
+// ========= NAVIGATION =========
+function goto(n){
+  document.querySelectorAll('.step-card').forEach(c=>c.classList.remove('active'));
+  document.getElementById('step-'+n).classList.add('active');
+  document.querySelectorAll('#progress .step').forEach(st=>{
+    const i=+st.dataset.step;
+    st.classList.remove('active','done');
+    if(i<n)st.classList.add('done');
+    if(i===n)st.classList.add('active');
+  });
+  S.step=n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===7) renderRecap();
+  renderSummary();
+}
+function next(){ if(S.step<8) goto(S.step+1); }
+function prev(){ if(S.step>1) goto(S.step-1); }
+
+// ========= STEP 1 =========
+document.querySelectorAll('#step-1 .pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('#step-1 .pill').forEach(x=>x.classList.remove('selected'));
+    p.classList.add('selected');
+    S.event=p.dataset.event;
+    document.getElementById('otro-field').style.display = S.event==='otro'?'block':'none';
+    document.getElementById('next-1').disabled=false;
+    renderSummary();
+  });
+});
+document.getElementById('event-otro').addEventListener('input',e=>{S.eventOther=e.target.value;renderSummary()});
+
+// ========= STEP 2 =========
+function updateSpaces(){
+  const v = +document.getElementById('people').value;
+  const fld = document.getElementById('people').closest('.field');
+  if(v && v>=1 && v<=200){
+    S.people = v; fld.classList.remove('err');
+  } else if(document.getElementById('people').value){
+    S.people = null; fld.classList.add('err');
+  } else {
+    S.people = null; fld.classList.remove('err');
+  }
+  renderSpaces();
+  renderSummary();
+}
+function renderSpaces(){
+  const grid=document.getElementById('spaces-grid');
+  if(!S.people){ grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--ink-soft);font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;font-style:italic">Ingresa el número de personas para ver opciones ▸</div>';return}
+  const date = S.date?new Date(S.date+'T12:00:00'):new Date(2026,4,15);
+  const dow = date.getDay();
+  const spaces=['patio','terraza','hacienda'];
+  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  let html='';
+  spaces.forEach(sp=>{
+    const info=PRICES[sp];
+    const cap=info.cap;
+    const fits = S.people<=cap;
+    const price5 = info.days[dow][0];
+    const tags=getTags(sp,S.people,S.event);
+    const disabled = !fits;
+    html+=`
+      <div class="space-card ${disabled?'disabled':''} ${S.space===sp?'selected':''}" onclick="${disabled?'':`selectSpace('${sp}')`}">
+        <div class="img" style="background-image:url('${SPACE_IMGS[sp]}')">
+          ${tags.length?`<div class="badge">${tags[0]}</div>`:''}
+        </div>
+        <div class="body">
+          <h3>${names[sp]}</h3>
+          <div class="cap">Hasta ${cap} personas (cóctel)</div>
+          <div class="tag-row">${tags.slice(1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="price">${disabled?'—':`$${price5.toLocaleString('es-MX')}`}<small>${disabled?'Capacidad insuficiente':`desde 5 hrs · ${DAYS_ES[dow]}`}</small></div>
+        </div>
+      </div>`;
+  });
+  grid.innerHTML=html;
+}
+function getTags(sp,ppl,ev){
+  const t=[];
+  if(sp==='terraza' && ppl<=40) t.push('Íntimo');
+  if(sp==='patio' && ppl>=40 && ppl<=90) t.push('Más popular');
+  if(sp==='hacienda' && ppl>=80) t.push('Máxima flexibilidad');
+  if(ev==='boda' && sp==='hacienda') t.push('Favorito bodas');
+  if(ev==='corporativo' && sp==='patio') t.push('Favorito corporativo');
+  if(sp==='terraza' && (ev==='aniversario'||ev==='babyshower')) t.push('Ideal íntimo');
+  if(sp==='terraza') t.push('Más económico');
+  return t;
+}
+function selectSpace(sp){
+  S.space=sp;
+  renderSpaces();
+  document.getElementById('next-2').disabled=false;
+  renderSummary();
+}
+
+// ========= STEP 3: REAL CALENDAR =========
+function renderCalendar(){
+  const y=S.calMonth.getFullYear(), m=S.calMonth.getMonth();
+  document.getElementById('cal-title').textContent = `${MONTHS_ES[m]} ${y}`;
+  const first = new Date(y,m,1).getDay();
+  const last = new Date(y,m+1,0).getDate();
+  const today = new Date('2026-05-07');
+  let html='';
+  ['D','L','M','X','J','V','S'].forEach(d=>html+=`<div class="dow">${d}</div>`);
+  for(let i=0;i<first;i++) html+='<div class="day empty"></div>';
+  for(let d=1;d<=last;d++){
+    const dStr=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const cal = CALENDAR[dStr];
+    const past = new Date(y,m,d) < today;
+    const isToday = dStr === '2026-05-07';
+    const selected = S.date===dStr;
+    let cls = '';
+    let title = '';
+    if(past){ cls='blocked'; title='Fecha pasada'; }
+    else if(cal && cal.status==='full'){ cls='blocked'; title=`Ocupado: ${cal.reason}`; }
+    else if(cal && cal.status==='partial'){ cls='partial'; title=`Parcial: ${cal.reason} (${cal.busy.join(', ')})`; }
+    if(selected) cls='selected';
+    if(isToday && !cls) cls='today';
+    const clickable = !past && !(cal && cal.status==='full');
+    html+=`<div class="day ${cls}" title="${title}" ${clickable?`onclick="pickDate('${dStr}')"`:''}>${d}</div>`;
+  }
+  document.getElementById('calendar').innerHTML=html;
+}
+function changeMonth(delta){
+  S.calMonth = new Date(S.calMonth.getFullYear(),S.calMonth.getMonth()+delta,1);
+  renderCalendar();
+}
+function pickDate(d){
+  S.date=d;
+  S.startHour=null;
+  S.hours=5;
+  renderCalendar();
+  renderTimeSlots();
+  document.getElementById('time-panel').style.display='block';
+  document.getElementById('picked-date-lbl').textContent = formatDate(d);
+  document.getElementById('next-3').disabled=true;
+  document.getElementById('hours').disabled=true;
+  document.getElementById('hours-hint').textContent='Selecciona primero hora de inicio.';
+  document.getElementById('end-time-display').textContent='Selecciona horario para ver hora de término.';
+  calcPrice(); renderSummary();
+}
+
+function formatDate(dStr){
+  const d=new Date(dStr+'T12:00:00');
+  return `${DAYS_ES[d.getDay()]} ${d.getDate()} ${MONTHS_ES[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function renderTimeSlots(){
+  const grid=document.getElementById('time-grid');
+  const cal = CALENDAR[S.date];
+  let html='';
+  TIME_SLOTS.forEach(slot=>{
+    const slotH = parseInt(slot.split(':')[0]);
+    let blocked = false;
+    let busyReason = '';
+    if(cal && cal.busy){
+      cal.busy.forEach(window=>{
+        const [from,to] = window.split('-').map(t=>parseInt(t.split(':')[0]));
+        // If a 5h block starting at slotH would overlap with [from,to], block it
+        const slotEnd = slotH + 5;
+        if(slotH < to && slotEnd > from){
+          blocked = true;
+          busyReason = cal.reason;
+        }
+      });
+    }
+    // Also check we still have time for min 5h before 1AM
+    const maxHours = END_LIMIT_24H - slotH;
+    if(maxHours < 5) blocked = true;
+    const sel = S.startHour===slot ? 'selected':'';
+    html+=`<button class="slot ${blocked?'disabled':''} ${sel}" ${blocked?`title="No disponible: ${busyReason}"`:`onclick="pickTime('${slot}')"`}>${slot}</button>`;
+  });
+  grid.innerHTML = html;
+}
+
+function pickTime(slot){
+  S.startHour = slot;
+  renderTimeSlots();
+  // Update hours dropdown
+  const slotH = parseInt(slot.split(':')[0]);
+  const cal = CALENDAR[S.date];
+  // Calculate max hours: limited by 1am AND by next busy window
+  let maxH = END_LIMIT_24H - slotH;
+  if(cal && cal.busy){
+    cal.busy.forEach(window=>{
+      const [from,to] = window.split('-').map(t=>parseInt(t.split(':')[0]));
+      // Find earliest "from" that is greater than slotH
+      if(from > slotH){
+        const possible = from - slotH;
+        if(possible < maxH) maxH = possible;
+      }
+    });
+  }
+  maxH = Math.min(10, maxH); // cap at 10
+  const sel = document.getElementById('hours');
+  sel.innerHTML = '';
+  for(let h=5; h<=maxH; h++){
+    sel.innerHTML += `<option value="${h}">${h} horas</option>`;
+  }
+  if(maxH < 5){
+    sel.innerHTML = '<option value="5">5 horas (no disponibles para esta hora)</option>';
+    sel.disabled = true;
+    document.getElementById('hours-hint').textContent='⚠ Esta hora de inicio no permite 5 horas mínimas antes de la 1 AM.';
+    document.getElementById('next-3').disabled = true;
+    return;
+  }
+  S.hours = 5;
+  sel.value = 5;
+  sel.disabled = false;
+  document.getElementById('hours-hint').textContent = `Máximo ${maxH} horas disponibles desde las ${slot}. Cierre 1:00 AM.`;
+  document.getElementById('next-3').disabled = false;
+  updateEndTime();
+  calcPrice();
+  renderSummary();
+}
+
+function onHoursChange(){
+  S.hours = +document.getElementById('hours').value;
+  updateEndTime();
+  calcPrice();
+  renderSummary();
+}
+
+function updateEndTime(){
+  if(!S.startHour) return;
+  const slotH = parseInt(S.startHour.split(':')[0]);
+  const endH = slotH + S.hours;
+  const display = endH >= 24 ? `${(endH-24).toString().padStart(2,'0')}:00 AM (día siguiente)` : `${endH.toString().padStart(2,'0')}:00`;
+  document.getElementById('end-time-display').innerHTML = `<strong style="color:var(--sage-dark);font-style:normal">Termina a las ${display}</strong><br><span style="font-size:11px">${S.startHour} – ${display.split(' ')[0]} · ${S.hours} hrs</span>`;
+}
+
+// ========= STEP 4: catering =========
+function selectCat(type){
+  S.cateringType=type; S.menu=null;
+  document.querySelectorAll('.cat-opt').forEach(o=>o.classList.toggle('selected',o.dataset.cat===type));
+  const picker=document.getElementById('menu-picker');
+  if(type==='nativo'){
+    picker.style.display='block';
+    renderMenus();
+    document.getElementById('next-4').disabled=true;
+  } else {
+    picker.style.display='none';
+    document.getElementById('next-4').disabled=false;
+  }
+  calcPrice(); renderSummary();
+}
+function renderMenus(){
+  document.getElementById('menu-list').innerHTML = MENUS.map(m=>`
+    <div class="menu-item ${S.menu===m.id?'selected':''}" onclick="selectMenu('${m.id}')">
+      <div class="menu-head">
+        <h4>${m.name}</h4>
+        <div class="pp">$${m.pp}<small>por persona</small></div>
+      </div>
+      <p>${m.desc}</p>
+    </div>`).join('');
+}
+function selectMenu(id){
+  S.menu=id;
+  renderMenus();
+  document.getElementById('next-4').disabled=false;
+  calcPrice(); renderSummary();
+}
+
+// ========= STEP 6: VALIDATION =========
+const VALIDATORS = {
+  name: s => /^[A-Za-zÀ-ÿñÑ]{2,}([\s'-]+[A-Za-zÀ-ÿñÑ]{2,})+$/.test(s.trim()),
+  email: s => /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(s.trim()),
+  phone: s => {
+    const digits = s.replace(/\D/g,'');
+    return digits.length >= 10 && digits.length <= 15;
+  }
+};
+
+function validateField(which){
+  const val = document.getElementById('c-'+which).value;
+  const fld = document.getElementById('f-'+which);
+  S.contact[which] = val;
+  if(!val){
+    fld.classList.remove('err','ok');
+    document.getElementById('c-'+which).classList.remove('valid','invalid');
+    S.validation[which] = false;
+  } else if(VALIDATORS[which](val)){
+    fld.classList.remove('err'); fld.classList.add('ok');
+    document.getElementById('c-'+which).classList.add('valid'); document.getElementById('c-'+which).classList.remove('invalid');
+    S.validation[which] = true;
+  } else {
+    fld.classList.add('err'); fld.classList.remove('ok');
+    document.getElementById('c-'+which).classList.add('invalid'); document.getElementById('c-'+which).classList.remove('valid');
+    S.validation[which] = false;
+  }
+  checkContact();
+}
+
+function solveCaptcha(){
+  if(S.contact.captcha) return;
+  const box = document.getElementById('cap-box');
+  const lbl = document.getElementById('cap-label');
+  box.classList.add('loading');
+  lbl.textContent='Verificando…';
+  setTimeout(()=>{
+    box.classList.remove('loading');
+    box.classList.add('checked');
+    box.innerHTML = '✓';
+    lbl.innerHTML = '<strong style="color:var(--success)">Eres humano</strong><br><span style="font-size:10px;color:var(--ink-soft)">Verificación completa</span>';
+    S.contact.captcha = true;
+    checkContact();
+  },1200);
+}
+
+function checkContact(){
+  S.contact.company = document.getElementById('c-company').value;
+  S.contact.privacy = document.getElementById('c-privacy').checked;
+  const ok = S.validation.name && S.validation.email && S.validation.phone && S.contact.privacy && S.contact.captcha;
+  document.getElementById('next-6').disabled = !ok;
+  renderSummary();
+}
+
+// ========= PRICING (NEW: 50% rent discount with Nativo catering) =========
+function calcPrice(){
+  const out = {rent:0, rentBeforeDiscount:0, rentDiscount:0, catering:0, coffee:0, subtotal:0, iva:0, total:0};
+  if(!S.space || !S.date) return out;
+  const d = new Date(S.date+'T12:00:00');
+  const dow = d.getDay();
+  const [p5,phour] = PRICES[S.space].days[dow];
+  const hrs = S.hours;
+  const fullRent = hrs<=5 ? p5 : p5 + (hrs-5)*phour;
+
+  if(S.cateringType==='nativo' && S.menu){
+    const m = MENUS.find(x=>x.id===S.menu);
+    out.catering = m.pp * (S.people||0);
+    out.rentBeforeDiscount = fullRent;
+    out.rentDiscount = fullRent * 0.5;
+    out.rent = fullRent * 0.5; // 50% descuento
+  } else {
+    out.rent = fullRent;
+    out.rentBeforeDiscount = fullRent;
+  }
+  if(S.extras.coffee) out.coffee = 200 * (S.people||0);
+  out.subtotal = out.rent + out.catering + out.coffee;
+  out.iva = out.subtotal * 0.16;
+  out.total = out.subtotal + out.iva;
+  return out;
+}
+
+// ========= SUMMARY SIDEBAR =========
+function fmt(n){ return '$'+Math.round(n).toLocaleString('es-MX'); }
+function renderSummary(){
+  if(document.getElementById('ex-coffee')) S.extras.coffee=document.getElementById('ex-coffee').checked;
+  const body=document.getElementById('summary-body');
+  if(!S.event && !S.people && !S.space){ body.innerHTML='<div class="empty">Empieza a configurar tu evento…</div>'; return; }
+  const pr = calcPrice();
+  const spaceNames={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  const eventNames={boda:'Boda',cumpleanos:'Cumpleaños',corporativo:'Corporativo',conferencia:'Conferencia',lanzamiento:'Lanzamiento',aniversario:'Aniversario',babyshower:'Baby Shower',otro:S.eventOther||'Otro'};
+  const menu = S.menu ? MENUS.find(m=>m.id===S.menu) : null;
+
+  let html='';
+  if(S.event) html+=`<div class="line"><span class="k">Evento</span><span class="v">${eventNames[S.event]||'—'}</span></div>`;
+  if(S.people) html+=`<div class="line"><span class="k">Personas</span><span class="v">${S.people}</span></div>`;
+  if(S.space) html+=`<div class="line"><span class="k">Espacio</span><span class="v">${spaceNames[S.space]}</span></div>`;
+  if(S.date) html+=`<div class="line"><span class="k">Fecha</span><span class="v">${formatDate(S.date)}</span></div>`;
+  if(S.startHour) html+=`<div class="line"><span class="k">Inicio</span><span class="v">${S.startHour} · ${S.hours} hrs</span></div>`;
+  if(S.cateringType==='nativo'&&menu) html+=`<div class="line"><span class="k">Catering</span><span class="v">${menu.name}</span></div>`;
+  else if(S.cateringType) html+=`<div class="line"><span class="k">Catering</span><span class="v">${S.cateringType==='sin'?'Sin catering':'Externo'}</span></div>`;
+  if(S.extras.coffee) html+=`<div class="line"><span class="k">Coffee break</span><span class="v">Incluido</span></div>`;
+
+  if(pr.subtotal>0){
+    html+=`<div class="totals">`;
+    if(pr.rentDiscount>0){
+      html+=`<div class="line"><span class="k">Renta espacio</span><span class="v"><span style="text-decoration:line-through;opacity:.6">${fmt(pr.rentBeforeDiscount)}</span> ${fmt(pr.rent)}</span></div>`;
+    } else if(pr.rent){
+      html+=`<div class="line"><span class="k">Renta (${S.hours}h)</span><span class="v">${fmt(pr.rent)}</span></div>`;
+    }
+    if(pr.catering) html+=`<div class="line"><span class="k">Catering (${S.people} pax)</span><span class="v">${fmt(pr.catering)}</span></div>`;
+    if(pr.coffee) html+=`<div class="line"><span class="k">Coffee (${S.people} pax)</span><span class="v">${fmt(pr.coffee)}</span></div>`;
+    html+=`<div class="line"><span class="k">Subtotal</span><span class="v">${fmt(pr.subtotal)}</span></div>`;
+    html+=`<div class="line"><span class="k">IVA 16%</span><span class="v">${fmt(pr.iva)}</span></div>`;
+    html+=`</div>`;
+    if(pr.rentDiscount>0){
+      html+=`<div class="discount">✦ −50% renta por catering Nativo (ahorras ${fmt(pr.rentDiscount)})</div>`;
+    }
+    html+=`<div class="total-big"><span class="lbl">Total</span><span class="amt">${fmt(pr.total)}</span></div>`;
+  }
+  body.innerHTML=html;
+}
+
+// ========= SPACE SUGGESTER =========
+function openSuggester(){
+  document.getElementById('suggester').classList.add('open');
+  document.querySelectorAll('.suggester-q .opt').forEach(o=>o.classList.remove('sel'));
+  document.getElementById('sugg-result').classList.remove('show');
+  window._sugg={};
+}
+function closeSuggester(){document.getElementById('suggester').classList.remove('open')}
+document.querySelectorAll('.suggester-q .opts').forEach(opts=>{
+  opts.addEventListener('click',e=>{
+    const opt=e.target.closest('.opt');if(!opt)return;
+    opts.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+    opt.classList.add('sel');
+    window._sugg = window._sugg||{};
+    window._sugg[opts.dataset.q]=opt.dataset.v;
+    if(Object.keys(window._sugg).length===3) computeSuggestion();
+  });
+});
+function computeSuggestion(){
+  const a=window._sugg;
+  let rec='patio', why='';
+  const p=S.people||40;
+  if(p<=40 && a.amb==='intimo'){ rec='terraza'; why=`Con ~${p} personas en ambiente íntimo la Terraza es perfecta: escala acogedora, vistas abiertas y más económica.`; }
+  else if(p>=90){ rec='hacienda'; why=`Con ~${p} personas necesitas el espacio completo. La Hacienda (Patio + Terraza) te da máxima flexibilidad.`; }
+  else if(a.tono==='formal' && a.tiempo==='noche'){ rec='patio'; why=`Para un evento formal nocturno con ~${p} personas, el Patio Principal es la elección favorita — ambiente elegante con iluminación cálida.`; }
+  else if(a.amb==='amplio'){ rec='patio'; why=`Si buscas que la gente se mueva cómodamente, el Patio Principal te da espacio generoso sin perder intimidad.`; }
+  else { rec='patio'; why=`El Patio Principal es la opción más versátil: se adapta a tu ambiente, tu horario y ~${p} personas.`; }
+  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  document.getElementById('sugg-rec').textContent='Te sugerimos · '+names[rec];
+  document.getElementById('sugg-why').textContent=why;
+  document.getElementById('sugg-result').classList.add('show');
+  window._suggChoice=rec;
+}
+function acceptSuggestion(){
+  if(window._suggChoice){ selectSpace(window._suggChoice); }
+  closeSuggester();
+}
+
+// ========= WHATSAPP =========
+function openWA(){
+  const lines = [`Hola Nativo ✦ estoy cotizando un evento`];
+  if(S.event) lines.push(`· Tipo: ${S.event}`);
+  if(S.people) lines.push(`· Personas: ${S.people}`);
+  if(S.space) lines.push(`· Espacio: ${S.space}`);
+  if(S.date) lines.push(`· Fecha: ${formatDate(S.date)}`);
+  if(S.startHour) lines.push(`· Hora: ${S.startHour} (${S.hours}h)`);
+  lines.push('Me gustaría platicar con un asesor.');
+  const msg = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
+}
+
+// ========= SUBMIT (REAL ACTIONS SIMULATED) =========
+function submitQuote(){
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  const pr = calcPrice();
+  const payload = buildHubSpotPayload(pr);
+
+  // Simulated sequential calls (in production these are real API calls)
+  setTimeout(()=>{
+    toast('HubSpot ✓', 'Contact creado: '+S.contact.name,'success');
+    console.log('[HubSpot API] POST /contacts',payload.contact);
+  },300);
+  setTimeout(()=>{
+    toast('HubSpot ✓','Deal creado · pipeline "Cotización Enviada"','success');
+    console.log('[HubSpot API] POST /deals',payload.deal);
+  },900);
+  setTimeout(()=>{
+    toast('Drive ✓','PDF preliminar guardado en /Cotizaciones Nativo/2026/','success');
+    console.log('[Drive API] uploadPDF',payload.pdfMeta);
+  },1500);
+  setTimeout(()=>{
+    toast('Correos ✓','Notificación enviada al cliente y al equipo','success');
+    console.log('[Email] sent client + internal');
+  },2100);
+  setTimeout(()=>{
+    document.getElementById('s-name').textContent = S.contact.name.split(' ')[0] || 'cliente';
+    document.getElementById('s-email').textContent = S.contact.email;
+    renderPdfPreview(pr);
+    renderAdminEmail(pr);
+    goto(8);
+    btn.disabled = false;
+    btn.textContent = 'Enviar solicitud ✦';
+  },2700);
+}
+
+function buildHubSpotPayload(pr){
+  const menu = S.menu?MENUS.find(m=>m.id===S.menu):null;
+  return {
+    contact:{
+      properties:{
+        firstname: S.contact.name.split(' ')[0],
+        lastname: S.contact.name.split(' ').slice(1).join(' '),
+        email: S.contact.email,
+        phone: S.contact.phone,
+        company: S.contact.company,
+        cotizador_source: S.contact.source||'cotizador-web'
+      }
+    },
+    deal:{
+      properties:{
+        dealname: `${S.event} · ${S.contact.name} · ${S.date}`,
+        dealstage: 'cotizacion-enviada',
+        amount: pr.total,
+        pipeline: 'eventos',
+        // Custom properties
+        espacio: S.space,
+        fecha_evento: S.date,
+        hora_inicio: S.startHour,
+        num_personas: S.people,
+        num_horas: S.hours,
+        tipo_evento: S.event==='otro'?S.eventOther:S.event,
+        con_catering: S.cateringType==='nativo'?'partner':S.cateringType,
+        catering_menu: menu?menu.name:'',
+        coffee_break: S.extras.coffee,
+        total_sin_iva: pr.subtotal,
+        total_con_iva: pr.total,
+        comentarios: S.comments
+      }
+    },
+    pdfMeta:{
+      filename: `${S.date} · ${S.contact.name} · ${S.space}.pdf`,
+      folder: '/Cotizaciones Nativo/2026/Mayo/',
+      attachToDeal: true
+    }
+  };
+}
+
+function renderRecap(){
+  const pr=calcPrice();
+  document.getElementById('final-total').textContent = fmt(pr.total);
+  document.getElementById('final-breakdown').textContent = `subtotal ${fmt(pr.subtotal)} + IVA ${fmt(pr.iva)}`;
+
+  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  const eventNames={boda:'Boda',cumpleanos:'Cumpleaños',corporativo:'Evento Corporativo',conferencia:'Conferencia',lanzamiento:'Lanzamiento',aniversario:'Aniversario',babyshower:'Baby Shower',otro:S.eventOther||'Otro'};
+  const menu = S.menu?MENUS.find(m=>m.id===S.menu):null;
+  const cat = S.cateringType==='nativo'?(menu?menu.name+' · −50% renta':'—'):(S.cateringType==='sin'?'Sin catering':'Externo (cliente gestiona)');
+
+  document.getElementById('recap-blocks').innerHTML = `
+    <div>
+      <div class="block"><h4>${eventNames[S.event]||'—'}</h4><p>${S.people} personas</p></div>
+      <div class="block"><h4>${names[S.space]}</h4><p>${formatDate(S.date)}<br>${S.startHour} · ${S.hours} horas</p></div>
+      <div class="block"><h4>Catering</h4><p>${cat}</p></div>
+    </div>
+    <div>
+      <div class="block"><h4>Contacto</h4><p>${S.contact.name}<br>${S.contact.email}<br>${S.contact.phone}</p></div>
+      <div class="block"><h4>Extras</h4><p>${S.extras.coffee?'Coffee break básico ($200 p/p)':'Sin extras'}</p></div>
+      ${S.contact.company?`<div class="block"><h4>Empresa</h4><p>${S.contact.company}</p></div>`:''}
+    </div>
+  `;
+}
+
+function logoSvg(color){
+  return `<svg viewBox="0 0 240 60" width="120" height="30" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="30" cy="30" r="22"/><line x1="30" y1="9" x2="30" y2="51"/>
+    <circle cx="30" cy="20" r="2.8" fill="${color}" stroke="none"/>
+    <path d="M 18 40 L 25 30 L 30 35 L 35 30 L 42 40"/>
+    <text x="65" y="40" font-family="Cormorant Garamond, serif" font-size="24" letter-spacing="6" fill="${color}" stroke="none" font-weight="500">NATIVO</text>
+  </svg>`;
+}
+
+function renderPdfPreview(pr){
+  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  const menu=S.menu?MENUS.find(m=>m.id===S.menu):null;
+  const dateStr = S.date ? formatDate(S.date) : '—';
+  document.getElementById('pdf-preview').innerHTML=`
+    <div class="pdf-head">
+      ${logoSvg('#1f3324')}
+      <div class="tag">cotización preliminar</div>
+    </div>
+    <h5>Cliente</h5>
+    <div class="pdf-row"><span>${S.contact.name||'—'}</span><span>${new Date().toLocaleDateString('es-MX')}</span></div>
+    <div class="pdf-row"><span>${S.contact.email||'—'}</span><span>${S.contact.phone||'—'}</span></div>
+
+    <h5 style="margin-top:14px">Evento</h5>
+    <div class="pdf-row"><span>Fecha</span><span>${dateStr}</span></div>
+    <div class="pdf-row"><span>Espacio</span><span>${names[S.space]||'—'}</span></div>
+    <div class="pdf-row"><span>Personas</span><span>${S.people||'—'}</span></div>
+    <div class="pdf-row"><span>Duración</span><span>${S.hours} hrs desde ${S.startHour}</span></div>
+
+    <h5 style="margin-top:14px">Conceptos</h5>
+    ${pr.rentDiscount>0
+      ? `<div class="pdf-row"><span>Renta espacio</span><span style="text-decoration:line-through;opacity:.6;font-size:10px">${fmt(pr.rentBeforeDiscount)}</span></div>
+         <div class="pdf-row"><span>Renta con −50% (catering Nativo)</span><span>${fmt(pr.rent)}</span></div>`
+      : `<div class="pdf-row"><span>Renta espacio</span><span>${fmt(pr.rent)}</span></div>`}
+    ${pr.catering?`<div class="pdf-row"><span>${menu.name} · ${S.people} pax</span><span>${fmt(pr.catering)}</span></div>`:''}
+    ${pr.coffee?`<div class="pdf-row"><span>Coffee break · ${S.people} pax</span><span>${fmt(pr.coffee)}</span></div>`:''}
+    <div class="pdf-row"><span>Subtotal</span><span>${fmt(pr.subtotal)}</span></div>
+    <div class="pdf-row"><span>IVA 16%</span><span>${fmt(pr.iva)}</span></div>
+    <div class="pdf-total"><span>Total</span><span>${fmt(pr.total)}</span></div>
+
+    <p style="margin-top:14px;font-size:10px;color:#888;font-style:italic">Cotización preliminar — un agente confirma disponibilidad. Reserva al 50% de anticipo.</p>
+  `;
+}
+
+function renderAdminEmail(pr){
+  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
+  const menu=S.menu?MENUS.find(m=>m.id===S.menu):null;
+  const dateStr = S.date ? formatDate(S.date) : '—';
+  document.getElementById('admin-email').innerHTML=`
+    <div class="from"><strong>De:</strong> cotizador@espacionativo.com &nbsp;·&nbsp; <strong>Para:</strong> ventas@espacionativo.com</div>
+    <h4>🔔 Nueva cotización · ${S.contact.name} · ${dateStr} · ${fmt(pr.total)}</h4>
+    <p style="font-size:13px;color:var(--ink-soft)">Acaba de llegar una cotización del cotizador web. Resumen:</p>
+    <ul>
+      <li><strong>Cliente</strong> ${S.contact.name} · ${S.contact.phone} · ${S.contact.email}</li>
+      <li><strong>Evento</strong> ${S.event} · ${S.people} personas</li>
+      <li><strong>Espacio</strong> ${names[S.space]}</li>
+      <li><strong>Fecha</strong> ${dateStr} · ${S.startHour} · ${S.hours} hrs</li>
+      <li><strong>Catering</strong> ${S.cateringType==='nativo'?menu.name+' (−50% renta)':(S.cateringType==='sin'?'Sin catering':'Externo')}</li>
+      ${S.extras.coffee?`<li><strong>Extras</strong> Coffee break básico</li>`:''}
+      ${S.comments?`<li><strong>Comentarios</strong> ${S.comments}</li>`:''}
+      <li><strong>Total estimado</strong> ${fmt(pr.total)} (incluye IVA)</li>
+    </ul>
+    <div class="admin-actions">
+      <button class="btn primary" onclick="adminApprove()">✓ Aprobar y enviar formal</button>
+      <button class="btn wa" onclick="adminWA()">Contactar por WhatsApp</button>
+      <button class="btn" onclick="adminHubSpot()">Ver Deal en HubSpot</button>
+      <button class="btn ghost" onclick="adminDrive()">Ver PDF en Drive</button>
+    </div>
+    <p style="margin-top:14px;font-size:11px;color:var(--ink-soft);font-style:italic">Objetivo: responder en menos de 1 hora por WhatsApp, cotización formal en 4 horas.</p>
+  `;
+}
+
+// ========= ADMIN ACTION HANDLERS (real action simulators) =========
+function adminApprove(){
+  toast('Generando PDF formal…','Aplicando branding completo de Nativo','info');
+  setTimeout(()=>{
+    toast('PDF formal ✓','Guardado en Drive con sufijo _FORMAL.pdf','success');
+  },1200);
+  setTimeout(()=>{
+    toast('Correo enviado al cliente ✓',S.contact.email+' · cotización formal adjunta','success');
+  },2200);
+  setTimeout(()=>{
+    toast('HubSpot actualizado ✓','Deal stage → "Cotización Formal Enviada"','success');
+  },3000);
+}
+
+function adminWA(){
+  const phone = (S.contact.phone||'').replace(/\D/g,'');
+  if(!phone){ toast('Sin teléfono','El cliente no dejó teléfono','error'); return; }
+  const msg = encodeURIComponent(`Hola ${S.contact.name.split(' ')[0]}, soy del equipo Nativo ✦ recibí tu solicitud para el ${formatDate(S.date)} y me pongo en contacto para confirmar disponibilidad y cualquier duda.`);
+  window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
+}
+
+function adminHubSpot(){
+  toast('Abriendo HubSpot…','En producción te lleva al Deal del cliente','info');
+  // Simulated URL — replace with real HubSpot deal URL in production
+  setTimeout(()=>window.open('https://app.hubspot.com/contacts/0/deal/0','_blank'),400);
+}
+
+function adminDrive(){
+  toast('Abriendo PDF en Drive…','/Cotizaciones Nativo/2026/Mayo/','info');
+  setTimeout(()=>window.open('https://drive.google.com/drive/folders/1CCvuo6y3oOK-iDp0szeHeuIa6X6G3x0U','_blank'),400);
+}
+
+function resetAll(){
+  S = {step:1,event:null,eventOther:'',people:null,space:null,date:null,startHour:null,hours:5,cateringType:null,menu:null,extras:{coffee:false},comments:'',contact:{name:'',email:'',phone:'',company:'',source:'',privacy:false,captcha:false},validation:{name:false,email:false,phone:false},calMonth:new Date(2026,4,1)};
+  document.querySelectorAll('input,textarea').forEach(i=>{if(i.type==='checkbox')i.checked=false;else i.value=''});
+  document.querySelectorAll('.pill,.cat-opt,.space-card,.field').forEach(x=>x.classList.remove('selected','err','ok'));
+  const cap=document.getElementById('cap-box'); cap.classList.remove('checked','loading'); cap.innerHTML='';
+  document.getElementById('cap-label').textContent='Verifica que no eres un robot';
+  document.getElementById('time-panel').style.display='none';
+  renderCalendar(); renderSpaces(); goto(1);
+}
+
+// ========= INIT =========
+renderCalendar();
+renderSpaces();
+renderSummary();
+
+// Initial toast on load
+setTimeout(()=>toast('✦ Bienvenid@','Prototipo conectado a HubSpot · Drive · Calendar (modo demo)','success'),500);
+</script>
+</body>
+</html>
