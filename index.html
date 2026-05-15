@@ -35,17 +35,14 @@
   button{font-family:inherit;cursor:pointer;border:none;background:none}
   input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 
-  /* ——— Top nav ——— */
   .topbar{background:var(--sage-dark);color:#f5efe2;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.15em}
   .topbar .brand{display:flex;align-items:center;gap:0}
-  .topbar .logo{display:block}
   .topbar .lang{display:flex;gap:4px}
-  .topbar .lang button{color:#f5efe2;opacity:.55;padding:4px 8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+  .topbar .lang button{color:#f5efe2;opacity:.55;padding:4px 8px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
   .topbar .lang button.active{opacity:1;border-bottom:1px solid #f5efe2}
   .conn-status{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#f5efe2;opacity:.7;display:flex;align-items:center;gap:6px}
   .dot-on{display:inline-block;width:6px;height:6px;border-radius:50%;background:#7dd17a;box-shadow:0 0 6px #7dd17a;margin-right:2px}
 
-  /* ——— Hero header ——— */
   .hero{background:var(--cream);padding:60px 32px 40px;text-align:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
   .hero::before,.hero::after{content:"";position:absolute;top:50%;width:100px;height:1px;background:var(--sage);opacity:.3}
   .hero::before{left:32px}
@@ -55,7 +52,6 @@
   .hero .ornament{font-family:'Cormorant Garamond',serif;color:var(--sage);font-size:22px;margin:18px 0 10px;letter-spacing:.3em}
   .hero p{max-width:560px;margin:8px auto 0;color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic}
 
-  /* ——— Progress ——— */
   .progress{max-width:920px;margin:40px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
   .progress .step{text-align:center;position:relative}
   .progress .dot{width:28px;height:28px;border-radius:50%;background:var(--cream);border:1px solid var(--line);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--ink-soft);transition:.2s}
@@ -67,12 +63,10 @@
   .progress .step.done .bar{background:var(--sage)}
   .progress .step:last-child .bar{display:none}
 
-  /* ——— Main layout ——— */
   main{max-width:1040px;margin:0 auto;padding:40px 32px 80px;position:relative}
   .grid{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
   @media(max-width:900px){.grid{grid-template-columns:1fr}}
 
-  /* ——— Step cards ——— */
   .step-card{background:var(--white);border:1px solid var(--line);padding:50px 52px;box-shadow:var(--shadow);display:none}
   .step-card.active{display:block;animation:fadein .4s ease}
   @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -80,7 +74,6 @@
   .step-card h2{margin-bottom:6px}
   .step-card .step-sub{color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;margin-bottom:36px;padding-bottom:26px;border-bottom:1px solid var(--line)}
 
-  /* ——— Forms ——— */
   .field{margin-bottom:24px;position:relative}
   label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--sage-dark);margin-bottom:8px;font-weight:500}
   .req{color:var(--terra)}
@@ -93,14 +86,12 @@
   input.valid{border-color:var(--success)}
   textarea{min-height:90px;resize:vertical;font-family:inherit}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-  @media(max-width:700px){.row,.row-3{grid-template-columns:1fr}}
+  @media(max-width:700px){.row{grid-template-columns:1fr}}
   .err-msg{font-size:11px;color:var(--error);margin-top:4px;display:none}
   .field.err .err-msg{display:block}
   .ok-msg{font-size:11px;color:var(--success);margin-top:4px;display:none}
   .field.ok .ok-msg{display:block}
 
-  /* ——— Event type pills ——— */
   .pill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
   @media(max-width:700px){.pill-grid{grid-template-columns:repeat(2,1fr)}}
   .pill{padding:18px 12px;border:1px solid var(--line);background:var(--paper);text-align:center;cursor:pointer;transition:.2s;font-size:13px;color:var(--ink-soft)}
@@ -108,7 +99,6 @@
   .pill.selected{border-color:var(--sage);background:var(--sage);color:#fff}
   .pill .ico{font-size:22px;display:block;margin-bottom:6px;font-family:'Cormorant Garamond',serif}
 
-  /* ——— Space comparator ——— */
   .spaces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
   @media(max-width:800px){.spaces{grid-template-columns:1fr}}
   .space-card{border:1px solid var(--line);background:var(--paper);overflow:hidden;cursor:pointer;transition:.2s;display:flex;flex-direction:column}
@@ -123,7 +113,6 @@
   .space-card .price{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.5rem;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
   .space-card .price small{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.14em;display:block}
 
-  /* ——— Suggester ——— */
   .suggester-trigger{margin-top:26px;text-align:center}
   .suggester-trigger button{color:var(--sage-dark);font-size:13px;border-bottom:1px solid var(--sage);padding-bottom:2px;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1rem}
   .suggester-modal{display:none;position:fixed;inset:0;background:rgba(31,51,36,.85);z-index:100;align-items:center;justify-content:center;padding:20px}
@@ -142,7 +131,6 @@
   .suggester-result p{font-size:14px;color:var(--ink-soft)}
   .suggester-actions{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
 
-  /* ——— Date/time ——— */
   .calendar-box{padding:28px;background:var(--cream);border:1px solid var(--line)}
   .calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
   .calendar-head h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--sage-dark)}
@@ -162,7 +150,6 @@
   .cal-legend i{width:14px;height:14px;display:inline-block;border:1px solid var(--line)}
   .blocked-note{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:12px;text-align:center}
 
-  /* Time slot panel */
   .time-slots{margin-top:18px;background:#fff;border:1px solid var(--line);padding:18px}
   .time-slots .h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;font-family:'Inter',sans-serif;font-weight:500}
   .slot-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
@@ -172,7 +159,6 @@
   .slot.selected{background:var(--sage);color:#fff;border-color:var(--sage)}
   .slot.disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through;background:#f0ebd9}
 
-  /* ——— Catering ——— */
   .catering-choice{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
   @media(max-width:700px){.catering-choice{grid-template-columns:1fr}}
   .menu-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
@@ -186,20 +172,17 @@
   .menu-item .pp small{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);display:block;text-align:right}
   .menu-item p{font-size:13px;color:var(--ink-soft);line-height:1.5}
 
-  /* Catering banner */
   .cat-banner{background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;padding:18px 22px;margin:0 0 24px;display:flex;align-items:center;gap:14px}
   .cat-banner .ico{font-family:'Cormorant Garamond',serif;font-size:2rem;line-height:1}
   .cat-banner .txt{flex:1;font-size:13px;line-height:1.5}
   .cat-banner .txt strong{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;display:block;margin-bottom:2px}
 
-  /* ——— Extras ——— */
   .extra-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border:1px solid var(--line);background:var(--paper);margin-bottom:10px}
   .extra-row label{text-transform:none;letter-spacing:0;margin:0;font-weight:400;color:var(--ink);flex:1}
   .extra-row label .ex-desc{display:block;font-size:12px;color:var(--ink-soft);margin-top:2px}
   .extra-row .ex-price{font-family:'Cormorant Garamond',serif;color:var(--sage-dark);font-size:1.1rem;margin:0 14px}
   .extra-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--sage)}
 
-  /* ——— Captcha ——— */
   .captcha{margin:20px 0;padding:14px 16px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;gap:14px;max-width:340px}
   .captcha-check{width:24px;height:24px;border:2px solid #c0c0c0;background:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
   .captcha-check.checked{border-color:var(--success);background:var(--success);color:#fff;font-size:14px}
@@ -209,7 +192,6 @@
   .captcha-cf{display:flex;flex-direction:column;align-items:flex-end;font-size:9px;color:var(--ink-soft);line-height:1.2;flex-shrink:0}
   .captcha-cf strong{color:var(--terra);font-size:11px}
 
-  /* ——— Summary sidebar ——— */
   aside.summary{background:var(--cream);border:1px solid var(--line);padding:32px 28px;position:sticky;top:20px}
   aside.summary .eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
   aside.summary h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--sage-dark);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
@@ -224,7 +206,6 @@
   aside.summary .empty{text-align:center;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1rem;padding:30px 0}
   aside.summary .discount{background:#fff8e8;border:1px dashed var(--terra);padding:10px;font-size:12px;color:var(--terra);margin-top:10px;text-align:center;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1rem}
 
-  /* ——— Nav buttons ——— */
   .nav-btns{display:flex;justify-content:space-between;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
   .btn{padding:14px 28px;font-size:12px;text-transform:uppercase;letter-spacing:.2em;transition:.2s;border:1px solid var(--sage);background:transparent;color:var(--sage-dark);display:inline-flex;align-items:center;justify-content:center;gap:6px}
   .btn:hover{background:var(--sage);color:#fff}
@@ -236,7 +217,6 @@
   .btn.wa::before{content:"✆ "}
   .btn:disabled{opacity:.4;cursor:not-allowed}
 
-  /* ——— Recap (step 7) ——— */
   .recap{display:grid;grid-template-columns:1fr 1fr;gap:30px}
   @media(max-width:700px){.recap{grid-template-columns:1fr}}
   .recap .block{border-left:2px solid var(--sage);padding:4px 0 4px 18px;margin-bottom:18px}
@@ -248,7 +228,6 @@
   .final-price .sub{font-size:12px;margin-top:10px;opacity:.8}
   .disclaimer{background:var(--cream);padding:18px 22px;border-left:3px solid var(--terra);font-size:13px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.05rem}
 
-  /* ——— Success screen ——— */
   .success{text-align:center;padding:60px 40px}
   .success .mark{font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--sage);line-height:1;margin-bottom:10px}
   .success h2{font-size:2.4rem;margin-bottom:10px}
@@ -266,7 +245,6 @@
   .integ-item .what{flex:1;color:var(--ink-soft)}
   .integ-item .what strong{color:var(--ink)}
 
-  /* ——— Admin preview ——— */
   .admin-preview{margin-top:60px;padding:32px;background:var(--cream-dark);border:2px dashed var(--sage-light)}
   .admin-preview .tag{display:inline-block;background:var(--terra);color:#fff;font-size:10px;padding:4px 10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
   .admin-preview h3{font-family:'Cormorant Garamond',serif;margin-bottom:4px}
@@ -279,9 +257,8 @@
   .admin-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
   .admin-actions .btn{font-size:11px;padding:12px 14px}
 
-  /* ——— PDF preview mockup ——— */
   .pdf-preview{max-width:420px;margin:20px auto 0;background:#fff;border:1px solid var(--line);padding:36px 30px;box-shadow:var(--shadow);font-size:12px;line-height:1.4;position:relative;text-align:left}
-  .pdf-preview::before{content:"PDF PRELIMINAR";position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:.2em;color:var(--terra);font-weight:600}
+  .pdf-preview::before{content:attr(data-pdf-tag);position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:.2em;color:var(--terra);font-weight:600}
   .pdf-preview .pdf-head{text-align:center;padding-bottom:16px;border-bottom:1px solid var(--sage);margin-bottom:16px}
   .pdf-preview .pdf-head svg{margin:0 auto;display:block}
   .pdf-preview .pdf-head .tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
@@ -289,13 +266,11 @@
   .pdf-preview .pdf-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #e0d9c4}
   .pdf-preview .pdf-total{background:var(--sage);color:#fff;padding:12px 14px;margin-top:10px;display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:1.2rem}
 
-  /* ——— Floating WhatsApp ——— */
   .fab-wa{position:fixed;bottom:26px;right:26px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.35);z-index:50;cursor:pointer;font-size:26px;transition:.2s;border:none}
   .fab-wa:hover{background:#128C7E;transform:scale(1.06)}
   .fab-wa .tip{position:absolute;right:72px;background:var(--ink);color:#fff;padding:8px 14px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;font-family:'Inter',sans-serif}
   .fab-wa:hover .tip{opacity:1}
 
-  /* ——— Toasts ——— */
   .toast-wrap{position:fixed;top:80px;right:20px;z-index:200;display:flex;flex-direction:column;gap:10px;max-width:360px}
   .toast{background:#fff;border-left:4px solid var(--sage);padding:14px 18px;box-shadow:0 4px 20px rgba(31,51,36,.15);font-size:13px;animation:slideIn .3s ease}
   .toast.error{border-left-color:var(--error)}
@@ -304,15 +279,12 @@
   .toast .small{font-size:11px;color:var(--ink-soft);margin-top:4px}
   @keyframes slideIn{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
 
-  /* ——— Footer ——— */
   footer{text-align:center;padding:40px 20px;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--line);background:var(--cream)}
   footer .orn{color:var(--sage);font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:10px;letter-spacing:.4em}
 
-  /* ——— Tags ——— */
   .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
   .tag{font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:4px 8px;background:var(--cream);color:var(--sage-dark);border:1px solid var(--sage-light)}
 
-  /* Radio choice for catering */
   .cat-opt{border:1px solid var(--line);padding:18px;background:var(--paper);cursor:pointer;text-align:center;transition:.2s}
   .cat-opt:hover{border-color:var(--sage-light)}
   .cat-opt.selected{border-color:var(--sage);background:#fff}
@@ -321,7 +293,6 @@
   .cat-opt p{font-size:12px;color:var(--ink-soft)}
   .cat-opt .save-tag{display:inline-block;background:var(--terra);color:#fff;font-size:9px;padding:2px 8px;letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
 
-  /* Privacy */
   .privacy{display:flex;gap:10px;align-items:flex-start;padding:14px 18px;background:var(--cream);border:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
   .privacy input{margin-top:4px;accent-color:var(--sage)}
 
@@ -337,20 +308,21 @@
 </head>
 <body>
 
-<!-- Top bar -->
 <div class="topbar">
   <div class="brand">
-    <svg class="logo" viewBox="0 0 240 60" width="135" height="34" fill="none" stroke="#f5efe2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Nativo">
+    <!-- Logo Nativo: si tienes /logo-light.png en el repo, descomenta el <img> y comenta el <svg> -->
+    <!-- <img src="/logo-light.png" alt="Nativo" height="36" style="display:block"> -->
+    <svg viewBox="0 0 240 60" width="135" height="34" fill="none" stroke="#f5efe2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Nativo">
       <circle cx="30" cy="30" r="22"/>
-      <line x1="30" y1="9" x2="30" y2="51"/>
-      <circle cx="30" cy="20" r="2.8" fill="#f5efe2" stroke="none"/>
-      <path d="M 18 40 L 25 30 L 30 35 L 35 30 L 42 40"/>
+      <line x1="30" y1="14" x2="30" y2="46"/>
+      <circle cx="30" cy="22" r="3" fill="#f5efe2" stroke="none"/>
+      <path d="M 17 44 L 30 26 L 43 44"/>
       <text x="65" y="40" font-family="Cormorant Garamond, serif" font-size="24" letter-spacing="6" fill="#f5efe2" stroke="none" font-weight="500">NATIVO</text>
     </svg>
-    <span style="opacity:.55;font-size:10px;letter-spacing:.25em;margin-left:14px;border-left:1px solid rgba(245,239,226,.3);padding-left:14px;text-transform:uppercase">cotizador</span>
+    <span style="opacity:.55;font-size:10px;letter-spacing:.25em;margin-left:14px;border-left:1px solid rgba(245,239,226,.3);padding-left:14px;text-transform:uppercase" data-i18n="brand.subtitle">cotizador</span>
   </div>
   <div style="display:flex;gap:18px;align-items:center">
-    <span class="conn-status" title="Estado de integraciones (simulado en este prototipo)">
+    <span class="conn-status">
       <span class="dot-on"></span> HubSpot
       <span style="margin:0 4px;opacity:.4">·</span>
       <span class="dot-on"></span> Drive
@@ -358,432 +330,406 @@
       <span class="dot-on"></span> Calendar
     </span>
     <div class="lang">
-      <button class="active">ES</button>
-      <button>EN</button>
+      <button id="lang-es" class="active" onclick="switchLang('es')">ES</button>
+      <button id="lang-en" onclick="switchLang('en')">EN</button>
     </div>
   </div>
 </div>
 
-<!-- Hero -->
 <section class="hero">
-  <div class="eyebrow">espacio nativo · san miguel chapultepec</div>
-  <h1>Diseña tu evento</h1>
+  <div class="eyebrow" data-i18n="hero.eyebrow">espacio nativo · san miguel chapultepec</div>
+  <h1 data-i18n="hero.title">Diseña tu evento</h1>
   <div class="ornament">· · ✦ · ·</div>
-  <p>Configura tu evento en pocos pasos y recibe una cotización preliminar al instante. Un miembro de nuestro equipo confirmará contigo en menos de 4 horas.</p>
+  <p data-i18n="hero.lead">Configura tu evento en pocos pasos y recibe una cotización preliminar al instante. Un miembro de nuestro equipo confirmará contigo en menos de 4 horas.</p>
 </section>
 
-<!-- Progress -->
 <div class="progress" id="progress">
-  <div class="step active" data-step="1"><div class="dot">1</div><div class="label">Evento</div><div class="bar"></div></div>
-  <div class="step" data-step="2"><div class="dot">2</div><div class="label">Espacio</div><div class="bar"></div></div>
-  <div class="step" data-step="3"><div class="dot">3</div><div class="label">Fecha</div><div class="bar"></div></div>
-  <div class="step" data-step="4"><div class="dot">4</div><div class="label">Catering</div><div class="bar"></div></div>
-  <div class="step" data-step="5"><div class="dot">5</div><div class="label">Extras</div><div class="bar"></div></div>
-  <div class="step" data-step="6"><div class="dot">6</div><div class="label">Contacto</div><div class="bar"></div></div>
-  <div class="step" data-step="7"><div class="dot">7</div><div class="label">Resumen</div></div>
+  <div class="step active" data-step="1"><div class="dot">1</div><div class="label" data-i18n="step.event">Evento</div><div class="bar"></div></div>
+  <div class="step" data-step="2"><div class="dot">2</div><div class="label" data-i18n="step.space">Espacio</div><div class="bar"></div></div>
+  <div class="step" data-step="3"><div class="dot">3</div><div class="label" data-i18n="step.date">Fecha</div><div class="bar"></div></div>
+  <div class="step" data-step="4"><div class="dot">4</div><div class="label" data-i18n="step.catering">Catering</div><div class="bar"></div></div>
+  <div class="step" data-step="5"><div class="dot">5</div><div class="label" data-i18n="step.extras">Extras</div><div class="bar"></div></div>
+  <div class="step" data-step="6"><div class="dot">6</div><div class="label" data-i18n="step.contact">Contacto</div><div class="bar"></div></div>
+  <div class="step" data-step="7"><div class="dot">7</div><div class="label" data-i18n="step.summary">Resumen</div></div>
 </div>
 
 <main>
 <div class="grid">
 <div>
 
-<!-- STEP 1: event type -->
 <section class="step-card active" id="step-1">
-  <div class="step-eyebrow">paso 01 / 07</div>
-  <h2>¿Qué tipo de evento celebramos?</h2>
-  <p class="step-sub">Selecciona el tipo que mejor describa tu celebración.</p>
+  <div class="step-eyebrow" data-i18n="s1.eyebrow">paso 01 / 07</div>
+  <h2 data-i18n="s1.title">¿Qué tipo de evento celebramos?</h2>
+  <p class="step-sub" data-i18n="s1.sub">Selecciona el tipo que mejor describa tu celebración.</p>
 
   <div class="pill-grid">
-    <div class="pill" data-event="boda"><span class="ico">❦</span>Boda</div>
-    <div class="pill" data-event="cumpleanos"><span class="ico">✦</span>Cumpleaños</div>
-    <div class="pill" data-event="corporativo"><span class="ico">◆</span>Corporativo</div>
-    <div class="pill" data-event="conferencia"><span class="ico">◇</span>Conferencia</div>
-    <div class="pill" data-event="lanzamiento"><span class="ico">✧</span>Lanzamiento</div>
-    <div class="pill" data-event="aniversario"><span class="ico">✿</span>Aniversario</div>
-    <div class="pill" data-event="babyshower"><span class="ico">❀</span>Baby Shower</div>
-    <div class="pill" data-event="otro"><span class="ico">⁜</span>Otro</div>
+    <div class="pill" data-event="boda"><span class="ico">❦</span><span data-i18n="event.boda">Boda</span></div>
+    <div class="pill" data-event="cumpleanos"><span class="ico">✦</span><span data-i18n="event.cumple">Cumpleaños</span></div>
+    <div class="pill" data-event="corporativo"><span class="ico">◆</span><span data-i18n="event.corp">Corporativo</span></div>
+    <div class="pill" data-event="conferencia"><span class="ico">◇</span><span data-i18n="event.conf">Conferencia</span></div>
+    <div class="pill" data-event="lanzamiento"><span class="ico">✧</span><span data-i18n="event.launch">Lanzamiento</span></div>
+    <div class="pill" data-event="aniversario"><span class="ico">✿</span><span data-i18n="event.anniv">Aniversario</span></div>
+    <div class="pill" data-event="babyshower"><span class="ico">❀</span><span data-i18n="event.baby">Baby Shower</span></div>
+    <div class="pill" data-event="otro"><span class="ico">⁜</span><span data-i18n="event.other">Otro</span></div>
   </div>
 
   <div class="field" style="margin-top:26px;display:none" id="otro-field">
-    <label>Cuéntanos un poco más</label>
-    <input type="text" id="event-otro" placeholder="Ej. Reunión familiar, despedida de soltera…">
+    <label data-i18n="event.tellMore">Cuéntanos un poco más</label>
+    <input type="text" id="event-otro" data-i18n-attr="placeholder" data-i18n-key="event.tellMorePlaceholder" placeholder="Ej. Reunión familiar, despedida de soltera…">
   </div>
 
   <div class="nav-btns">
     <span></span>
-    <button class="btn primary" onclick="next()" id="next-1" disabled>Continuar →</button>
+    <button class="btn primary" onclick="next()" id="next-1" disabled data-i18n="btn.continue">Continuar →</button>
   </div>
 </section>
 
-<!-- STEP 2: space + people (FORMAT REMOVED) -->
 <section class="step-card" id="step-2">
-  <div class="step-eyebrow">paso 02 / 07</div>
-  <h2>Personas & Espacio</h2>
-  <p class="step-sub">Te mostramos las configuraciones ideales para tu grupo.</p>
+  <div class="step-eyebrow" data-i18n="s2.eyebrow">paso 02 / 07</div>
+  <h2 data-i18n="s2.title">Personas & Espacio</h2>
+  <p class="step-sub" data-i18n="s2.sub">Te mostramos las configuraciones ideales para tu grupo.</p>
 
   <div class="row">
     <div class="field">
-      <label>Número de personas <span class="req">*</span></label>
-      <input type="number" id="people" min="1" max="200" placeholder="Ej. 45" oninput="updateSpaces()">
-      <div class="err-msg">Ingresa un número entre 1 y 200.</div>
+      <label><span data-i18n="s2.numPeople">Número de personas</span> <span class="req">*</span></label>
+      <input type="number" id="people" min="1" max="200" data-i18n-attr="placeholder" data-i18n-key="s2.peoplePlaceholder" placeholder="Ej. 45" oninput="updateSpaces()">
+      <div class="err-msg" data-i18n="s2.peopleErr">Ingresa un número entre 1 y 200.</div>
     </div>
     <div class="field" style="display:flex;align-items:flex-end">
-      <div style="font-size:12px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.4;padding-bottom:14px">
+      <div style="font-size:12px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.4;padding-bottom:14px" data-i18n="s2.capNote">
         Las capacidades mostradas son para formato cóctel/de pie. Para evento sentado el equipo confirma capacidad final.
       </div>
     </div>
   </div>
 
-  <label style="margin-bottom:16px">Configuraciones recomendadas</label>
-  <div class="spaces" id="spaces-grid">
-    <!-- injected by JS -->
-  </div>
+  <label style="margin-bottom:16px" data-i18n="s2.recommendedLbl">Configuraciones recomendadas</label>
+  <div class="spaces" id="spaces-grid"></div>
 
   <div class="suggester-trigger">
-    <button onclick="openSuggester()">No estoy segur@ — ayúdame a decidir ✦</button>
+    <button onclick="openSuggester()" data-i18n="s2.helpDecide">No estoy segur@ — ayúdame a decidir ✦</button>
   </div>
 
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="next()" id="next-2" disabled>Continuar →</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-2" disabled data-i18n="btn.continue">Continuar →</button>
   </div>
 </section>
 
-<!-- STEP 3: date + hours (REAL CALENDAR + 1AM CAP) -->
 <section class="step-card" id="step-3">
-  <div class="step-eyebrow">paso 03 / 07</div>
-  <h2>Fecha y duración</h2>
-  <p class="step-sub">Renta mínima 5 horas. Todos los eventos terminan máximo a la 1:00 AM.</p>
+  <div class="step-eyebrow" data-i18n="s3.eyebrow">paso 03 / 07</div>
+  <h2 data-i18n="s3.title">Fecha y duración</h2>
+  <p class="step-sub" data-i18n="s3.sub">Renta mínima 5 horas. Todos los eventos terminan máximo a la 1:00 AM.</p>
 
   <div class="calendar-box">
     <div class="calendar-head">
-      <button onclick="changeMonth(-1)" aria-label="Mes anterior">←</button>
+      <button onclick="changeMonth(-1)">←</button>
       <h4 id="cal-title">Mayo 2026</h4>
-      <button onclick="changeMonth(1)" aria-label="Mes siguiente">→</button>
+      <button onclick="changeMonth(1)">→</button>
     </div>
-    <div class="calendar-grid" id="calendar">
-      <!-- injected -->
-    </div>
+    <div class="calendar-grid" id="calendar"></div>
     <div class="cal-legend">
-      <span><i style="background:#fff"></i> Disponible</span>
-      <span><i style="background:#fdf3e1"></i> Parcial (algún horario)</span>
-      <span><i style="background:#f0ebd9"></i> No disponible</span>
-      <span><i style="background:var(--sage)"></i> Seleccionada</span>
+      <span><i style="background:#fff"></i> <span data-i18n="cal.available">Disponible</span></span>
+      <span><i style="background:#fdf3e1"></i> <span data-i18n="cal.partial">Parcial (algún horario)</span></span>
+      <span><i style="background:#f0ebd9"></i> <span data-i18n="cal.unavailable">No disponible</span></span>
+      <span><i style="background:var(--sage)"></i> <span data-i18n="cal.selected">Seleccionada</span></span>
     </div>
-    <div class="blocked-note">Sincronizado con Google Calendar de Nativo. Un agente confirmará la fecha al final.</div>
+    <div class="blocked-note" data-i18n="cal.note">Sincronizado con Google Calendar de Nativo. Un agente confirmará la fecha al final.</div>
   </div>
 
   <div id="time-panel" class="time-slots" style="display:none">
-    <div class="h4">Hora de inicio · <span id="picked-date-lbl">—</span></div>
-    <div class="slot-grid" id="time-grid">
-      <!-- injected when date picked -->
-    </div>
+    <div class="h4"><span data-i18n="s3.startTime">Hora de inicio</span> · <span id="picked-date-lbl">—</span></div>
+    <div class="slot-grid" id="time-grid"></div>
   </div>
 
   <div class="row" style="margin-top:24px">
     <div class="field">
-      <label>Duración del evento <span class="req">*</span></label>
+      <label><span data-i18n="s3.duration">Duración del evento</span> <span class="req">*</span></label>
       <select id="hours" onchange="onHoursChange()" disabled>
         <option value="5">5 horas</option>
       </select>
-      <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;font-style:italic" id="hours-hint">Selecciona primero hora de inicio.</div>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;font-style:italic" id="hours-hint" data-i18n="s3.hoursHintEmpty">Selecciona primero hora de inicio.</div>
     </div>
     <div class="field" style="display:flex;align-items:flex-end">
-      <div id="end-time-display" style="background:var(--cream);padding:12px 16px;border-left:3px solid var(--sage);width:100%;font-size:13px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.05rem">Selecciona fecha y horario para ver hora de término.</div>
+      <div id="end-time-display" style="background:var(--cream);padding:12px 16px;border-left:3px solid var(--sage);width:100%;font-size:13px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.05rem" data-i18n="s3.endTimeEmpty">Selecciona fecha y horario para ver hora de término.</div>
     </div>
   </div>
 
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="next()" id="next-3" disabled>Continuar →</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-3" disabled data-i18n="btn.continue">Continuar →</button>
   </div>
 </section>
 
-<!-- STEP 4: catering (NEW PRICING: 50% RENT DISCOUNT, NO INFANTIL) -->
 <section class="step-card" id="step-4">
-  <div class="step-eyebrow">paso 04 / 07</div>
-  <h2>Catering</h2>
-  <p class="step-sub">Elige cómo quieres alimentar a tus invitados.</p>
+  <div class="step-eyebrow" data-i18n="s4.eyebrow">paso 04 / 07</div>
+  <h2 data-i18n="s4.title">Catering</h2>
+  <p class="step-sub" data-i18n="s4.sub">Elige cómo quieres alimentar a tus invitados.</p>
 
   <div class="cat-banner">
     <div class="ico">✦</div>
     <div class="txt">
-      <strong>50% de descuento en la renta</strong>
-      Si contratas cualquiera de nuestros caterings partner, te aplicamos automáticamente 50% de descuento sobre el costo de renta del espacio.
+      <strong data-i18n="s4.bannerTitle">50% de descuento en la renta</strong>
+      <span data-i18n="s4.bannerBody">Si contratas cualquiera de nuestros caterings partner, te aplicamos automáticamente 50% de descuento sobre el costo de renta del espacio.</span>
     </div>
   </div>
 
   <div class="catering-choice">
     <div class="cat-opt" data-cat="sin" onclick="selectCat('sin')">
       <span class="icon">◯</span>
-      <h4>Sin catering</h4>
-      <p>Solo renta del espacio</p>
+      <h4 data-i18n="s4.noCateringTitle">Sin catering</h4>
+      <p data-i18n="s4.noCateringDesc">Solo renta del espacio</p>
     </div>
     <div class="cat-opt" data-cat="nativo" onclick="selectCat('nativo')">
       <span class="icon">✦</span>
-      <h4>Catering Nativo</h4>
-      <p>Paquete por persona</p>
-      <span class="save-tag">−50% renta</span>
+      <h4 data-i18n="s4.nativoCateringTitle">Catering Nativo</h4>
+      <p data-i18n="s4.nativoCateringDesc">Paquete por persona</p>
+      <span class="save-tag" data-i18n="s4.saveTag">−50% renta</span>
     </div>
     <div class="cat-opt" data-cat="externo" onclick="selectCat('externo')">
       <span class="icon">◇</span>
-      <h4>Catering externo</h4>
-      <p>Renta completa + tu proveedor</p>
+      <h4 data-i18n="s4.extCateringTitle">Catering externo</h4>
+      <p data-i18n="s4.extCateringDesc">Renta completa + tu proveedor</p>
     </div>
   </div>
 
   <div id="menu-picker" style="display:none">
-    <label>Elige tu menú <span style="text-transform:none;color:var(--ink-soft);letter-spacing:0;font-weight:400;font-size:12px">(mínimo 20 personas)</span></label>
-    <div class="menu-list" id="menu-list">
-      <!-- injected -->
-    </div>
+    <label><span data-i18n="s4.pickMenu">Elige tu menú</span> <span style="text-transform:none;color:var(--ink-soft);letter-spacing:0;font-weight:400;font-size:12px" data-i18n="s4.pickMenuMin">(mínimo 20 personas)</span></label>
+    <div class="menu-list" id="menu-list"></div>
   </div>
 
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="next()" id="next-4" disabled>Continuar →</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-4" disabled data-i18n="btn.continue">Continuar →</button>
   </div>
 </section>
 
-<!-- STEP 5: extras -->
 <section class="step-card" id="step-5">
-  <div class="step-eyebrow">paso 05 / 07</div>
-  <h2>Extras</h2>
-  <p class="step-sub">Añade los detalles que harán tu evento inolvidable.</p>
+  <div class="step-eyebrow" data-i18n="s5.eyebrow">paso 05 / 07</div>
+  <h2 data-i18n="s5.title">Extras</h2>
+  <p class="step-sub" data-i18n="s5.sub">Añade los detalles que harán tu evento inolvidable.</p>
 
   <div class="extra-row">
     <label>
-      <strong>Coffee Break Básico</strong>
-      <span class="ex-desc">Café, té, agua, fruta, frutos secos, panadería y galletas · por persona</span>
+      <strong data-i18n="extra.coffeeTitle">Coffee Break Básico</strong>
+      <span class="ex-desc" data-i18n="extra.coffeeDesc">Café, té, agua, fruta, frutos secos, panadería y galletas · por persona</span>
     </label>
-    <span class="ex-price">$200 p/p</span>
+    <span class="ex-price" data-i18n="extra.coffeePrice">$200 p/p</span>
     <input type="checkbox" id="ex-coffee" onchange="calcPrice();renderSummary()">
   </div>
 
   <div class="extra-row" style="opacity:.55">
     <label>
-      <strong>Hora extra · DJ · Mobiliario especial</strong>
-      <span class="ex-desc">Catálogo en construcción — solicítalo por WhatsApp o en comentarios</span>
+      <strong data-i18n="extra.moreTitle">Hora extra · DJ · Mobiliario especial</strong>
+      <span class="ex-desc" data-i18n="extra.moreDesc">Catálogo en construcción — solicítalo por WhatsApp o en comentarios</span>
     </label>
-    <span class="ex-price">próximamente</span>
+    <span class="ex-price" data-i18n="extra.soon">próximamente</span>
     <input type="checkbox" disabled>
   </div>
 
   <div class="field" style="margin-top:28px">
-    <label>Comentarios especiales</label>
-    <textarea id="comments" placeholder="Mascotas, alergias, montaje especial, decoración, etc." oninput="S.comments=this.value"></textarea>
+    <label data-i18n="s5.commentsLbl">Comentarios especiales</label>
+    <textarea id="comments" data-i18n-attr="placeholder" data-i18n-key="s5.commentsPlaceholder" placeholder="Mascotas, alergias, montaje especial, decoración, etc." oninput="S.comments=this.value"></textarea>
   </div>
 
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="next()">Continuar →</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="next()" data-i18n="btn.continue">Continuar →</button>
   </div>
 </section>
 
-<!-- STEP 6: contact (VALIDATION + CAPTCHA) -->
 <section class="step-card" id="step-6">
-  <div class="step-eyebrow">paso 06 / 07</div>
-  <h2>Datos de contacto</h2>
-  <p class="step-sub">Para enviarte la cotización formal y agendar la llamada de confirmación.</p>
+  <div class="step-eyebrow" data-i18n="s6.eyebrow">paso 06 / 07</div>
+  <h2 data-i18n="s6.title">Datos de contacto</h2>
+  <p class="step-sub" data-i18n="s6.sub">Para enviarte la cotización formal y agendar la llamada de confirmación.</p>
 
   <div class="row">
     <div class="field" id="f-name">
-      <label>Nombre completo <span class="req">*</span></label>
+      <label><span data-i18n="s6.nameLbl">Nombre completo</span> <span class="req">*</span></label>
       <input type="text" id="c-name" oninput="validateField('name')" autocomplete="name">
-      <div class="err-msg">Ingresa nombre y apellido (solo letras).</div>
-      <div class="ok-msg">✓ Nombre válido</div>
+      <div class="err-msg" data-i18n="s6.nameErr">Ingresa nombre y apellido (solo letras).</div>
+      <div class="ok-msg" data-i18n="s6.nameOk">✓ Nombre válido</div>
     </div>
     <div class="field" id="f-phone">
-      <label>Teléfono / WhatsApp <span class="req">*</span></label>
+      <label><span data-i18n="s6.phoneLbl">Teléfono / WhatsApp</span> <span class="req">*</span></label>
       <input type="tel" id="c-phone" placeholder="+52 55 0000 0000" oninput="validateField('phone')" autocomplete="tel">
-      <div class="err-msg">Ingresa un teléfono válido (10 dígitos).</div>
-      <div class="ok-msg">✓ Teléfono válido</div>
+      <div class="err-msg" data-i18n="s6.phoneErr">Ingresa un teléfono válido (10 dígitos).</div>
+      <div class="ok-msg" data-i18n="s6.phoneOk">✓ Teléfono válido</div>
     </div>
   </div>
   <div class="row">
     <div class="field" id="f-email">
-      <label>Correo electrónico <span class="req">*</span></label>
+      <label><span data-i18n="s6.emailLbl">Correo electrónico</span> <span class="req">*</span></label>
       <input type="email" id="c-email" oninput="validateField('email')" autocomplete="email">
-      <div class="err-msg">Ingresa un correo electrónico válido.</div>
-      <div class="ok-msg">✓ Correo válido</div>
+      <div class="err-msg" data-i18n="s6.emailErr">Ingresa un correo electrónico válido.</div>
+      <div class="ok-msg" data-i18n="s6.emailOk">✓ Correo válido</div>
     </div>
     <div class="field">
-      <label>Empresa (opcional)</label>
+      <label data-i18n="s6.companyLbl">Empresa (opcional)</label>
       <input type="text" id="c-company">
     </div>
   </div>
   <div class="field">
-    <label>¿Cómo nos conociste? (opcional)</label>
+    <label data-i18n="s6.sourceLbl">¿Cómo nos conociste? (opcional)</label>
     <select id="c-source">
       <option value="">—</option>
-      <option>Instagram</option>
-      <option>Google</option>
-      <option>Recomendación</option>
-      <option>Boda/evento previo</option>
-      <option>Otro</option>
+      <option data-i18n="s6.srcInsta">Instagram</option>
+      <option data-i18n="s6.srcGoogle">Google</option>
+      <option data-i18n="s6.srcRef">Recomendación</option>
+      <option data-i18n="s6.srcWedding">Boda/evento previo</option>
+      <option data-i18n="s6.srcOther">Otro</option>
     </select>
   </div>
 
-  <!-- Captcha (Cloudflare Turnstile-style) -->
   <div class="captcha" id="captcha" onclick="solveCaptcha()">
     <div class="captcha-check" id="cap-box"></div>
-    <div class="captcha-label" id="cap-label">Verifica que no eres un robot</div>
+    <div class="captcha-label" id="cap-label" data-i18n="s6.capLabel">Verifica que no eres un robot</div>
     <div class="captcha-cf">
       <strong>CLOUDFLARE</strong>
-      <span>Turnstile · Privacidad</span>
+      <span data-i18n="s6.capCf">Turnstile · Privacidad</span>
     </div>
   </div>
 
   <div class="privacy">
     <input type="checkbox" id="c-privacy" onchange="checkContact()">
-    <label for="c-privacy" style="flex:1;margin:0;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-soft)">
+    <label for="c-privacy" style="flex:1;margin:0;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-soft)" data-i18n-html="s6.privacyHtml">
       Acepto el <a href="#" style="text-decoration:underline">aviso de privacidad</a> y el tratamiento de mis datos conforme a la LFPDPPP. Entiendo que un miembro del equipo Nativo me contactará para confirmar la cotización.
     </label>
   </div>
 
+  <div id="missing-fields-msg" style="background:#fdf3f1;border-left:3px solid var(--error);padding:12px 16px;margin-top:24px;font-size:13px;color:var(--error);display:none">
+    <strong style="display:block;margin-bottom:4px;font-family:'Cormorant Garamond',serif;font-size:1.05rem" data-i18n="s6.missingTitle">Faltan datos por completar:</strong>
+    <span id="missing-fields-list"></span>
+  </div>
+
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="next()" id="next-6" disabled>Ver resumen →</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="next()" id="next-6" disabled data-i18n="btn.viewSummary">Ver resumen →</button>
   </div>
 </section>
 
-<!-- STEP 7: recap -->
 <section class="step-card" id="step-7">
-  <div class="step-eyebrow">paso 07 / 07</div>
-  <h2>Tu cotización preliminar</h2>
-  <p class="step-sub">Revisa los detalles antes de enviar. Un miembro de Nativo confirmará la disponibilidad y te enviará la cotización formal.</p>
+  <div class="step-eyebrow" data-i18n="s7.eyebrow">paso 07 / 07</div>
+  <h2 data-i18n="s7.title">Tu cotización preliminar</h2>
+  <p class="step-sub" data-i18n="s7.sub">Revisa los detalles antes de enviar. Un miembro de Nativo confirmará la disponibilidad y te enviará la cotización formal.</p>
 
-  <div class="recap" id="recap-blocks">
-    <!-- injected -->
-  </div>
+  <div class="recap" id="recap-blocks"></div>
 
   <div class="final-price">
-    <div class="label">Total estimado con IVA</div>
+    <div class="label" data-i18n="s7.totalLbl">Total estimado con IVA</div>
     <div class="amount" id="final-total">$0</div>
-    <div class="sub" id="final-breakdown">subtotal + 16% IVA</div>
+    <div class="sub" id="final-breakdown"></div>
   </div>
 
-  <div class="disclaimer">
+  <div class="disclaimer" data-i18n-html="s7.disclaimer">
     Esta es una estimación preliminar. <strong>Un agente de Nativo confirmará la disponibilidad de la fecha y horario seleccionados</strong> antes de enviar la cotización formal. El precio final puede ajustarse según detalles logísticos. La reserva se aparta con 50% de anticipo.
   </div>
 
   <div class="nav-btns">
-    <button class="btn ghost" onclick="prev()">← Atrás</button>
-    <button class="btn primary" onclick="submitQuote()" id="submit-btn">Enviar solicitud ✦</button>
+    <button class="btn ghost" onclick="prev()" data-i18n="btn.back">← Atrás</button>
+    <button class="btn primary" onclick="submitQuote()" id="submit-btn" data-i18n="btn.submit">Enviar solicitud ✦</button>
   </div>
 </section>
 
-<!-- STEP 8: success -->
 <section class="step-card" id="step-8">
   <div class="success">
     <div class="mark">✦</div>
-    <h2>¡Gracias, <span id="s-name">nombre</span>!</h2>
-    <p class="lead">Recibimos tu solicitud. Te enviamos una copia a <strong id="s-email">tu correo</strong> y nuestro equipo te contactará en menos de 4 horas para confirmar la fecha y enviarte la cotización formal.</p>
+    <h2><span data-i18n="s8.thanks">¡Gracias,</span> <span id="s-name">nombre</span>!</h2>
+    <p class="lead" data-i18n-html="s8.lead">Recibimos tu solicitud. Te enviamos una copia a <strong id="s-email">tu correo</strong> y nuestro equipo te contactará en menos de 4 horas para confirmar la fecha y enviarte la cotización formal.</p>
 
     <div class="integrations-fired">
-      <h4>Esto pasó cuando enviaste tu solicitud</h4>
+      <h4 data-i18n="s8.integTitle">Esto pasó cuando enviaste tu solicitud</h4>
       <div class="integ-item">
         <span class="check">✓</span>
-        <div class="what"><strong>HubSpot</strong> · Contact + Deal creados en pipeline "Cotización Enviada"</div>
+        <div class="what" data-i18n-html="s8.integHubspot"><strong>HubSpot</strong> · Contact + Deal creados en pipeline "Cotización Enviada"</div>
       </div>
       <div class="integ-item">
         <span class="check">✓</span>
-        <div class="what"><strong>Google Drive</strong> · PDF preliminar guardado en /Cotizaciones Nativo/2026/</div>
+        <div class="what" data-i18n-html="s8.integDrive"><strong>Google Drive</strong> · PDF preliminar guardado en /Cotizaciones Nativo/2026/</div>
       </div>
       <div class="integ-item">
         <span class="check">✓</span>
-        <div class="what"><strong>Correo cliente</strong> · Resumen + estimación enviados</div>
+        <div class="what" data-i18n-html="s8.integMail"><strong>Correo cliente</strong> · Resumen + estimación enviados</div>
       </div>
       <div class="integ-item">
         <span class="check">✓</span>
-        <div class="what"><strong>Correo interno</strong> · Notificación al equipo Nativo con botones de acción</div>
+        <div class="what" data-i18n-html="s8.integInternal"><strong>Correo interno</strong> · Notificación al equipo Nativo con botones de acción</div>
       </div>
     </div>
 
     <div class="next-steps">
-      <h4>Qué sigue</h4>
+      <h4 data-i18n="s8.nextTitle">Qué sigue</h4>
       <ol>
-        <li>Revisa tu correo: encontrarás el resumen y la estimación preliminar.</li>
-        <li>En las próximas horas recibirás un WhatsApp de nuestro equipo confirmando la fecha.</li>
-        <li>Una vez validados los detalles, te enviaremos la cotización formal en PDF.</li>
-        <li>Para reservar, solicitamos el 50% de anticipo. La fecha se aparta al recibir el pago.</li>
+        <li data-i18n="s8.next1">Revisa tu correo: encontrarás el resumen y la estimación preliminar.</li>
+        <li data-i18n="s8.next2">En las próximas horas recibirás un WhatsApp de nuestro equipo confirmando la fecha.</li>
+        <li data-i18n="s8.next3">Una vez validados los detalles, te enviaremos la cotización formal en PDF.</li>
+        <li data-i18n="s8.next4">Para reservar, solicitamos el 50% de anticipo. La fecha se aparta al recibir el pago.</li>
       </ol>
     </div>
 
     <div class="cta-row">
-      <a class="btn wa" href="#" onclick="openWA();return false">Escribir por WhatsApp</a>
-      <button class="btn" onclick="resetAll()">Nueva cotización</button>
+      <a class="btn wa" href="#" onclick="openWA();return false" data-i18n="btn.waContact">Escribir por WhatsApp</a>
+      <button class="btn" onclick="resetAll()" data-i18n="btn.newQuote">Nueva cotización</button>
     </div>
 
-    <!-- Preliminary PDF preview -->
-    <h3 style="margin-top:60px;font-size:1.4rem">Tu PDF preliminar</h3>
-    <p style="color:var(--ink-soft);font-size:13px;margin-bottom:10px">Vista previa del documento que recibirás por correo</p>
-    <div class="pdf-preview" id="pdf-preview">
-      <!-- injected -->
-    </div>
+    <h3 style="margin-top:60px;font-size:1.4rem" data-i18n="s8.pdfTitle">Tu PDF preliminar</h3>
+    <p style="color:var(--ink-soft);font-size:13px;margin-bottom:10px" data-i18n="s8.pdfSub">Vista previa del documento que recibirás por correo</p>
+    <div class="pdf-preview" id="pdf-preview"></div>
 
-    <!-- Admin email mockup -->
     <div class="admin-preview">
-      <span class="tag">vista interna · equipo nativo</span>
-      <h3>Correo que recibe el equipo</h3>
-      <p style="font-size:13px;color:var(--ink-soft)">Así le llega la notificación a quien revisa cotizaciones — los botones disparan acciones reales</p>
-      <div class="admin-email" id="admin-email">
-        <!-- injected -->
-      </div>
+      <span class="tag" data-i18n="s8.adminTag">vista interna · equipo nativo</span>
+      <h3 data-i18n="s8.adminTitle">Correo que recibe el equipo</h3>
+      <p style="font-size:13px;color:var(--ink-soft)" data-i18n="s8.adminSub">Así le llega la notificación a quien revisa cotizaciones — los botones disparan acciones reales</p>
+      <div class="admin-email" id="admin-email"></div>
     </div>
   </div>
 </section>
 
-</div><!-- /left column -->
+</div>
 
-<!-- ——— Summary sidebar ——— -->
 <aside class="summary" id="sidebar">
-  <div class="eyebrow">resumen en vivo</div>
-  <h3>Tu evento</h3>
-
+  <div class="eyebrow" data-i18n="summary.eyebrow">resumen en vivo</div>
+  <h3 data-i18n="summary.title">Tu evento</h3>
   <div id="summary-body">
-    <div class="empty">Empieza a configurar tu evento…</div>
+    <div class="empty" data-i18n="summary.empty">Empieza a configurar tu evento…</div>
   </div>
 </aside>
 
-</div><!-- /grid -->
+</div>
 </main>
 
-<!-- ——— Floating WhatsApp ——— -->
 <button class="fab-wa" onclick="openWA()">
-  <span class="tip">¿Tienes dudas? Escríbenos</span>
+  <span class="tip" data-i18n="fab.tip">¿Tienes dudas? Escríbenos</span>
   ✆
 </button>
 
-<!-- ——— Suggester modal ——— -->
 <div class="suggester-modal" id="suggester">
   <div class="suggester-box">
     <button class="close" onclick="closeSuggester()">×</button>
     <div style="text-align:center">
-      <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:8px">ayuda personalizada</div>
-      <h3 style="font-size:1.8rem">Hagamos match con tu espacio ideal</h3>
-      <p style="color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-style:italic;margin-top:6px">Tres preguntas rápidas.</p>
+      <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:8px" data-i18n="sugg.eyebrow">ayuda personalizada</div>
+      <h3 style="font-size:1.8rem" data-i18n="sugg.title">Hagamos match con tu espacio ideal</h3>
+      <p style="color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-style:italic;margin-top:6px" data-i18n="sugg.sub">Tres preguntas rápidas.</p>
     </div>
 
     <div class="suggester-q">
-      <label>1 · ¿Cómo imaginas el ambiente?</label>
+      <label data-i18n="sugg.q1">1 · ¿Cómo imaginas el ambiente?</label>
       <div class="opts" data-q="amb">
-        <div class="opt" data-v="intimo">Íntimo y acogedor</div>
-        <div class="opt" data-v="amplio">Amplio y con movimiento</div>
+        <div class="opt" data-v="intimo" data-i18n="sugg.q1a">Íntimo y acogedor</div>
+        <div class="opt" data-v="amplio" data-i18n="sugg.q1b">Amplio y con movimiento</div>
       </div>
     </div>
     <div class="suggester-q">
-      <label>2 · ¿Día o noche?</label>
+      <label data-i18n="sugg.q2">2 · ¿Día o noche?</label>
       <div class="opts" data-q="tiempo">
-        <div class="opt" data-v="dia">De día (brunch, tarde)</div>
-        <div class="opt" data-v="noche">De noche</div>
+        <div class="opt" data-v="dia" data-i18n="sugg.q2a">De día (brunch, tarde)</div>
+        <div class="opt" data-v="noche" data-i18n="sugg.q2b">De noche</div>
       </div>
     </div>
     <div class="suggester-q">
-      <label>3 · ¿Formal o casual?</label>
+      <label data-i18n="sugg.q3">3 · ¿Formal o casual?</label>
       <div class="opts" data-q="tono">
-        <div class="opt" data-v="formal">Formal / ceremonial</div>
-        <div class="opt" data-v="casual">Casual / relajado</div>
+        <div class="opt" data-v="formal" data-i18n="sugg.q3a">Formal / ceremonial</div>
+        <div class="opt" data-v="casual" data-i18n="sugg.q3b">Casual / relajado</div>
       </div>
     </div>
 
@@ -791,51 +737,261 @@
       <div class="rec" id="sugg-rec">—</div>
       <p id="sugg-why">—</p>
       <div class="suggester-actions">
-        <button class="btn primary" onclick="acceptSuggestion()">Elegir este espacio</button>
-        <a class="btn wa" href="#" onclick="openWA();return false">Prefiero un asesor</a>
+        <button class="btn primary" onclick="acceptSuggestion()" data-i18n="sugg.choose">Elegir este espacio</button>
+        <a class="btn wa" href="#" onclick="openWA();return false" data-i18n="sugg.advisor">Prefiero un asesor</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Toasts -->
 <div class="toast-wrap" id="toasts"></div>
 
 <footer>
   <div class="orn">· · ✦ · ·</div>
-  espacio nativo · cotiza.espacionativo.com · hecho con cuidado
+  <span data-i18n="footer">espacio nativo · cotiza.espacionativo.com · hecho con cuidado</span>
 </footer>
 
 <script>
-// ========= CONSTANTS =========
-const WA_NUMBER = '5215561541310'; // +52 1 55 6154 1310
-const WA_DISPLAY = '+52 1 55 6154 1310';
-
-// ========= DATA =========
-const PRICES = {
-  patio: {
-    cap: 120, // coctel
-    days: {0:[22500,4500],1:[9000,1800],2:[11500,2300],3:[14000,2800],4:[19000,3800],5:[23000,4600],6:[25000,5000]}
+// ========= I18N =========
+const I18N = {
+  es: {
+    'brand.subtitle':'cotizador',
+    'hero.eyebrow':'espacio nativo · san miguel chapultepec',
+    'hero.title':'Diseña tu evento',
+    'hero.lead':'Configura tu evento en pocos pasos y recibe una cotización preliminar al instante. Un miembro de nuestro equipo confirmará contigo en menos de 4 horas.',
+    'step.event':'Evento','step.space':'Espacio','step.date':'Fecha','step.catering':'Catering','step.extras':'Extras','step.contact':'Contacto','step.summary':'Resumen',
+    'btn.continue':'Continuar →','btn.back':'← Atrás','btn.viewSummary':'Ver resumen →','btn.submit':'Enviar solicitud ✦','btn.waContact':'Escribir por WhatsApp','btn.newQuote':'Nueva cotización',
+    'event.boda':'Boda','event.cumple':'Cumpleaños','event.corp':'Corporativo','event.conf':'Conferencia','event.launch':'Lanzamiento','event.anniv':'Aniversario','event.baby':'Baby Shower','event.other':'Otro',
+    'event.tellMore':'Cuéntanos un poco más','event.tellMorePlaceholder':'Ej. Reunión familiar, despedida de soltera…',
+    's1.eyebrow':'paso 01 / 07','s1.title':'¿Qué tipo de evento celebramos?','s1.sub':'Selecciona el tipo que mejor describa tu celebración.',
+    's2.eyebrow':'paso 02 / 07','s2.title':'Personas & Espacio','s2.sub':'Te mostramos las configuraciones ideales para tu grupo.',
+    's2.numPeople':'Número de personas','s2.peoplePlaceholder':'Ej. 45','s2.peopleErr':'Ingresa un número entre 1 y 200.',
+    's2.capNote':'Las capacidades mostradas son para formato cóctel/de pie. Para evento sentado el equipo confirma capacidad final.',
+    's2.recommendedLbl':'Configuraciones recomendadas','s2.helpDecide':'No estoy segur@ — ayúdame a decidir ✦',
+    's2.fillFirst':'Ingresa el número de personas para ver opciones ▸','s2.cap':'Hasta {n} personas (cóctel)','s2.from5h':'desde 5 hrs','s2.capInsufficient':'Capacidad insuficiente',
+    's3.eyebrow':'paso 03 / 07','s3.title':'Fecha y duración','s3.sub':'Renta mínima 5 horas. Todos los eventos terminan máximo a la 1:00 AM.',
+    'cal.available':'Disponible','cal.partial':'Parcial (algún horario)','cal.unavailable':'No disponible','cal.selected':'Seleccionada',
+    'cal.note':'Sincronizado con Google Calendar de Nativo. Un agente confirmará la fecha al final.',
+    's3.startTime':'Hora de inicio','s3.duration':'Duración del evento','s3.hoursHintEmpty':'Selecciona primero hora de inicio.','s3.endTimeEmpty':'Selecciona fecha y horario para ver hora de término.',
+    's3.hoursOption':'{h} horas','s3.hoursMax':'Máximo {h} horas disponibles desde las {t}. Cierre 1:00 AM.','s3.hoursWarn':'⚠ Esta hora de inicio no permite 5 horas mínimas antes de la 1 AM.',
+    's3.endsAt':'Termina a las {t}','s3.nextDay':'(día siguiente)',
+    's4.eyebrow':'paso 04 / 07','s4.title':'Catering','s4.sub':'Elige cómo quieres alimentar a tus invitados.',
+    's4.bannerTitle':'50% de descuento en la renta','s4.bannerBody':'Si contratas cualquiera de nuestros caterings partner, te aplicamos automáticamente 50% de descuento sobre el costo de renta del espacio.',
+    's4.noCateringTitle':'Sin catering','s4.noCateringDesc':'Solo renta del espacio',
+    's4.nativoCateringTitle':'Catering Nativo','s4.nativoCateringDesc':'Paquete por persona','s4.saveTag':'−50% renta',
+    's4.extCateringTitle':'Catering externo','s4.extCateringDesc':'Renta completa + tu proveedor',
+    's4.pickMenu':'Elige tu menú','s4.pickMenuMin':'(mínimo 20 personas)','s4.perPerson':'por persona',
+    's5.eyebrow':'paso 05 / 07','s5.title':'Extras','s5.sub':'Añade los detalles que harán tu evento inolvidable.',
+    'extra.coffeeTitle':'Coffee Break Básico','extra.coffeeDesc':'Café, té, agua, fruta, frutos secos, panadería y galletas · por persona','extra.coffeePrice':'$200 p/p',
+    'extra.moreTitle':'Hora extra · DJ · Mobiliario especial','extra.moreDesc':'Catálogo en construcción — solicítalo por WhatsApp o en comentarios','extra.soon':'próximamente',
+    's5.commentsLbl':'Comentarios especiales','s5.commentsPlaceholder':'Mascotas, alergias, montaje especial, decoración, etc.',
+    's6.eyebrow':'paso 06 / 07','s6.title':'Datos de contacto','s6.sub':'Para enviarte la cotización formal y agendar la llamada de confirmación.',
+    's6.nameLbl':'Nombre completo','s6.nameErr':'Ingresa nombre y apellido (solo letras).','s6.nameOk':'✓ Nombre válido',
+    's6.phoneLbl':'Teléfono / WhatsApp','s6.phoneErr':'Ingresa un teléfono válido (10 dígitos).','s6.phoneOk':'✓ Teléfono válido',
+    's6.emailLbl':'Correo electrónico','s6.emailErr':'Ingresa un correo electrónico válido.','s6.emailOk':'✓ Correo válido',
+    's6.companyLbl':'Empresa (opcional)','s6.sourceLbl':'¿Cómo nos conociste? (opcional)',
+    's6.missingTitle':'Faltan datos por completar:','s6.missName':'Nombre completo (nombre y apellido)','s6.missPhone':'Teléfono válido (10 dígitos)','s6.missEmail':'Correo electrónico válido','s6.missCaptcha':'Verificación de captcha','s6.missPrivacy':'Aceptar aviso de privacidad',
+    's6.srcInsta':'Instagram','s6.srcGoogle':'Google','s6.srcRef':'Recomendación','s6.srcWedding':'Boda/evento previo','s6.srcOther':'Otro',
+    's6.capLabel':'Verifica que no eres un robot','s6.capVerifying':'Verificando…','s6.capDone':'Eres humano','s6.capDoneSub':'Verificación completa','s6.capCf':'Turnstile · Privacidad',
+    's6.privacyHtml':'Acepto el <a href="#" style="text-decoration:underline">aviso de privacidad</a> y el tratamiento de mis datos conforme a la LFPDPPP. Entiendo que un miembro del equipo Nativo me contactará para confirmar la cotización.',
+    's7.eyebrow':'paso 07 / 07','s7.title':'Tu cotización preliminar','s7.sub':'Revisa los detalles antes de enviar. Un miembro de Nativo confirmará la disponibilidad y te enviará la cotización formal.',
+    's7.totalLbl':'Total estimado con IVA','s7.breakdown':'subtotal {sub} + IVA {iva}',
+    's7.disclaimer':'Esta es una estimación preliminar. <strong>Un agente de Nativo confirmará la disponibilidad de la fecha y horario seleccionados</strong> antes de enviar la cotización formal. El precio final puede ajustarse según detalles logísticos. La reserva se aparta con 50% de anticipo.',
+    's8.thanks':'¡Gracias,','s8.lead':'Recibimos tu solicitud. Te enviamos una copia a <strong id="s-email">tu correo</strong> y nuestro equipo te contactará en menos de 4 horas para confirmar la fecha y enviarte la cotización formal.',
+    's8.integTitle':'Esto pasó cuando enviaste tu solicitud',
+    's8.integHubspot':'<strong>HubSpot</strong> · Contact + Deal creados en pipeline "Cotización Enviada"',
+    's8.integDrive':'<strong>Google Drive</strong> · PDF preliminar guardado en /Cotizaciones Nativo/2026/',
+    's8.integMail':'<strong>Correo cliente</strong> · Resumen + estimación enviados',
+    's8.integInternal':'<strong>Correo interno</strong> · Notificación al equipo Nativo con botones de acción',
+    's8.nextTitle':'Qué sigue',
+    's8.next1':'Revisa tu correo: encontrarás el resumen y la estimación preliminar.',
+    's8.next2':'En las próximas horas recibirás un WhatsApp de nuestro equipo confirmando la fecha.',
+    's8.next3':'Una vez validados los detalles, te enviaremos la cotización formal en PDF.',
+    's8.next4':'Para reservar, solicitamos el 50% de anticipo. La fecha se aparta al recibir el pago.',
+    's8.pdfTitle':'Tu PDF preliminar','s8.pdfSub':'Vista previa del documento que recibirás por correo',
+    's8.adminTag':'vista interna · equipo nativo','s8.adminTitle':'Correo que recibe el equipo','s8.adminSub':'Así le llega la notificación a quien revisa cotizaciones — los botones disparan acciones reales',
+    'summary.eyebrow':'resumen en vivo','summary.title':'Tu evento','summary.empty':'Empieza a configurar tu evento…',
+    'summary.event':'Evento','summary.people':'Personas','summary.space':'Espacio','summary.date':'Fecha','summary.start':'Inicio','summary.catering':'Catering','summary.coffee':'Coffee break','summary.included':'Incluido','summary.rent':'Renta espacio','summary.rentH':'Renta ({h}h)','summary.cateringL':'Catering ({n} pax)','summary.coffeeL':'Coffee ({n} pax)','summary.subtotal':'Subtotal','summary.iva':'IVA 16%','summary.total':'Total','summary.discount':'✦ −50% renta por catering Nativo (ahorras {n})','summary.noCater':'Sin catering','summary.extCater':'Externo',
+    'fab.tip':'¿Tienes dudas? Escríbenos','footer':'espacio nativo · cotiza.espacionativo.com · hecho con cuidado',
+    'sugg.eyebrow':'ayuda personalizada','sugg.title':'Hagamos match con tu espacio ideal','sugg.sub':'Tres preguntas rápidas.',
+    'sugg.q1':'1 · ¿Cómo imaginas el ambiente?','sugg.q1a':'Íntimo y acogedor','sugg.q1b':'Amplio y con movimiento',
+    'sugg.q2':'2 · ¿Día o noche?','sugg.q2a':'De día (brunch, tarde)','sugg.q2b':'De noche',
+    'sugg.q3':'3 · ¿Formal o casual?','sugg.q3a':'Formal / ceremonial','sugg.q3b':'Casual / relajado',
+    'sugg.choose':'Elegir este espacio','sugg.advisor':'Prefiero un asesor','sugg.weSuggest':'Te sugerimos · {name}',
+    'spaces.patio':'Patio Principal','spaces.terraza':'Terraza','spaces.hacienda':'Hacienda Completa',
+    'tag.intimo':'Íntimo','tag.popular':'Más popular','tag.flexible':'Máxima flexibilidad','tag.weddings':'Favorito bodas','tag.corp':'Favorito corporativo','tag.idealIntimate':'Ideal íntimo','tag.economic':'Más económico',
+    'months':['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    'days':['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    'daysShort':['D','L','M','X','J','V','S'],
+    'recap.event':'Evento','recap.people':'{n} personas','recap.space':'Espacio','recap.dateLine':'{date}<br>{time} · {h} horas','recap.catering':'Catering','recap.contact':'Contacto','recap.extras':'Extras','recap.coffeeYes':'Coffee break básico ($200 p/p)','recap.coffeeNo':'Sin extras','recap.company':'Empresa','recap.cateringDisc':' · −50% renta',
+    'pdf.tag':'PDF PRELIMINAR','pdf.client':'Cliente','pdf.event':'Evento','pdf.date':'Fecha','pdf.space':'Espacio','pdf.people':'Personas','pdf.duration':'Duración','pdf.durationVal':'{h} hrs desde {t}','pdf.concepts':'Conceptos','pdf.rent':'Renta espacio','pdf.rentDisc':'Renta con −50% (catering Nativo)','pdf.menuLine':'{name} · {n} pax','pdf.coffeeLine':'Coffee break · {n} pax','pdf.subtotal':'Subtotal','pdf.iva':'IVA 16%','pdf.total':'Total','pdf.footer':'Cotización preliminar — un agente confirma disponibilidad. Reserva al 50% de anticipo.',
+    'admin.subject':'🔔 Nueva cotización · {name} · {date} · {total}','admin.intro':'Acaba de llegar una cotización del cotizador web. Resumen:','admin.client':'Cliente','admin.event':'Evento','admin.space':'Espacio','admin.date':'Fecha','admin.catering':'Catering','admin.extras':'Extras','admin.comments':'Comentarios','admin.totalEst':'Total estimado','admin.totalEstVal':'{n} (incluye IVA)','admin.btnApprove':'✓ Aprobar y enviar formal','admin.btnWa':'Contactar por WhatsApp','admin.btnHs':'Ver Deal en HubSpot','admin.btnDrive':'Ver PDF en Drive','admin.objective':'Objetivo: responder en menos de 1 hora por WhatsApp, cotización formal en 4 horas.',
+    'toast.welcome.t':'✦ Bienvenid@','toast.welcome.b':'Prototipo conectado a HubSpot · Drive · Calendar (modo demo)',
+    'toast.hsContact.t':'HubSpot ✓','toast.hsContact.b':'Contact creado: {n}',
+    'toast.hsDeal.t':'HubSpot ✓','toast.hsDeal.b':'Deal creado · pipeline "Cotización Enviada"',
+    'toast.drive.t':'Drive ✓','toast.drive.b':'PDF preliminar guardado en /Cotizaciones Nativo/2026/',
+    'toast.mail.t':'Correos ✓','toast.mail.b':'Notificación enviada al cliente y al equipo',
+    'toast.formalGen.t':'Generando PDF formal…','toast.formalGen.b':'Aplicando branding completo de Nativo',
+    'toast.formalSaved.t':'PDF formal ✓','toast.formalSaved.b':'Guardado en Drive con sufijo _FORMAL.pdf',
+    'toast.formalSent.t':'Correo enviado al cliente ✓','toast.formalSent.b':'{e} · cotización formal adjunta',
+    'toast.hsUpdated.t':'HubSpot actualizado ✓','toast.hsUpdated.b':'Deal stage → "Cotización Formal Enviada"',
+    'toast.noPhone.t':'Sin teléfono','toast.noPhone.b':'El cliente no dejó teléfono',
+    'toast.openHs.t':'Abriendo HubSpot…','toast.openHs.b':'En producción te lleva al Deal del cliente',
+    'toast.openDrive.t':'Abriendo PDF en Drive…','toast.openDrive.b':'/Cotizaciones Nativo/2026/Mayo/',
+    'btn.sending':'Enviando…',
+    'wa.greeting':'Hola Nativo ✦ estoy cotizando un evento','wa.type':'· Tipo: {n}','wa.peopleN':'· Personas: {n}','wa.spaceL':'· Espacio: {n}','wa.dateL':'· Fecha: {n}','wa.timeL':'· Hora: {t} ({h}h)','wa.advisor':'Me gustaría platicar con un asesor.',
+    'wa.adminGreeting':'Hola {n}, soy del equipo Nativo ✦ recibí tu solicitud para el {d} y me pongo en contacto para confirmar disponibilidad y cualquier duda.'
   },
-  terraza: {
-    cap: 50,
-    days: {0:[11500,2300],1:[14500,2900],2:[14500,2900],3:[14500,2900],4:[14500,2900],5:[17500,3500],6:[19500,3900]}
-  },
-  hacienda: {
-    cap: 180,
-    days: {0:[42500,8500],1:[14500,2900],2:[18500,3700],3:[22500,4500],4:[29500,5900],5:[38500,7700],6:[40000,8000]}
+  en: {
+    'brand.subtitle':'quote builder',
+    'hero.eyebrow':'espacio nativo · san miguel chapultepec',
+    'hero.title':'Design your event',
+    'hero.lead':'Configure your event in a few steps and get an instant preliminary quote. A team member will confirm with you in less than 4 hours.',
+    'step.event':'Event','step.space':'Space','step.date':'Date','step.catering':'Catering','step.extras':'Extras','step.contact':'Contact','step.summary':'Summary',
+    'btn.continue':'Continue →','btn.back':'← Back','btn.viewSummary':'View summary →','btn.submit':'Send request ✦','btn.waContact':'Message on WhatsApp','btn.newQuote':'New quote',
+    'event.boda':'Wedding','event.cumple':'Birthday','event.corp':'Corporate','event.conf':'Conference','event.launch':'Launch','event.anniv':'Anniversary','event.baby':'Baby Shower','event.other':'Other',
+    'event.tellMore':'Tell us a bit more','event.tellMorePlaceholder':'E.g. Family gathering, bachelorette party…',
+    's1.eyebrow':'step 01 / 07','s1.title':'What kind of event are we celebrating?','s1.sub':'Select the type that best describes your celebration.',
+    's2.eyebrow':'step 02 / 07','s2.title':'Guests & Space','s2.sub':'We show you the ideal configurations for your group.',
+    's2.numPeople':'Number of guests','s2.peoplePlaceholder':'E.g. 45','s2.peopleErr':'Enter a number between 1 and 200.',
+    's2.capNote':'Capacities shown are for cocktail/standing format. For seated events the team will confirm final capacity.',
+    's2.recommendedLbl':'Recommended configurations','s2.helpDecide':'Not sure — help me decide ✦',
+    's2.fillFirst':'Enter number of guests to see options ▸','s2.cap':'Up to {n} guests (cocktail)','s2.from5h':'from 5 hrs','s2.capInsufficient':'Insufficient capacity',
+    's3.eyebrow':'step 03 / 07','s3.title':'Date & duration','s3.sub':'Minimum rental 5 hours. All events end at 1:00 AM at the latest.',
+    'cal.available':'Available','cal.partial':'Partial (some hours)','cal.unavailable':'Not available','cal.selected':'Selected',
+    'cal.note':'Synced with Nativo Google Calendar. An agent will confirm the date at the end.',
+    's3.startTime':'Start time','s3.duration':'Event duration','s3.hoursHintEmpty':'Select start time first.','s3.endTimeEmpty':'Select date and time to see end hour.',
+    's3.hoursOption':'{h} hours','s3.hoursMax':'Maximum {h} hours available from {t}. Closing 1:00 AM.','s3.hoursWarn':'⚠ This start time does not allow the minimum 5 hours before 1 AM.',
+    's3.endsAt':'Ends at {t}','s3.nextDay':'(next day)',
+    's4.eyebrow':'step 04 / 07','s4.title':'Catering','s4.sub':'Choose how you want to feed your guests.',
+    's4.bannerTitle':'50% discount on rental','s4.bannerBody':'If you book any of our partner caterings, we automatically apply a 50% discount on the venue rental cost.',
+    's4.noCateringTitle':'No catering','s4.noCateringDesc':'Venue rental only',
+    's4.nativoCateringTitle':'Nativo Catering','s4.nativoCateringDesc':'Per-guest package','s4.saveTag':'−50% rental',
+    's4.extCateringTitle':'External catering','s4.extCateringDesc':'Full rental + your provider',
+    's4.pickMenu':'Pick your menu','s4.pickMenuMin':'(minimum 20 guests)','s4.perPerson':'per guest',
+    's5.eyebrow':'step 05 / 07','s5.title':'Extras','s5.sub':'Add the details that will make your event unforgettable.',
+    'extra.coffeeTitle':'Basic Coffee Break','extra.coffeeDesc':'Coffee, tea, water, fruit, nuts, pastries and cookies · per guest','extra.coffeePrice':'$200 p/p',
+    'extra.moreTitle':'Extra hour · DJ · Special furniture','extra.moreDesc':'Catalog in progress — request via WhatsApp or in the comments','extra.soon':'coming soon',
+    's5.commentsLbl':'Special comments','s5.commentsPlaceholder':'Pets, allergies, special setup, decoration, etc.',
+    's6.eyebrow':'step 06 / 07','s6.title':'Contact details','s6.sub':'So we can send you the formal quote and schedule the confirmation call.',
+    's6.nameLbl':'Full name','s6.nameErr':'Enter first and last name (letters only).','s6.nameOk':'✓ Valid name',
+    's6.phoneLbl':'Phone / WhatsApp','s6.phoneErr':'Enter a valid phone (10 digits).','s6.phoneOk':'✓ Valid phone',
+    's6.emailLbl':'Email','s6.emailErr':'Enter a valid email address.','s6.emailOk':'✓ Valid email',
+    's6.companyLbl':'Company (optional)','s6.sourceLbl':'How did you hear about us? (optional)',
+    's6.missingTitle':'Missing fields to complete:','s6.missName':'Full name (first and last name)','s6.missPhone':'Valid phone (10 digits)','s6.missEmail':'Valid email','s6.missCaptcha':'Captcha verification','s6.missPrivacy':'Accept privacy notice',
+    's6.srcInsta':'Instagram','s6.srcGoogle':'Google','s6.srcRef':'Referral','s6.srcWedding':'Previous wedding/event','s6.srcOther':'Other',
+    's6.capLabel':"Verify you are not a robot",'s6.capVerifying':'Verifying…','s6.capDone':'You are human','s6.capDoneSub':'Verification complete','s6.capCf':'Turnstile · Privacy',
+    's6.privacyHtml':'I accept the <a href="#" style="text-decoration:underline">privacy notice</a> and the processing of my data under Mexican data law (LFPDPPP). I understand a Nativo team member will contact me to confirm the quote.',
+    's7.eyebrow':'step 07 / 07','s7.title':'Your preliminary quote','s7.sub':'Review the details before sending. A Nativo team member will confirm availability and send you the formal quote.',
+    's7.totalLbl':'Estimated total with VAT','s7.breakdown':'subtotal {sub} + VAT {iva}',
+    's7.disclaimer':'This is a preliminary estimate. <strong>A Nativo agent will confirm the availability of the selected date and time</strong> before sending the formal quote. The final price may adjust based on logistics. Reservations are held with a 50% deposit.',
+    's8.thanks':'Thank you,','s8.lead':'We received your request. We sent a copy to <strong id="s-email">your email</strong> and our team will contact you within 4 hours to confirm the date and send you the formal quote.',
+    's8.integTitle':'This is what happened when you submitted',
+    's8.integHubspot':'<strong>HubSpot</strong> · Contact + Deal created in pipeline "Quote Sent"',
+    's8.integDrive':'<strong>Google Drive</strong> · Preliminary PDF saved in /Cotizaciones Nativo/2026/',
+    's8.integMail':'<strong>Customer email</strong> · Summary + estimate sent',
+    's8.integInternal':'<strong>Internal email</strong> · Notification to Nativo team with action buttons',
+    's8.nextTitle':'What\'s next',
+    's8.next1':'Check your email: you\'ll find the summary and preliminary estimate.',
+    's8.next2':'In the next hours you\'ll receive a WhatsApp from our team confirming the date.',
+    's8.next3':'Once details are validated, we\'ll send you the formal PDF quote.',
+    's8.next4':'To reserve, we ask for a 50% deposit. The date is held when payment is received.',
+    's8.pdfTitle':'Your preliminary PDF','s8.pdfSub':'Preview of the document you\'ll receive by email',
+    's8.adminTag':'internal view · nativo team','s8.adminTitle':'Email the team receives','s8.adminSub':'This is how the notification looks to whoever reviews quotes — buttons trigger real actions',
+    'summary.eyebrow':'live summary','summary.title':'Your event','summary.empty':'Start configuring your event…',
+    'summary.event':'Event','summary.people':'Guests','summary.space':'Space','summary.date':'Date','summary.start':'Start','summary.catering':'Catering','summary.coffee':'Coffee break','summary.included':'Included','summary.rent':'Venue rental','summary.rentH':'Rental ({h}h)','summary.cateringL':'Catering ({n} pax)','summary.coffeeL':'Coffee ({n} pax)','summary.subtotal':'Subtotal','summary.iva':'VAT 16%','summary.total':'Total','summary.discount':'✦ −50% rental for Nativo catering (you save {n})','summary.noCater':'No catering','summary.extCater':'External',
+    'fab.tip':'Have questions? Message us','footer':'espacio nativo · cotiza.espacionativo.com · made with care',
+    'sugg.eyebrow':'personalized help','sugg.title':'Let\'s match you with the ideal space','sugg.sub':'Three quick questions.',
+    'sugg.q1':'1 · How do you imagine the vibe?','sugg.q1a':'Intimate & cozy','sugg.q1b':'Spacious & lively',
+    'sugg.q2':'2 · Day or night?','sugg.q2a':'Daytime (brunch, afternoon)','sugg.q2b':'Nighttime',
+    'sugg.q3':'3 · Formal or casual?','sugg.q3a':'Formal / ceremonial','sugg.q3b':'Casual / relaxed',
+    'sugg.choose':'Choose this space','sugg.advisor':'Prefer an advisor','sugg.weSuggest':'We suggest · {name}',
+    'spaces.patio':'Main Patio','spaces.terraza':'Terrace','spaces.hacienda':'Full Hacienda',
+    'tag.intimo':'Intimate','tag.popular':'Most popular','tag.flexible':'Maximum flexibility','tag.weddings':'Wedding favorite','tag.corp':'Corporate favorite','tag.idealIntimate':'Ideal intimate','tag.economic':'Most economical',
+    'months':['January','February','March','April','May','June','July','August','September','October','November','December'],
+    'days':['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    'daysShort':['S','M','T','W','T','F','S'],
+    'recap.event':'Event','recap.people':'{n} guests','recap.space':'Space','recap.dateLine':'{date}<br>{time} · {h} hours','recap.catering':'Catering','recap.contact':'Contact','recap.extras':'Extras','recap.coffeeYes':'Basic coffee break ($200 p/p)','recap.coffeeNo':'No extras','recap.company':'Company','recap.cateringDisc':' · −50% rental',
+    'pdf.tag':'PRELIMINARY PDF','pdf.client':'Client','pdf.event':'Event','pdf.date':'Date','pdf.space':'Space','pdf.people':'Guests','pdf.duration':'Duration','pdf.durationVal':'{h} hrs from {t}','pdf.concepts':'Concepts','pdf.rent':'Venue rental','pdf.rentDisc':'Rental with −50% (Nativo catering)','pdf.menuLine':'{name} · {n} pax','pdf.coffeeLine':'Coffee break · {n} pax','pdf.subtotal':'Subtotal','pdf.iva':'VAT 16%','pdf.total':'Total','pdf.footer':'Preliminary quote — agent confirms availability. Reserve with 50% deposit.',
+    'admin.subject':'🔔 New quote · {name} · {date} · {total}','admin.intro':'A new quote just arrived from the web builder. Summary:','admin.client':'Client','admin.event':'Event','admin.space':'Space','admin.date':'Date','admin.catering':'Catering','admin.extras':'Extras','admin.comments':'Comments','admin.totalEst':'Estimated total','admin.totalEstVal':'{n} (VAT included)','admin.btnApprove':'✓ Approve and send formal','admin.btnWa':'Contact via WhatsApp','admin.btnHs':'View Deal in HubSpot','admin.btnDrive':'View PDF in Drive','admin.objective':'Goal: respond within 1 hour via WhatsApp, formal quote within 4 hours.',
+    'toast.welcome.t':'✦ Welcome','toast.welcome.b':'Prototype connected to HubSpot · Drive · Calendar (demo mode)',
+    'toast.hsContact.t':'HubSpot ✓','toast.hsContact.b':'Contact created: {n}',
+    'toast.hsDeal.t':'HubSpot ✓','toast.hsDeal.b':'Deal created · pipeline "Quote Sent"',
+    'toast.drive.t':'Drive ✓','toast.drive.b':'Preliminary PDF saved in /Cotizaciones Nativo/2026/',
+    'toast.mail.t':'Emails ✓','toast.mail.b':'Notifications sent to client and team',
+    'toast.formalGen.t':'Generating formal PDF…','toast.formalGen.b':'Applying full Nativo branding',
+    'toast.formalSaved.t':'Formal PDF ✓','toast.formalSaved.b':'Saved to Drive with _FORMAL.pdf suffix',
+    'toast.formalSent.t':'Email sent to client ✓','toast.formalSent.b':'{e} · formal quote attached',
+    'toast.hsUpdated.t':'HubSpot updated ✓','toast.hsUpdated.b':'Deal stage → "Formal Quote Sent"',
+    'toast.noPhone.t':'No phone','toast.noPhone.b':'The client did not provide a phone',
+    'toast.openHs.t':'Opening HubSpot…','toast.openHs.b':'In production it takes you to the client Deal',
+    'toast.openDrive.t':'Opening PDF in Drive…','toast.openDrive.b':'/Cotizaciones Nativo/2026/May/',
+    'btn.sending':'Sending…',
+    'wa.greeting':'Hi Nativo ✦ I\'m getting a quote for an event','wa.type':'· Type: {n}','wa.peopleN':'· Guests: {n}','wa.spaceL':'· Space: {n}','wa.dateL':'· Date: {n}','wa.timeL':'· Time: {t} ({h}h)','wa.advisor':'I\'d like to talk to an advisor.',
+    'wa.adminGreeting':'Hi {n}, I\'m from the Nativo team ✦ I received your request for {d} and I\'m reaching out to confirm availability and answer any questions.'
   }
 };
 
-// MENÚ INFANTIL ELIMINADO
+let LANG = 'es';
+function t(key, vars){
+  let s = I18N[LANG][key];
+  if(s===undefined) s = I18N.es[key] || key;
+  if(typeof s !== 'string') return s;
+  if(vars){
+    Object.keys(vars).forEach(k=>{ s = s.split('{'+k+'}').join(vars[k]); });
+  }
+  return s;
+}
+
+function applyI18n(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    el.textContent = t(k);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-html');
+    el.innerHTML = t(k);
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el=>{
+    const a = el.getAttribute('data-i18n-attr');
+    const k = el.getAttribute('data-i18n-key');
+    el.setAttribute(a, t(k));
+  });
+}
+
+function switchLang(lang){
+  LANG = lang;
+  document.getElementById('lang-es').classList.toggle('active', lang==='es');
+  document.getElementById('lang-en').classList.toggle('active', lang==='en');
+  applyI18n();
+  // Re-render dynamic parts
+  renderCalendar();
+  renderSpaces();
+  renderSummary();
+  if(S.startHour){ updateEndTime(); refreshHoursHint(); renderTimeSlots(); }
+  if(S.cateringType==='nativo') renderMenus();
+  if(S.step===7) renderRecap();
+  if(S.step===8){ const pr=calcPrice(); renderPdfPreview(pr); renderAdminEmail(pr); }
+}
+
+// ========= CONSTANTS =========
+const WA_NUMBER = '5215561541310';
+
+const PRICES = {
+  patio:    {cap:120, days:{0:[22500,4500],1:[9000,1800],2:[11500,2300],3:[14000,2800],4:[19000,3800],5:[23000,4600],6:[25000,5000]}},
+  terraza:  {cap:50,  days:{0:[11500,2300],1:[14500,2900],2:[14500,2900],3:[14500,2900],4:[14500,2900],5:[17500,3500],6:[19500,3900]}},
+  hacienda: {cap:180, days:{0:[42500,8500],1:[14500,2900],2:[18500,3700],3:[22500,4500],4:[29500,5900],5:[38500,7700],6:[40000,8000]}}
+};
+
 const MENUS = [
-  {id:'3tiempos', name:'Menú de 3 Tiempos', pp:1250, desc:'Crema + pasta/ensalada + plato fuerte + postre. Losa, menaje, salsas y pan.'},
-  {id:'abed', name:'Menú Abed (palestino)', pp:700, desc:'4 entradas + 2 platos fuertes. Cocinado por familia refugiada. Pan palestino, agua de sabor.'},
-  {id:'pizza', name:'Pizza y Lasaña', pp:500, desc:'7 pizzas + 4 lasañas. Agua de sabor + pan artesanal.'},
-  {id:'vinos', name:'Vinos y Canapés', pp:499, desc:'Vino tinto y blanco, canapés, tabla de quesos, frutos secos. Ideal cóctel.'},
-  {id:'taquiza', name:'Taquiza', pp:450, desc:'5 guisados (3 cárnicos + 2 sin carne), tortillas, salsas, desechables, buffet.'},
-  {id:'cazuelas', name:'Cazuelas', pp:450, desc:'5 guisados (2 Grupo 1 + 3 Grupo 2), agua de sabor.'},
-  {id:'box', name:'Box Lunch', pp:400, desc:'Jugo/café/té, fruta, sándwich chapata/croissant/baguette.'}
+  {id:'3tiempos', name:{es:'Menú de 3 Tiempos',en:'3-Course Menu'}, pp:1250, desc:{es:'Crema + pasta/ensalada + plato fuerte + postre. Losa, menaje, salsas y pan.',en:'Soup + pasta/salad + main + dessert. Plates, cutlery, sauces and bread.'}},
+  {id:'abed', name:{es:'Menú Abed (palestino)',en:'Abed Menu (Palestinian)'}, pp:700, desc:{es:'4 entradas + 2 platos fuertes. Cocinado por familia refugiada. Pan palestino, agua de sabor.',en:'4 starters + 2 mains. Cooked by a refugee family. Palestinian bread, flavored water.'}},
+  {id:'pizza', name:{es:'Pizza y Lasaña',en:'Pizza & Lasagna'}, pp:500, desc:{es:'7 pizzas + 4 lasañas. Agua de sabor + pan artesanal.',en:'7 pizzas + 4 lasagnas. Flavored water + artisan bread.'}},
+  {id:'vinos', name:{es:'Vinos y Canapés',en:'Wines & Canapés'}, pp:499, desc:{es:'Vino tinto y blanco, canapés, tabla de quesos, frutos secos. Ideal cóctel.',en:'Red and white wine, canapés, cheese board, nuts. Ideal for cocktail.'}},
+  {id:'taquiza', name:{es:'Taquiza',en:'Taquiza'}, pp:450, desc:{es:'5 guisados (3 cárnicos + 2 sin carne), tortillas, salsas, desechables, buffet.',en:'5 fillings (3 meat + 2 vegetarian), tortillas, salsas, disposables, buffet.'}},
+  {id:'cazuelas', name:{es:'Cazuelas',en:'Casseroles'}, pp:450, desc:{es:'5 guisados (2 Grupo 1 + 3 Grupo 2), agua de sabor.',en:'5 dishes (2 Group 1 + 3 Group 2), flavored water.'}},
+  {id:'box', name:{es:'Box Lunch',en:'Box Lunch'}, pp:400, desc:{es:'Jugo/café/té, fruta, sándwich chapata/croissant/baguette.',en:'Juice/coffee/tea, fruit, ciabatta/croissant/baguette sandwich.'}}
 ];
 
 const SPACE_IMGS = {
@@ -844,23 +1000,17 @@ const SPACE_IMGS = {
   hacienda:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&auto=format&fit=crop'
 };
 
-const DAYS_ES = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-
-// ========= REAL CALENDAR DATA (simulated Google Calendar response) =========
-// In production this comes from Google Calendar API.
-// 'full' = day fully blocked. 'partial' = some hours busy. 'busy' lists exact conflict windows.
 const CALENDAR = {
   '2026-05-09': {status:'full',  busy:['10:00-23:00'], reason:'Boda · Luna y Pablo'},
   '2026-05-10': {status:'partial',busy:['18:00-23:00'], reason:'Cena privada'},
   '2026-05-15': {status:'partial',busy:['10:00-15:00'], reason:'Brunch corporativo'},
-  '2026-05-16': {status:'full',  busy:['12:00-23:30'], reason:'Aniversario · Familia García'},
+  '2026-05-16': {status:'full',  busy:['12:00-23:30'], reason:'Aniversario'},
   '2026-05-22': {status:'partial',busy:['20:00-25:00'], reason:'Lanzamiento producto'},
   '2026-05-23': {status:'full',  busy:['10:00-25:00'], reason:'Boda · Sofía y Mateo'},
   '2026-05-30': {status:'partial',busy:['16:00-22:00'], reason:'Cumpleaños 50'},
   '2026-06-06': {status:'full',  busy:['11:00-25:00'], reason:'Boda'},
   '2026-06-12': {status:'partial',busy:['10:00-14:00'], reason:'Conferencia'},
-  '2026-06-13': {status:'full',  busy:['12:00-25:00'], reason:'Boda · Andrea y Luis'},
+  '2026-06-13': {status:'full',  busy:['12:00-25:00'], reason:'Boda'},
   '2026-06-19': {status:'partial',busy:['18:00-23:00'], reason:'Evento corporativo'},
   '2026-06-20': {status:'full',  busy:['10:00-25:00'], reason:'Boda'},
   '2026-06-27': {status:'partial',busy:['10:00-15:00'], reason:'Baby shower'},
@@ -870,15 +1020,12 @@ const CALENDAR = {
   '2026-07-25': {status:'full',  busy:['10:00-25:00'], reason:'Aniversario'}
 };
 
-// All 24 hour slots between 10am and 8pm as start options
 const TIME_SLOTS = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
-const END_LIMIT_24H = 25; // 1AM next day = 25:00
+const END_LIMIT_24H = 25;
 
-// ========= STATE =========
 let S = {
   step:1, event:null, eventOther:'',
-  people:null,
-  space:null,
+  people:null, space:null,
   date:null, startHour:null, hours:5,
   cateringType:null, menu:null,
   extras:{coffee:false}, comments:'',
@@ -887,17 +1034,17 @@ let S = {
   calMonth:new Date(2026,4,1)
 };
 
-// ========= TOAST =========
-function toast(title, body, type='info'){
+function toast(titleKey, bodyKey, type='info', vars){
   const w = document.getElementById('toasts');
-  const t = document.createElement('div');
-  t.className = 'toast '+type;
-  t.innerHTML = `<strong>${title}</strong>${body?'<div class="small">'+body+'</div>':''}`;
-  w.appendChild(t);
-  setTimeout(()=>{t.style.transition='.4s';t.style.opacity='0';t.style.transform='translateX(20px)';setTimeout(()=>t.remove(),400)},4500);
+  const ti = typeof titleKey==='string' && titleKey.includes('.') ? t(titleKey, vars) : titleKey;
+  const bo = bodyKey ? (typeof bodyKey==='string' && bodyKey.includes('.') ? t(bodyKey, vars) : bodyKey) : '';
+  const el = document.createElement('div');
+  el.className = 'toast '+type;
+  el.innerHTML = `<strong>${ti}</strong>${bo?'<div class="small">'+bo+'</div>':''}`;
+  w.appendChild(el);
+  setTimeout(()=>{el.style.transition='.4s';el.style.opacity='0';el.style.transform='translateX(20px)';setTimeout(()=>el.remove(),400)},4500);
 }
 
-// ========= NAVIGATION =========
 function goto(n){
   document.querySelectorAll('.step-card').forEach(c=>c.classList.remove('active'));
   document.getElementById('step-'+n).classList.add('active');
@@ -915,7 +1062,6 @@ function goto(n){
 function next(){ if(S.step<8) goto(S.step+1); }
 function prev(){ if(S.step>1) goto(S.step-1); }
 
-// ========= STEP 1 =========
 document.querySelectorAll('#step-1 .pill').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('#step-1 .pill').forEach(x=>x.classList.remove('selected'));
@@ -928,27 +1074,21 @@ document.querySelectorAll('#step-1 .pill').forEach(p=>{
 });
 document.getElementById('event-otro').addEventListener('input',e=>{S.eventOther=e.target.value;renderSummary()});
 
-// ========= STEP 2 =========
 function updateSpaces(){
   const v = +document.getElementById('people').value;
   const fld = document.getElementById('people').closest('.field');
-  if(v && v>=1 && v<=200){
-    S.people = v; fld.classList.remove('err');
-  } else if(document.getElementById('people').value){
-    S.people = null; fld.classList.add('err');
-  } else {
-    S.people = null; fld.classList.remove('err');
-  }
+  if(v && v>=1 && v<=200){ S.people = v; fld.classList.remove('err'); }
+  else if(document.getElementById('people').value){ S.people = null; fld.classList.add('err'); }
+  else { S.people = null; fld.classList.remove('err'); }
   renderSpaces();
   renderSummary();
 }
 function renderSpaces(){
   const grid=document.getElementById('spaces-grid');
-  if(!S.people){ grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--ink-soft);font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;font-style:italic">Ingresa el número de personas para ver opciones ▸</div>';return}
+  if(!S.people){ grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--ink-soft);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic">${t('s2.fillFirst')}</div>`;return}
   const date = S.date?new Date(S.date+'T12:00:00'):new Date(2026,4,15);
   const dow = date.getDay();
   const spaces=['patio','terraza','hacienda'];
-  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
   let html='';
   spaces.forEach(sp=>{
     const info=PRICES[sp];
@@ -963,25 +1103,25 @@ function renderSpaces(){
           ${tags.length?`<div class="badge">${tags[0]}</div>`:''}
         </div>
         <div class="body">
-          <h3>${names[sp]}</h3>
-          <div class="cap">Hasta ${cap} personas (cóctel)</div>
-          <div class="tag-row">${tags.slice(1).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-          <div class="price">${disabled?'—':`$${price5.toLocaleString('es-MX')}`}<small>${disabled?'Capacidad insuficiente':`desde 5 hrs · ${DAYS_ES[dow]}`}</small></div>
+          <h3>${t('spaces.'+sp)}</h3>
+          <div class="cap">${t('s2.cap',{n:cap})}</div>
+          <div class="tag-row">${tags.slice(1).map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+          <div class="price">${disabled?'—':`$${price5.toLocaleString('es-MX')}`}<small>${disabled?t('s2.capInsufficient'):`${t('s2.from5h')} · ${I18N[LANG].days[dow]}`}</small></div>
         </div>
       </div>`;
   });
   grid.innerHTML=html;
 }
 function getTags(sp,ppl,ev){
-  const t=[];
-  if(sp==='terraza' && ppl<=40) t.push('Íntimo');
-  if(sp==='patio' && ppl>=40 && ppl<=90) t.push('Más popular');
-  if(sp==='hacienda' && ppl>=80) t.push('Máxima flexibilidad');
-  if(ev==='boda' && sp==='hacienda') t.push('Favorito bodas');
-  if(ev==='corporativo' && sp==='patio') t.push('Favorito corporativo');
-  if(sp==='terraza' && (ev==='aniversario'||ev==='babyshower')) t.push('Ideal íntimo');
-  if(sp==='terraza') t.push('Más económico');
-  return t;
+  const tags=[];
+  if(sp==='terraza' && ppl<=40) tags.push(t('tag.intimo'));
+  if(sp==='patio' && ppl>=40 && ppl<=90) tags.push(t('tag.popular'));
+  if(sp==='hacienda' && ppl>=80) tags.push(t('tag.flexible'));
+  if(ev==='boda' && sp==='hacienda') tags.push(t('tag.weddings'));
+  if(ev==='corporativo' && sp==='patio') tags.push(t('tag.corp'));
+  if(sp==='terraza' && (ev==='aniversario'||ev==='babyshower')) tags.push(t('tag.idealIntimate'));
+  if(sp==='terraza') tags.push(t('tag.economic'));
+  return tags;
 }
 function selectSpace(sp){
   S.space=sp;
@@ -990,15 +1130,14 @@ function selectSpace(sp){
   renderSummary();
 }
 
-// ========= STEP 3: REAL CALENDAR =========
 function renderCalendar(){
   const y=S.calMonth.getFullYear(), m=S.calMonth.getMonth();
-  document.getElementById('cal-title').textContent = `${MONTHS_ES[m]} ${y}`;
+  document.getElementById('cal-title').textContent = `${I18N[LANG].months[m]} ${y}`;
   const first = new Date(y,m,1).getDay();
   const last = new Date(y,m+1,0).getDate();
   const today = new Date('2026-05-07');
   let html='';
-  ['D','L','M','X','J','V','S'].forEach(d=>html+=`<div class="dow">${d}</div>`);
+  I18N[LANG].daysShort.forEach(d=>html+=`<div class="dow">${d}</div>`);
   for(let i=0;i<first;i++) html+='<div class="day empty"></div>';
   for(let d=1;d<=last;d++){
     const dStr=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
@@ -1007,14 +1146,13 @@ function renderCalendar(){
     const isToday = dStr === '2026-05-07';
     const selected = S.date===dStr;
     let cls = '';
-    let title = '';
-    if(past){ cls='blocked'; title='Fecha pasada'; }
-    else if(cal && cal.status==='full'){ cls='blocked'; title=`Ocupado: ${cal.reason}`; }
-    else if(cal && cal.status==='partial'){ cls='partial'; title=`Parcial: ${cal.reason} (${cal.busy.join(', ')})`; }
+    if(past){ cls='blocked'; }
+    else if(cal && cal.status==='full'){ cls='blocked'; }
+    else if(cal && cal.status==='partial'){ cls='partial'; }
     if(selected) cls='selected';
     if(isToday && !cls) cls='today';
     const clickable = !past && !(cal && cal.status==='full');
-    html+=`<div class="day ${cls}" title="${title}" ${clickable?`onclick="pickDate('${dStr}')"`:''}>${d}</div>`;
+    html+=`<div class="day ${cls}" ${clickable?`onclick="pickDate('${dStr}')"`:''}>${d}</div>`;
   }
   document.getElementById('calendar').innerHTML=html;
 }
@@ -1032,40 +1170,35 @@ function pickDate(d){
   document.getElementById('picked-date-lbl').textContent = formatDate(d);
   document.getElementById('next-3').disabled=true;
   document.getElementById('hours').disabled=true;
-  document.getElementById('hours-hint').textContent='Selecciona primero hora de inicio.';
-  document.getElementById('end-time-display').textContent='Selecciona horario para ver hora de término.';
+  document.getElementById('hours-hint').textContent=t('s3.hoursHintEmpty');
+  document.getElementById('end-time-display').textContent=t('s3.endTimeEmpty');
   calcPrice(); renderSummary();
 }
 
 function formatDate(dStr){
   const d=new Date(dStr+'T12:00:00');
-  return `${DAYS_ES[d.getDay()]} ${d.getDate()} ${MONTHS_ES[d.getMonth()]} ${d.getFullYear()}`;
+  return `${I18N[LANG].days[d.getDay()]} ${d.getDate()} ${I18N[LANG].months[d.getMonth()]} ${d.getFullYear()}`;
 }
 
 function renderTimeSlots(){
   const grid=document.getElementById('time-grid');
+  if(!grid) return;
   const cal = CALENDAR[S.date];
   let html='';
   TIME_SLOTS.forEach(slot=>{
     const slotH = parseInt(slot.split(':')[0]);
     let blocked = false;
-    let busyReason = '';
     if(cal && cal.busy){
       cal.busy.forEach(window=>{
         const [from,to] = window.split('-').map(t=>parseInt(t.split(':')[0]));
-        // If a 5h block starting at slotH would overlap with [from,to], block it
         const slotEnd = slotH + 5;
-        if(slotH < to && slotEnd > from){
-          blocked = true;
-          busyReason = cal.reason;
-        }
+        if(slotH < to && slotEnd > from){ blocked = true; }
       });
     }
-    // Also check we still have time for min 5h before 1AM
     const maxHours = END_LIMIT_24H - slotH;
     if(maxHours < 5) blocked = true;
     const sel = S.startHour===slot ? 'selected':'';
-    html+=`<button class="slot ${blocked?'disabled':''} ${sel}" ${blocked?`title="No disponible: ${busyReason}"`:`onclick="pickTime('${slot}')"`}>${slot}</button>`;
+    html+=`<button class="slot ${blocked?'disabled':''} ${sel}" ${blocked?'':`onclick="pickTime('${slot}')"`}>${slot}</button>`;
   });
   grid.innerHTML = html;
 }
@@ -1073,42 +1206,49 @@ function renderTimeSlots(){
 function pickTime(slot){
   S.startHour = slot;
   renderTimeSlots();
-  // Update hours dropdown
   const slotH = parseInt(slot.split(':')[0]);
   const cal = CALENDAR[S.date];
-  // Calculate max hours: limited by 1am AND by next busy window
   let maxH = END_LIMIT_24H - slotH;
   if(cal && cal.busy){
     cal.busy.forEach(window=>{
       const [from,to] = window.split('-').map(t=>parseInt(t.split(':')[0]));
-      // Find earliest "from" that is greater than slotH
       if(from > slotH){
         const possible = from - slotH;
         if(possible < maxH) maxH = possible;
       }
     });
   }
-  maxH = Math.min(10, maxH); // cap at 10
+  maxH = Math.min(10, maxH);
   const sel = document.getElementById('hours');
   sel.innerHTML = '';
   for(let h=5; h<=maxH; h++){
-    sel.innerHTML += `<option value="${h}">${h} horas</option>`;
+    sel.innerHTML += `<option value="${h}">${t('s3.hoursOption',{h})}</option>`;
   }
   if(maxH < 5){
-    sel.innerHTML = '<option value="5">5 horas (no disponibles para esta hora)</option>';
+    sel.innerHTML = `<option value="5">${t('s3.hoursOption',{h:5})}</option>`;
     sel.disabled = true;
-    document.getElementById('hours-hint').textContent='⚠ Esta hora de inicio no permite 5 horas mínimas antes de la 1 AM.';
+    document.getElementById('hours-hint').textContent = t('s3.hoursWarn');
     document.getElementById('next-3').disabled = true;
     return;
   }
   S.hours = 5;
   sel.value = 5;
   sel.disabled = false;
-  document.getElementById('hours-hint').textContent = `Máximo ${maxH} horas disponibles desde las ${slot}. Cierre 1:00 AM.`;
+  document.getElementById('hours-hint').textContent = t('s3.hoursMax',{h:maxH,t:slot});
   document.getElementById('next-3').disabled = false;
   updateEndTime();
   calcPrice();
   renderSummary();
+}
+
+function refreshHoursHint(){
+  if(!S.startHour) return;
+  const sel = document.getElementById('hours');
+  const cur = +sel.value;
+  // re-render options labels in current language
+  Array.from(sel.options).forEach(opt=>{
+    opt.textContent = t('s3.hoursOption',{h:opt.value});
+  });
 }
 
 function onHoursChange(){
@@ -1122,11 +1262,10 @@ function updateEndTime(){
   if(!S.startHour) return;
   const slotH = parseInt(S.startHour.split(':')[0]);
   const endH = slotH + S.hours;
-  const display = endH >= 24 ? `${(endH-24).toString().padStart(2,'0')}:00 AM (día siguiente)` : `${endH.toString().padStart(2,'0')}:00`;
-  document.getElementById('end-time-display').innerHTML = `<strong style="color:var(--sage-dark);font-style:normal">Termina a las ${display}</strong><br><span style="font-size:11px">${S.startHour} – ${display.split(' ')[0]} · ${S.hours} hrs</span>`;
+  const display = endH >= 24 ? `${(endH-24).toString().padStart(2,'0')}:00 ${t('s3.nextDay')}` : `${endH.toString().padStart(2,'0')}:00`;
+  document.getElementById('end-time-display').innerHTML = `<strong style="color:var(--sage-dark);font-style:normal">${t('s3.endsAt',{t:display})}</strong><br><span style="font-size:11px">${S.startHour} – ${display.split(' ')[0]} · ${S.hours} hrs</span>`;
 }
 
-// ========= STEP 4: catering =========
 function selectCat(type){
   S.cateringType=type; S.menu=null;
   document.querySelectorAll('.cat-opt').forEach(o=>o.classList.toggle('selected',o.dataset.cat===type));
@@ -1145,10 +1284,10 @@ function renderMenus(){
   document.getElementById('menu-list').innerHTML = MENUS.map(m=>`
     <div class="menu-item ${S.menu===m.id?'selected':''}" onclick="selectMenu('${m.id}')">
       <div class="menu-head">
-        <h4>${m.name}</h4>
-        <div class="pp">$${m.pp}<small>por persona</small></div>
+        <h4>${m.name[LANG]}</h4>
+        <div class="pp">$${m.pp}<small>${t('s4.perPerson')}</small></div>
       </div>
-      <p>${m.desc}</p>
+      <p>${m.desc[LANG]}</p>
     </div>`).join('');
 }
 function selectMenu(id){
@@ -1158,14 +1297,10 @@ function selectMenu(id){
   calcPrice(); renderSummary();
 }
 
-// ========= STEP 6: VALIDATION =========
 const VALIDATORS = {
   name: s => /^[A-Za-zÀ-ÿñÑ]{2,}([\s'-]+[A-Za-zÀ-ÿñÑ]{2,})+$/.test(s.trim()),
   email: s => /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(s.trim()),
-  phone: s => {
-    const digits = s.replace(/\D/g,'');
-    return digits.length >= 10 && digits.length <= 15;
-  }
+  phone: s => { const d = s.replace(/\D/g,''); return d.length >= 10 && d.length <= 15; }
 };
 
 function validateField(which){
@@ -1193,12 +1328,12 @@ function solveCaptcha(){
   const box = document.getElementById('cap-box');
   const lbl = document.getElementById('cap-label');
   box.classList.add('loading');
-  lbl.textContent='Verificando…';
+  lbl.textContent=t('s6.capVerifying');
   setTimeout(()=>{
     box.classList.remove('loading');
     box.classList.add('checked');
     box.innerHTML = '✓';
-    lbl.innerHTML = '<strong style="color:var(--success)">Eres humano</strong><br><span style="font-size:10px;color:var(--ink-soft)">Verificación completa</span>';
+    lbl.innerHTML = `<strong style="color:var(--success)">${t('s6.capDone')}</strong><br><span style="font-size:10px;color:var(--ink-soft)">${t('s6.capDoneSub')}</span>`;
     S.contact.captcha = true;
     checkContact();
   },1200);
@@ -1209,10 +1344,25 @@ function checkContact(){
   S.contact.privacy = document.getElementById('c-privacy').checked;
   const ok = S.validation.name && S.validation.email && S.validation.phone && S.contact.privacy && S.contact.captcha;
   document.getElementById('next-6').disabled = !ok;
+
+  // Mostrar exactamente qué falta
+  const missing = [];
+  if(!S.validation.name) missing.push(t('s6.missName'));
+  if(!S.validation.phone) missing.push(t('s6.missPhone'));
+  if(!S.validation.email) missing.push(t('s6.missEmail'));
+  if(!S.contact.captcha) missing.push(t('s6.missCaptcha'));
+  if(!S.contact.privacy) missing.push(t('s6.missPrivacy'));
+  const msgBox = document.getElementById('missing-fields-msg');
+  const msgList = document.getElementById('missing-fields-list');
+  if(missing.length && (S.contact.name||S.contact.email||S.contact.phone||S.contact.captcha||S.contact.privacy)){
+    msgBox.style.display='block';
+    msgList.textContent = missing.join(' · ');
+  } else {
+    msgBox.style.display='none';
+  }
   renderSummary();
 }
 
-// ========= PRICING (NEW: 50% rent discount with Nativo catering) =========
 function calcPrice(){
   const out = {rent:0, rentBeforeDiscount:0, rentDiscount:0, catering:0, coffee:0, subtotal:0, iva:0, total:0};
   if(!S.space || !S.date) return out;
@@ -1221,13 +1371,12 @@ function calcPrice(){
   const [p5,phour] = PRICES[S.space].days[dow];
   const hrs = S.hours;
   const fullRent = hrs<=5 ? p5 : p5 + (hrs-5)*phour;
-
   if(S.cateringType==='nativo' && S.menu){
     const m = MENUS.find(x=>x.id===S.menu);
     out.catering = m.pp * (S.people||0);
     out.rentBeforeDiscount = fullRent;
     out.rentDiscount = fullRent * 0.5;
-    out.rent = fullRent * 0.5; // 50% descuento
+    out.rent = fullRent * 0.5;
   } else {
     out.rent = fullRent;
     out.rentBeforeDiscount = fullRent;
@@ -1239,48 +1388,45 @@ function calcPrice(){
   return out;
 }
 
-// ========= SUMMARY SIDEBAR =========
-function fmt(n){ return '$'+Math.round(n).toLocaleString('es-MX'); }
+function fmt(n){ return '$'+Math.round(n).toLocaleString(LANG==='en'?'en-US':'es-MX'); }
 function renderSummary(){
   if(document.getElementById('ex-coffee')) S.extras.coffee=document.getElementById('ex-coffee').checked;
   const body=document.getElementById('summary-body');
-  if(!S.event && !S.people && !S.space){ body.innerHTML='<div class="empty">Empieza a configurar tu evento…</div>'; return; }
+  if(!S.event && !S.people && !S.space){ body.innerHTML=`<div class="empty">${t('summary.empty')}</div>`; return; }
   const pr = calcPrice();
-  const spaceNames={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
-  const eventNames={boda:'Boda',cumpleanos:'Cumpleaños',corporativo:'Corporativo',conferencia:'Conferencia',lanzamiento:'Lanzamiento',aniversario:'Aniversario',babyshower:'Baby Shower',otro:S.eventOther||'Otro'};
+  const eventLabel = S.event ? (S.event==='otro' ? (S.eventOther||t('event.other')) : t('event.'+({boda:'boda',cumpleanos:'cumple',corporativo:'corp',conferencia:'conf',lanzamiento:'launch',aniversario:'anniv',babyshower:'baby'})[S.event])) : '—';
   const menu = S.menu ? MENUS.find(m=>m.id===S.menu) : null;
 
   let html='';
-  if(S.event) html+=`<div class="line"><span class="k">Evento</span><span class="v">${eventNames[S.event]||'—'}</span></div>`;
-  if(S.people) html+=`<div class="line"><span class="k">Personas</span><span class="v">${S.people}</span></div>`;
-  if(S.space) html+=`<div class="line"><span class="k">Espacio</span><span class="v">${spaceNames[S.space]}</span></div>`;
-  if(S.date) html+=`<div class="line"><span class="k">Fecha</span><span class="v">${formatDate(S.date)}</span></div>`;
-  if(S.startHour) html+=`<div class="line"><span class="k">Inicio</span><span class="v">${S.startHour} · ${S.hours} hrs</span></div>`;
-  if(S.cateringType==='nativo'&&menu) html+=`<div class="line"><span class="k">Catering</span><span class="v">${menu.name}</span></div>`;
-  else if(S.cateringType) html+=`<div class="line"><span class="k">Catering</span><span class="v">${S.cateringType==='sin'?'Sin catering':'Externo'}</span></div>`;
-  if(S.extras.coffee) html+=`<div class="line"><span class="k">Coffee break</span><span class="v">Incluido</span></div>`;
+  if(S.event) html+=`<div class="line"><span class="k">${t('summary.event')}</span><span class="v">${eventLabel}</span></div>`;
+  if(S.people) html+=`<div class="line"><span class="k">${t('summary.people')}</span><span class="v">${S.people}</span></div>`;
+  if(S.space) html+=`<div class="line"><span class="k">${t('summary.space')}</span><span class="v">${t('spaces.'+S.space)}</span></div>`;
+  if(S.date) html+=`<div class="line"><span class="k">${t('summary.date')}</span><span class="v">${formatDate(S.date)}</span></div>`;
+  if(S.startHour) html+=`<div class="line"><span class="k">${t('summary.start')}</span><span class="v">${S.startHour} · ${S.hours} hrs</span></div>`;
+  if(S.cateringType==='nativo'&&menu) html+=`<div class="line"><span class="k">${t('summary.catering')}</span><span class="v">${menu.name[LANG]}</span></div>`;
+  else if(S.cateringType) html+=`<div class="line"><span class="k">${t('summary.catering')}</span><span class="v">${S.cateringType==='sin'?t('summary.noCater'):t('summary.extCater')}</span></div>`;
+  if(S.extras.coffee) html+=`<div class="line"><span class="k">${t('summary.coffee')}</span><span class="v">${t('summary.included')}</span></div>`;
 
   if(pr.subtotal>0){
     html+=`<div class="totals">`;
     if(pr.rentDiscount>0){
-      html+=`<div class="line"><span class="k">Renta espacio</span><span class="v"><span style="text-decoration:line-through;opacity:.6">${fmt(pr.rentBeforeDiscount)}</span> ${fmt(pr.rent)}</span></div>`;
+      html+=`<div class="line"><span class="k">${t('summary.rent')}</span><span class="v"><span style="text-decoration:line-through;opacity:.6">${fmt(pr.rentBeforeDiscount)}</span> ${fmt(pr.rent)}</span></div>`;
     } else if(pr.rent){
-      html+=`<div class="line"><span class="k">Renta (${S.hours}h)</span><span class="v">${fmt(pr.rent)}</span></div>`;
+      html+=`<div class="line"><span class="k">${t('summary.rentH',{h:S.hours})}</span><span class="v">${fmt(pr.rent)}</span></div>`;
     }
-    if(pr.catering) html+=`<div class="line"><span class="k">Catering (${S.people} pax)</span><span class="v">${fmt(pr.catering)}</span></div>`;
-    if(pr.coffee) html+=`<div class="line"><span class="k">Coffee (${S.people} pax)</span><span class="v">${fmt(pr.coffee)}</span></div>`;
-    html+=`<div class="line"><span class="k">Subtotal</span><span class="v">${fmt(pr.subtotal)}</span></div>`;
-    html+=`<div class="line"><span class="k">IVA 16%</span><span class="v">${fmt(pr.iva)}</span></div>`;
+    if(pr.catering) html+=`<div class="line"><span class="k">${t('summary.cateringL',{n:S.people})}</span><span class="v">${fmt(pr.catering)}</span></div>`;
+    if(pr.coffee) html+=`<div class="line"><span class="k">${t('summary.coffeeL',{n:S.people})}</span><span class="v">${fmt(pr.coffee)}</span></div>`;
+    html+=`<div class="line"><span class="k">${t('summary.subtotal')}</span><span class="v">${fmt(pr.subtotal)}</span></div>`;
+    html+=`<div class="line"><span class="k">${t('summary.iva')}</span><span class="v">${fmt(pr.iva)}</span></div>`;
     html+=`</div>`;
     if(pr.rentDiscount>0){
-      html+=`<div class="discount">✦ −50% renta por catering Nativo (ahorras ${fmt(pr.rentDiscount)})</div>`;
+      html+=`<div class="discount">${t('summary.discount',{n:fmt(pr.rentDiscount)})}</div>`;
     }
-    html+=`<div class="total-big"><span class="lbl">Total</span><span class="amt">${fmt(pr.total)}</span></div>`;
+    html+=`<div class="total-big"><span class="lbl">${t('summary.total')}</span><span class="amt">${fmt(pr.total)}</span></div>`;
   }
   body.innerHTML=html;
 }
 
-// ========= SPACE SUGGESTER =========
 function openSuggester(){
   document.getElementById('suggester').classList.add('open');
   document.querySelectorAll('.suggester-q .opt').forEach(o=>o.classList.remove('sel'));
@@ -1302,14 +1448,35 @@ function computeSuggestion(){
   const a=window._sugg;
   let rec='patio', why='';
   const p=S.people||40;
-  if(p<=40 && a.amb==='intimo'){ rec='terraza'; why=`Con ~${p} personas en ambiente íntimo la Terraza es perfecta: escala acogedora, vistas abiertas y más económica.`; }
-  else if(p>=90){ rec='hacienda'; why=`Con ~${p} personas necesitas el espacio completo. La Hacienda (Patio + Terraza) te da máxima flexibilidad.`; }
-  else if(a.tono==='formal' && a.tiempo==='noche'){ rec='patio'; why=`Para un evento formal nocturno con ~${p} personas, el Patio Principal es la elección favorita — ambiente elegante con iluminación cálida.`; }
-  else if(a.amb==='amplio'){ rec='patio'; why=`Si buscas que la gente se mueva cómodamente, el Patio Principal te da espacio generoso sin perder intimidad.`; }
-  else { rec='patio'; why=`El Patio Principal es la opción más versátil: se adapta a tu ambiente, tu horario y ~${p} personas.`; }
-  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
-  document.getElementById('sugg-rec').textContent='Te sugerimos · '+names[rec];
-  document.getElementById('sugg-why').textContent=why;
+  const isEs = LANG==='es';
+  if(p<=40 && a.amb==='intimo'){
+    rec='terraza';
+    why = isEs
+      ? `Con ~${p} personas en ambiente íntimo la Terraza es perfecta: escala acogedora, vistas abiertas y más económica.`
+      : `With ~${p} guests in an intimate vibe, the Terrace is perfect: cozy scale, open views, and more affordable.`;
+  } else if(p>=90){
+    rec='hacienda';
+    why = isEs
+      ? `Con ~${p} personas necesitas el espacio completo. La Hacienda (Patio + Terraza) te da máxima flexibilidad.`
+      : `With ~${p} guests you need the full space. The full Hacienda (Patio + Terrace) gives you maximum flexibility.`;
+  } else if(a.tono==='formal' && a.tiempo==='noche'){
+    rec='patio';
+    why = isEs
+      ? `Para un evento formal nocturno con ~${p} personas, el Patio Principal es la elección favorita — ambiente elegante con iluminación cálida.`
+      : `For a formal nighttime event with ~${p} guests, the Main Patio is the favorite choice — elegant atmosphere with warm lighting.`;
+  } else if(a.amb==='amplio'){
+    rec='patio';
+    why = isEs
+      ? `Si buscas que la gente se mueva cómodamente, el Patio Principal te da espacio generoso sin perder intimidad.`
+      : `If you want guests to move comfortably, the Main Patio offers generous space without losing intimacy.`;
+  } else {
+    rec='patio';
+    why = isEs
+      ? `El Patio Principal es la opción más versátil: se adapta a tu ambiente, tu horario y ~${p} personas.`
+      : `The Main Patio is the most versatile option: it adapts to your vibe, your schedule and ~${p} guests.`;
+  }
+  document.getElementById('sugg-rec').textContent = t('sugg.weSuggest',{name:t('spaces.'+rec)});
+  document.getElementById('sugg-why').textContent = why;
   document.getElementById('sugg-result').classList.add('show');
   window._suggChoice=rec;
 }
@@ -1318,222 +1485,180 @@ function acceptSuggestion(){
   closeSuggester();
 }
 
-// ========= WHATSAPP =========
 function openWA(){
-  const lines = [`Hola Nativo ✦ estoy cotizando un evento`];
-  if(S.event) lines.push(`· Tipo: ${S.event}`);
-  if(S.people) lines.push(`· Personas: ${S.people}`);
-  if(S.space) lines.push(`· Espacio: ${S.space}`);
-  if(S.date) lines.push(`· Fecha: ${formatDate(S.date)}`);
-  if(S.startHour) lines.push(`· Hora: ${S.startHour} (${S.hours}h)`);
-  lines.push('Me gustaría platicar con un asesor.');
+  const lines = [t('wa.greeting')];
+  if(S.event) lines.push(t('wa.type',{n:S.event}));
+  if(S.people) lines.push(t('wa.peopleN',{n:S.people}));
+  if(S.space) lines.push(t('wa.spaceL',{n:t('spaces.'+S.space)}));
+  if(S.date) lines.push(t('wa.dateL',{n:formatDate(S.date)}));
+  if(S.startHour) lines.push(t('wa.timeL',{t:S.startHour,h:S.hours}));
+  lines.push(t('wa.advisor'));
   const msg = encodeURIComponent(lines.join('\n'));
   window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
 }
 
-// ========= SUBMIT (REAL ACTIONS SIMULATED) =========
 function submitQuote(){
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.textContent = 'Enviando…';
-
+  btn.textContent = t('btn.sending');
   const pr = calcPrice();
   const payload = buildHubSpotPayload(pr);
 
-  // Simulated sequential calls (in production these are real API calls)
+  setTimeout(()=>{ toast('toast.hsContact.t','toast.hsContact.b','success',{n:S.contact.name}); console.log('[HubSpot] POST /contacts',payload.contact); },300);
+  setTimeout(()=>{ toast('toast.hsDeal.t','toast.hsDeal.b','success'); console.log('[HubSpot] POST /deals',payload.deal); },900);
+  setTimeout(()=>{ toast('toast.drive.t','toast.drive.b','success'); console.log('[Drive] uploadPDF',payload.pdfMeta); },1500);
+  setTimeout(()=>{ toast('toast.mail.t','toast.mail.b','success'); console.log('[Email] sent'); },2100);
   setTimeout(()=>{
-    toast('HubSpot ✓', 'Contact creado: '+S.contact.name,'success');
-    console.log('[HubSpot API] POST /contacts',payload.contact);
-  },300);
-  setTimeout(()=>{
-    toast('HubSpot ✓','Deal creado · pipeline "Cotización Enviada"','success');
-    console.log('[HubSpot API] POST /deals',payload.deal);
-  },900);
-  setTimeout(()=>{
-    toast('Drive ✓','PDF preliminar guardado en /Cotizaciones Nativo/2026/','success');
-    console.log('[Drive API] uploadPDF',payload.pdfMeta);
-  },1500);
-  setTimeout(()=>{
-    toast('Correos ✓','Notificación enviada al cliente y al equipo','success');
-    console.log('[Email] sent client + internal');
-  },2100);
-  setTimeout(()=>{
-    document.getElementById('s-name').textContent = S.contact.name.split(' ')[0] || 'cliente';
+    document.getElementById('s-name').textContent = S.contact.name.split(' ')[0] || '';
     document.getElementById('s-email').textContent = S.contact.email;
     renderPdfPreview(pr);
     renderAdminEmail(pr);
     goto(8);
     btn.disabled = false;
-    btn.textContent = 'Enviar solicitud ✦';
+    btn.textContent = t('btn.submit');
   },2700);
 }
 
+function buildDealTitle(){
+  const labels = {boda:'Boda',cumpleanos:'Cumpleaños',corporativo:'Corporativo',conferencia:'Conferencia',lanzamiento:'Lanzamiento',aniversario:'Aniversario',babyshower:'Baby Shower',otro:S.eventOther||'Evento'};
+  const ev = labels[S.event]||'Evento';
+  let dateShort='';
+  if(S.date){
+    const d=new Date(S.date+'T12:00:00');
+    dateShort = `${d.getDate()} ${['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth()]} ${d.getFullYear()}`;
+  }
+  return `${ev} · ${dateShort} · ${S.people||'?'} pax`;
+}
+
 function buildHubSpotPayload(pr){
-  const menu = S.menu?MENUS.find(m=>m.id===S.menu):null;
+  // Solo lo que Nativo pidió ver en HubSpot
   return {
-    contact:{
-      properties:{
-        firstname: S.contact.name.split(' ')[0],
-        lastname: S.contact.name.split(' ').slice(1).join(' '),
-        email: S.contact.email,
-        phone: S.contact.phone,
-        company: S.contact.company,
-        cotizador_source: S.contact.source||'cotizador-web'
-      }
-    },
-    deal:{
-      properties:{
-        dealname: `${S.event} · ${S.contact.name} · ${S.date}`,
-        dealstage: 'cotizacion-enviada',
-        amount: pr.total,
-        pipeline: 'eventos',
-        // Custom properties
-        espacio: S.space,
-        fecha_evento: S.date,
-        hora_inicio: S.startHour,
-        num_personas: S.people,
-        num_horas: S.hours,
-        tipo_evento: S.event==='otro'?S.eventOther:S.event,
-        con_catering: S.cateringType==='nativo'?'partner':S.cateringType,
-        catering_menu: menu?menu.name:'',
-        coffee_break: S.extras.coffee,
-        total_sin_iva: pr.subtotal,
-        total_con_iva: pr.total,
-        comentarios: S.comments
-      }
-    },
-    pdfMeta:{
-      filename: `${S.date} · ${S.contact.name} · ${S.space}.pdf`,
-      folder: '/Cotizaciones Nativo/2026/Mayo/',
-      attachToDeal: true
-    }
+    contact:{ properties:{
+      firstname: S.contact.name.split(' ')[0],
+      lastname: S.contact.name.split(' ').slice(1).join(' '),
+      email: S.contact.email,
+      phone: S.contact.phone
+    }},
+    deal:{ properties:{
+      dealname: buildDealTitle(),     // "Boda · 15 jun 2026 · 80 pax"
+      dealstage:'cotizacion-enviada',
+      pipeline:'eventos',
+      // createdate la pone HubSpot automáticamente
+      fecha_evento: S.date,           // Fecha del evento
+      num_personas: S.people,         // Cuántas personas
+      amount: pr.total                // Ganancia estimada (total con IVA)
+    }},
+    pdfMeta:{ filename:`${S.date} · ${S.contact.name}.pdf`, folder:'/Cotizaciones Nativo/2026/', attachToDeal:true }
   };
 }
 
 function renderRecap(){
   const pr=calcPrice();
   document.getElementById('final-total').textContent = fmt(pr.total);
-  document.getElementById('final-breakdown').textContent = `subtotal ${fmt(pr.subtotal)} + IVA ${fmt(pr.iva)}`;
-
-  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
-  const eventNames={boda:'Boda',cumpleanos:'Cumpleaños',corporativo:'Evento Corporativo',conferencia:'Conferencia',lanzamiento:'Lanzamiento',aniversario:'Aniversario',babyshower:'Baby Shower',otro:S.eventOther||'Otro'};
+  document.getElementById('final-breakdown').textContent = t('s7.breakdown',{sub:fmt(pr.subtotal),iva:fmt(pr.iva)});
+  const eventLabel = S.event ? (S.event==='otro' ? (S.eventOther||t('event.other')) : t('event.'+({boda:'boda',cumpleanos:'cumple',corporativo:'corp',conferencia:'conf',lanzamiento:'launch',aniversario:'anniv',babyshower:'baby'})[S.event])) : '—';
   const menu = S.menu?MENUS.find(m=>m.id===S.menu):null;
-  const cat = S.cateringType==='nativo'?(menu?menu.name+' · −50% renta':'—'):(S.cateringType==='sin'?'Sin catering':'Externo (cliente gestiona)');
-
+  const cat = S.cateringType==='nativo'?(menu?menu.name[LANG]+t('recap.cateringDisc'):'—'):(S.cateringType==='sin'?t('s4.noCateringTitle'):t('s4.extCateringTitle'));
   document.getElementById('recap-blocks').innerHTML = `
     <div>
-      <div class="block"><h4>${eventNames[S.event]||'—'}</h4><p>${S.people} personas</p></div>
-      <div class="block"><h4>${names[S.space]}</h4><p>${formatDate(S.date)}<br>${S.startHour} · ${S.hours} horas</p></div>
-      <div class="block"><h4>Catering</h4><p>${cat}</p></div>
+      <div class="block"><h4>${eventLabel}</h4><p>${t('recap.people',{n:S.people})}</p></div>
+      <div class="block"><h4>${t('spaces.'+S.space)}</h4><p>${t('recap.dateLine',{date:formatDate(S.date),time:S.startHour,h:S.hours})}</p></div>
+      <div class="block"><h4>${t('recap.catering')}</h4><p>${cat}</p></div>
     </div>
     <div>
-      <div class="block"><h4>Contacto</h4><p>${S.contact.name}<br>${S.contact.email}<br>${S.contact.phone}</p></div>
-      <div class="block"><h4>Extras</h4><p>${S.extras.coffee?'Coffee break básico ($200 p/p)':'Sin extras'}</p></div>
-      ${S.contact.company?`<div class="block"><h4>Empresa</h4><p>${S.contact.company}</p></div>`:''}
+      <div class="block"><h4>${t('recap.contact')}</h4><p>${S.contact.name}<br>${S.contact.email}<br>${S.contact.phone}</p></div>
+      <div class="block"><h4>${t('recap.extras')}</h4><p>${S.extras.coffee?t('recap.coffeeYes'):t('recap.coffeeNo')}</p></div>
+      ${S.contact.company?`<div class="block"><h4>${t('recap.company')}</h4><p>${S.contact.company}</p></div>`:''}
     </div>
   `;
 }
 
 function logoSvg(color){
-  return `<svg viewBox="0 0 240 60" width="120" height="30" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="30" cy="30" r="22"/><line x1="30" y1="9" x2="30" y2="51"/>
-    <circle cx="30" cy="20" r="2.8" fill="${color}" stroke="none"/>
-    <path d="M 18 40 L 25 30 L 30 35 L 35 30 L 42 40"/>
+  return `<svg viewBox="0 0 240 60" width="120" height="30" fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="30" cy="30" r="22"/><line x1="30" y1="14" x2="30" y2="46"/>
+    <circle cx="30" cy="22" r="3" fill="${color}" stroke="none"/>
+    <path d="M 17 44 L 30 26 L 43 44"/>
     <text x="65" y="40" font-family="Cormorant Garamond, serif" font-size="24" letter-spacing="6" fill="${color}" stroke="none" font-weight="500">NATIVO</text>
   </svg>`;
 }
 
 function renderPdfPreview(pr){
-  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
   const menu=S.menu?MENUS.find(m=>m.id===S.menu):null;
   const dateStr = S.date ? formatDate(S.date) : '—';
-  document.getElementById('pdf-preview').innerHTML=`
+  const el = document.getElementById('pdf-preview');
+  el.setAttribute('data-pdf-tag', t('pdf.tag'));
+  el.innerHTML=`
     <div class="pdf-head">
       ${logoSvg('#1f3324')}
-      <div class="tag">cotización preliminar</div>
+      <div class="tag">${t('pdf.tag').toLowerCase()}</div>
     </div>
-    <h5>Cliente</h5>
-    <div class="pdf-row"><span>${S.contact.name||'—'}</span><span>${new Date().toLocaleDateString('es-MX')}</span></div>
+    <h5>${t('pdf.client')}</h5>
+    <div class="pdf-row"><span>${S.contact.name||'—'}</span><span>${new Date().toLocaleDateString(LANG==='en'?'en-US':'es-MX')}</span></div>
     <div class="pdf-row"><span>${S.contact.email||'—'}</span><span>${S.contact.phone||'—'}</span></div>
-
-    <h5 style="margin-top:14px">Evento</h5>
-    <div class="pdf-row"><span>Fecha</span><span>${dateStr}</span></div>
-    <div class="pdf-row"><span>Espacio</span><span>${names[S.space]||'—'}</span></div>
-    <div class="pdf-row"><span>Personas</span><span>${S.people||'—'}</span></div>
-    <div class="pdf-row"><span>Duración</span><span>${S.hours} hrs desde ${S.startHour}</span></div>
-
-    <h5 style="margin-top:14px">Conceptos</h5>
+    <h5 style="margin-top:14px">${t('pdf.event')}</h5>
+    <div class="pdf-row"><span>${t('pdf.date')}</span><span>${dateStr}</span></div>
+    <div class="pdf-row"><span>${t('pdf.space')}</span><span>${t('spaces.'+S.space)}</span></div>
+    <div class="pdf-row"><span>${t('pdf.people')}</span><span>${S.people||'—'}</span></div>
+    <div class="pdf-row"><span>${t('pdf.duration')}</span><span>${t('pdf.durationVal',{h:S.hours,t:S.startHour})}</span></div>
+    <h5 style="margin-top:14px">${t('pdf.concepts')}</h5>
     ${pr.rentDiscount>0
-      ? `<div class="pdf-row"><span>Renta espacio</span><span style="text-decoration:line-through;opacity:.6;font-size:10px">${fmt(pr.rentBeforeDiscount)}</span></div>
-         <div class="pdf-row"><span>Renta con −50% (catering Nativo)</span><span>${fmt(pr.rent)}</span></div>`
-      : `<div class="pdf-row"><span>Renta espacio</span><span>${fmt(pr.rent)}</span></div>`}
-    ${pr.catering?`<div class="pdf-row"><span>${menu.name} · ${S.people} pax</span><span>${fmt(pr.catering)}</span></div>`:''}
-    ${pr.coffee?`<div class="pdf-row"><span>Coffee break · ${S.people} pax</span><span>${fmt(pr.coffee)}</span></div>`:''}
-    <div class="pdf-row"><span>Subtotal</span><span>${fmt(pr.subtotal)}</span></div>
-    <div class="pdf-row"><span>IVA 16%</span><span>${fmt(pr.iva)}</span></div>
-    <div class="pdf-total"><span>Total</span><span>${fmt(pr.total)}</span></div>
-
-    <p style="margin-top:14px;font-size:10px;color:#888;font-style:italic">Cotización preliminar — un agente confirma disponibilidad. Reserva al 50% de anticipo.</p>
+      ? `<div class="pdf-row"><span>${t('pdf.rent')}</span><span style="text-decoration:line-through;opacity:.6;font-size:10px">${fmt(pr.rentBeforeDiscount)}</span></div>
+         <div class="pdf-row"><span>${t('pdf.rentDisc')}</span><span>${fmt(pr.rent)}</span></div>`
+      : `<div class="pdf-row"><span>${t('pdf.rent')}</span><span>${fmt(pr.rent)}</span></div>`}
+    ${pr.catering?`<div class="pdf-row"><span>${t('pdf.menuLine',{name:menu.name[LANG],n:S.people})}</span><span>${fmt(pr.catering)}</span></div>`:''}
+    ${pr.coffee?`<div class="pdf-row"><span>${t('pdf.coffeeLine',{n:S.people})}</span><span>${fmt(pr.coffee)}</span></div>`:''}
+    <div class="pdf-row"><span>${t('pdf.subtotal')}</span><span>${fmt(pr.subtotal)}</span></div>
+    <div class="pdf-row"><span>${t('pdf.iva')}</span><span>${fmt(pr.iva)}</span></div>
+    <div class="pdf-total"><span>${t('pdf.total')}</span><span>${fmt(pr.total)}</span></div>
+    <p style="margin-top:14px;font-size:10px;color:#888;font-style:italic">${t('pdf.footer')}</p>
   `;
 }
 
 function renderAdminEmail(pr){
-  const names={patio:'Patio Principal',terraza:'Terraza',hacienda:'Hacienda Completa'};
   const menu=S.menu?MENUS.find(m=>m.id===S.menu):null;
   const dateStr = S.date ? formatDate(S.date) : '—';
   document.getElementById('admin-email').innerHTML=`
-    <div class="from"><strong>De:</strong> cotizador@espacionativo.com &nbsp;·&nbsp; <strong>Para:</strong> ventas@espacionativo.com</div>
-    <h4>🔔 Nueva cotización · ${S.contact.name} · ${dateStr} · ${fmt(pr.total)}</h4>
-    <p style="font-size:13px;color:var(--ink-soft)">Acaba de llegar una cotización del cotizador web. Resumen:</p>
+    <div class="from"><strong>${LANG==='en'?'From:':'De:'}</strong> cotizador@espacionativo.com &nbsp;·&nbsp; <strong>${LANG==='en'?'To:':'Para:'}</strong> ventas@espacionativo.com</div>
+    <h4>${t('admin.subject',{name:S.contact.name,date:dateStr,total:fmt(pr.total)})}</h4>
+    <p style="font-size:13px;color:var(--ink-soft)">${t('admin.intro')}</p>
     <ul>
-      <li><strong>Cliente</strong> ${S.contact.name} · ${S.contact.phone} · ${S.contact.email}</li>
-      <li><strong>Evento</strong> ${S.event} · ${S.people} personas</li>
-      <li><strong>Espacio</strong> ${names[S.space]}</li>
-      <li><strong>Fecha</strong> ${dateStr} · ${S.startHour} · ${S.hours} hrs</li>
-      <li><strong>Catering</strong> ${S.cateringType==='nativo'?menu.name+' (−50% renta)':(S.cateringType==='sin'?'Sin catering':'Externo')}</li>
-      ${S.extras.coffee?`<li><strong>Extras</strong> Coffee break básico</li>`:''}
-      ${S.comments?`<li><strong>Comentarios</strong> ${S.comments}</li>`:''}
-      <li><strong>Total estimado</strong> ${fmt(pr.total)} (incluye IVA)</li>
+      <li><strong>${t('admin.client')}</strong> ${S.contact.name} · ${S.contact.phone} · ${S.contact.email}</li>
+      <li><strong>${t('admin.event')}</strong> ${S.event} · ${S.people} ${LANG==='en'?'guests':'personas'}</li>
+      <li><strong>${t('admin.space')}</strong> ${t('spaces.'+S.space)}</li>
+      <li><strong>${t('admin.date')}</strong> ${dateStr} · ${S.startHour} · ${S.hours} hrs</li>
+      <li><strong>${t('admin.catering')}</strong> ${S.cateringType==='nativo'?menu.name[LANG]+(LANG==='en'?' (−50% rental)':' (−50% renta)'):(S.cateringType==='sin'?t('s4.noCateringTitle'):t('s4.extCateringTitle'))}</li>
+      ${S.extras.coffee?`<li><strong>${t('admin.extras')}</strong> ${t('extra.coffeeTitle')}</li>`:''}
+      ${S.comments?`<li><strong>${t('admin.comments')}</strong> ${S.comments}</li>`:''}
+      <li><strong>${t('admin.totalEst')}</strong> ${t('admin.totalEstVal',{n:fmt(pr.total)})}</li>
     </ul>
     <div class="admin-actions">
-      <button class="btn primary" onclick="adminApprove()">✓ Aprobar y enviar formal</button>
-      <button class="btn wa" onclick="adminWA()">Contactar por WhatsApp</button>
-      <button class="btn" onclick="adminHubSpot()">Ver Deal en HubSpot</button>
-      <button class="btn ghost" onclick="adminDrive()">Ver PDF en Drive</button>
+      <button class="btn primary" onclick="adminApprove()">${t('admin.btnApprove')}</button>
+      <button class="btn wa" onclick="adminWA()">${t('admin.btnWa')}</button>
+      <button class="btn" onclick="adminHubSpot()">${t('admin.btnHs')}</button>
+      <button class="btn ghost" onclick="adminDrive()">${t('admin.btnDrive')}</button>
     </div>
-    <p style="margin-top:14px;font-size:11px;color:var(--ink-soft);font-style:italic">Objetivo: responder en menos de 1 hora por WhatsApp, cotización formal en 4 horas.</p>
+    <p style="margin-top:14px;font-size:11px;color:var(--ink-soft);font-style:italic">${t('admin.objective')}</p>
   `;
 }
 
-// ========= ADMIN ACTION HANDLERS (real action simulators) =========
 function adminApprove(){
-  toast('Generando PDF formal…','Aplicando branding completo de Nativo','info');
-  setTimeout(()=>{
-    toast('PDF formal ✓','Guardado en Drive con sufijo _FORMAL.pdf','success');
-  },1200);
-  setTimeout(()=>{
-    toast('Correo enviado al cliente ✓',S.contact.email+' · cotización formal adjunta','success');
-  },2200);
-  setTimeout(()=>{
-    toast('HubSpot actualizado ✓','Deal stage → "Cotización Formal Enviada"','success');
-  },3000);
+  toast('toast.formalGen.t','toast.formalGen.b','info');
+  setTimeout(()=>toast('toast.formalSaved.t','toast.formalSaved.b','success'),1200);
+  setTimeout(()=>toast('toast.formalSent.t','toast.formalSent.b','success',{e:S.contact.email}),2200);
+  setTimeout(()=>toast('toast.hsUpdated.t','toast.hsUpdated.b','success'),3000);
 }
-
 function adminWA(){
   const phone = (S.contact.phone||'').replace(/\D/g,'');
-  if(!phone){ toast('Sin teléfono','El cliente no dejó teléfono','error'); return; }
-  const msg = encodeURIComponent(`Hola ${S.contact.name.split(' ')[0]}, soy del equipo Nativo ✦ recibí tu solicitud para el ${formatDate(S.date)} y me pongo en contacto para confirmar disponibilidad y cualquier duda.`);
+  if(!phone){ toast('toast.noPhone.t','toast.noPhone.b','error'); return; }
+  const msg = encodeURIComponent(t('wa.adminGreeting',{n:S.contact.name.split(' ')[0],d:formatDate(S.date)}));
   window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
 }
-
 function adminHubSpot(){
-  toast('Abriendo HubSpot…','En producción te lleva al Deal del cliente','info');
-  // Simulated URL — replace with real HubSpot deal URL in production
+  toast('toast.openHs.t','toast.openHs.b','info');
   setTimeout(()=>window.open('https://app.hubspot.com/contacts/0/deal/0','_blank'),400);
 }
-
 function adminDrive(){
-  toast('Abriendo PDF en Drive…','/Cotizaciones Nativo/2026/Mayo/','info');
+  toast('toast.openDrive.t','toast.openDrive.b','info');
   setTimeout(()=>window.open('https://drive.google.com/drive/folders/1CCvuo6y3oOK-iDp0szeHeuIa6X6G3x0U','_blank'),400);
 }
 
@@ -1542,18 +1667,28 @@ function resetAll(){
   document.querySelectorAll('input,textarea').forEach(i=>{if(i.type==='checkbox')i.checked=false;else i.value=''});
   document.querySelectorAll('.pill,.cat-opt,.space-card,.field').forEach(x=>x.classList.remove('selected','err','ok'));
   const cap=document.getElementById('cap-box'); cap.classList.remove('checked','loading'); cap.innerHTML='';
-  document.getElementById('cap-label').textContent='Verifica que no eres un robot';
+  document.getElementById('cap-label').textContent=t('s6.capLabel');
   document.getElementById('time-panel').style.display='none';
   renderCalendar(); renderSpaces(); goto(1);
 }
 
+// ========= ADMIN MODE: solo el equipo ve los toasts/correo interno con ?admin=1 =========
+const IS_ADMIN = new URLSearchParams(location.search).get('admin') === '1';
+function applyAdminMode(){
+  if(!IS_ADMIN){
+    document.querySelectorAll('.integrations-fired,.admin-preview,.conn-status').forEach(el=>{
+      if(el) el.style.display='none';
+    });
+  }
+}
+
 // ========= INIT =========
+applyI18n();
+applyAdminMode();
 renderCalendar();
 renderSpaces();
 renderSummary();
-
-// Initial toast on load
-setTimeout(()=>toast('✦ Bienvenid@','Prototipo conectado a HubSpot · Drive · Calendar (modo demo)','success'),500);
+if(IS_ADMIN) setTimeout(()=>toast('toast.welcome.t','toast.welcome.b','success'),500);
 </script>
 </body>
 </html>
